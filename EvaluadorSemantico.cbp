@@ -32,7 +32,29 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="arbol_componentes.cpp" />
+		<Unit filename="arbol_componentes.h" />
+		<Unit filename="archivo.cpp" />
+		<Unit filename="archivo.h" />
+		<Unit filename="boolean.cpp" />
+		<Unit filename="boolean.h" />
+		<Unit filename="componente.cpp" />
+		<Unit filename="componente.h" />
+		<Unit filename="errores.cpp" />
+		<Unit filename="errores.h" />
+		<Unit filename="expresion.cpp" />
+		<Unit filename="expresion.h" />
+		<Unit filename="letra.cpp" />
+		<Unit filename="letra.h" />
+		<Unit filename="lista_expresiones.cpp" />
+		<Unit filename="lista_expresiones.h" />
+		<Unit filename="lista_letras.cpp" />
+		<Unit filename="lista_letras.h" />
+		<Unit filename="lista_parametros.cpp" />
+		<Unit filename="lista_parametros.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="string.cpp" />
+		<Unit filename="string.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

@@ -9,7 +9,8 @@ typedef enum {COMANDO_INV,
                TIPO_LETRA_INV,
                NOM_ARCH_INV,
                ARCH_NO_EXISTE
-              } error ;
+              } Error ;
 
+void ImprimierError(Error e);
 
 #endif // ERRORES_H_INCLUDED
