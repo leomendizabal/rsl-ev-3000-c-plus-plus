@@ -9,5 +9,14 @@ typedef struct
 
 } infoLetra;
 
+//Carga la informacion de infoLetra
+void CargarInfoLetra(infoLetra &l,char l,Boolean val);
+//Muestra la letra por pantalla 
+Void MostrarLetra(infoLetra l);
+//Devuelve la letra de la estructura
+char DarLetra(infoLetra l);
+//Devuelve el valor booleano de la estructura
+Boolean DarValor(infoLetra l);
+
 
 #endif // LETRA_H_INCLUDED
