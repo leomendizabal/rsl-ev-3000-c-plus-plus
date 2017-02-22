@@ -23,5 +23,11 @@ void Levantar_Int(int &i, FILE * f);
 
 void Bajar_Int(int i, FILE * f);
 
+void Bajar_Arbol(ArbolComponentes abb,string nombreArch);
+
+void Bajar_Arbol_Aux(ArbolComponentes abb,FILE *f);
+
+void Levantar_Arbol(ArbolComponentes &abb,string nombreArch);
+
 
 #endif // ARCHIVO_H_INCLUDED
