@@ -11,5 +11,38 @@ typedef struct nodoA
 
 typedef NodoArb *ArbolComponentes;
 
+//crea el arbol vacio
+void CrearVacio(ArbolComponentes &abb);
+
+//crea un arbol, setea c como info de la raiz y sus ramas izq/der con los subArboles ramaIzq/ramaDer.
+void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponentes ramaDer, Componente c);
+
+//devuelve TRUE si es vacio
+Boolean EsVacio(ArbolComponentes abb);
+
+//devuelve el info de la raiz. PRECONDICION: abb !EsVacio
+Componente DevolverRaiz(ArbolComponentes abb);
+
+//devuelve el subArbol izquierdo de abb. PRECONDICION: abb !EsVacio
+ArbolComponentes HijoIzq(ArbolComponentes abb);
+
+//devuelve el subArbol derecho de abb. PRECONDICION: abb !EsVacio
+ArbolComponentes HijoDer(ArbolComponentes abb);
+
+//Inserta un nodo en el arbol, ordenado por su valor
+void Insertar(ArbolComponentes &abb, Componente c);
+
+//Retorna TRUE si encuentra un nodo que contiene a letra
+Boolean ExisteLetra(ArbolComponentes abb, char letra);
+
+//Copia el contenido de abb a abbcopia
+void CopiarArbol(ArbolComponentes &abbcopia,ArbolComponentes abb);
+
+//Muestra el arbol en orden (de menor a mayor).
+void MostrarArbol(ArbolComponentes abb);
+
+//Elimina todos los nodos del arbol y lo deja vacio
+void EliminarArbol(ArbolComponentes abb);
+
 
 #endif // ARBOL_COMPONENTES_H_INCLUDED
