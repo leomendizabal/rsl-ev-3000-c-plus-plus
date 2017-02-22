@@ -1,5 +1,6 @@
 #ifndef EXPRESION_H_INCLUDED
 #define EXPRESION_H_INCLUDED
+#include "arbol_componentes.h"
 
 #include "arbol_componentes.h"
 
