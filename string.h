@@ -26,6 +26,8 @@ Boolean strmen(string s1,string s2);
 
 Boolean streq(string s1,string s2);
 
+void strsplit(string s1, char c, string &s2);
+
 
 
 

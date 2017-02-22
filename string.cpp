@@ -122,4 +122,24 @@ Boolean streq(string s1,string s2)
     return iguales;
 }
 
+//Retorna retorna la un sub string desde un char dado  hacia el final.
+void strsplit(string s1, char c, string &s2){
+  string aux;
+  int i = 0;
+  strcrear(aux);
+  while((s1[i]!='\0') && (s1[i] != c)){
+    i++;
+  }
+  if(s1[i] == c){
+    int j = 0;
+    while(s1[i]!= '\0'){
+      s2[j]=s1[i];
+      i++;
+      j++;
+    }
+    s2[j] = '\0';
+  }
+
+}
+
 

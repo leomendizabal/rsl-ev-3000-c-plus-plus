@@ -38,6 +38,8 @@
 		<Unit filename="archivo.h" />
 		<Unit filename="boolean.cpp" />
 		<Unit filename="boolean.h" />
+		<Unit filename="comandos.cpp" />
+		<Unit filename="comandos.h" />
 		<Unit filename="componente.cpp" />
 		<Unit filename="componente.h" />
 		<Unit filename="errores.cpp" />

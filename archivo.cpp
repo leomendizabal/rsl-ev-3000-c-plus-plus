@@ -8,10 +8,10 @@ void CrearArchivo(string nombre)
 
 Boolean Existe (string nomArch)
 {
-    boolean existeArchivo = true;
+    Boolean existeArchivo = TRUE;
     FILE * f = fopen (nomArch, "rb");
     if (f == NULL)
-        existeArchivo = false;
+        existeArchivo = FALSE;
     else
         fclose (f);
     return existeArchivo;

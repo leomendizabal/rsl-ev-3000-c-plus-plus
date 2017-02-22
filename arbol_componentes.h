@@ -1,5 +1,6 @@
 #ifndef ARBOL_COMPONENTES_H_INCLUDED
 #define ARBOL_COMPONENTES_H_INCLUDED
+#include "Componente.h"
 
 typedef struct nodoA
 {

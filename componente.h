@@ -1,6 +1,7 @@
 #ifndef COMPONENTE_H_INCLUDED
 #define COMPONENTE_H_INCLUDED
-
+#include "boolean.h"
+#include "string.h"
 //Tipo de datos
 typedef enum {LETRA,OPERADOR,PARENTESIS} TipoDato;
 

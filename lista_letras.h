@@ -5,7 +5,7 @@
 //Lista de expresion
 typedef struct nodoL
 {
-    infoLetra info;
+    InfoLetra info;
     nodoL *sig;
 } NodoLista;
 
