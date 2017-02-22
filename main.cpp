@@ -1,6 +1,7 @@
 #include <iostream>
 #include "comandos.h"
 #include "errores.h"
+#include "lista_parametros.h"
 
 int main(){
 
@@ -12,10 +13,9 @@ int main(){
   strcrear(parametros);
   //Leo la entrad
   scan(entrada);
-  //Parseo
   ParsearComando(entrada,comando,parametros);
 
-  do{
+ do{
     if(ValidarComando(comando) == TRUE) {
       if(streq(comando,"ayuda")){
 

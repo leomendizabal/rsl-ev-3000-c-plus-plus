@@ -63,15 +63,15 @@ void Bajar_Int(int i, FILE * f)
     fwrite (&i, sizeof (int), 1, f);
 }
 
-void Bajar_Arbol(ArbolComponentes abb,string nombreArch);
+void Bajar_Arbol(ArbolComponentes abb,string nombreArch)
 {
-    
+
 }
-void Bajar_Arbol_Aux(ArbolComponentes abb,FILE *f);
+void Bajar_Arbol_Aux(ArbolComponentes abb,FILE *f)
 {
-    
+
 }
-void Levantar_Arbol(ArbolComponentes &abb,string nombreArch);
+void Levantar_Arbol(ArbolComponentes &abb,string nombreArch)
 {
-    
+
 }
