@@ -3,13 +3,25 @@
 #include"expresion.h"
 
 //Lista de expresion
-typedef struct nodoL
+typedef struct nodoE
 {
     Expresion ex;
-    nodoL *sig;
-} NodoLista;
+    nodoE *sig;
 
-typedef NodoLista * ListaExpresiones;
+} NodoListaE;
 
+typedef NodoListaE * ListaExpresiones;
+
+void CrearListaExpresiones(ListaExpresiones &l);
+
+Boolean EsVacia(ListaExpresiones l);
+
+Expresion DarExpresion(ListaExpresiones l,int indice);
+
+Expresion PrimerExpresion (ListaExpresiones l);
+
+void Restoceder (ListaExpresiones &l);
+
+void InsFront (ListaExpresiones &l, Expresion e);
 
 #endif // LISTA_EXPRESIONES_H_INCLUDED

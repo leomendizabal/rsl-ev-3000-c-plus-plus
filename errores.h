@@ -2,6 +2,7 @@
 #define ERRORES_H_INCLUDED
 #include<stdio.h>
 
+
 typedef enum { NO_ERR,
                COMANDO_INV,
                CANT_PARAM,
@@ -13,6 +14,6 @@ typedef enum { NO_ERR,
                ARCH_NO_EXISTE
               } Error ;
 
-void ImprimirError(Error e);
+void MostrarMensajeError(Error e);
 
 #endif // ERRORES_H_INCLUDED

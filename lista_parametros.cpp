@@ -1,99 +1,166 @@
 #include "lista_parametros.h"
-
+#include "comandos.h"
 
 void CrearLista(ListaParametros &l)
 {
     l= NULL;
 }
 
-void DarParametro(ListaParametros l, int indice, string &s)
-{
-    int i = indice;
-    while((l!=NULL) && (i >= 0))
-    {
-        strcop(s,l->parametro);
-        l = l->sig;
-    }
+Boolean EsVacia(ListaParametros l){
+    if(l == NULL)
+      return TRUE;
+    else
+      return FALSE;
 }
 
-Error ValidarParametros(ListaParametros l,string comando)
-{
-    if(streq(comando,"ayuda"))
+void DarParametro(ListaParametros l, int indice, string &s){
+    int i = indice;
+    ListaParametros aux;
+    CrearLista(aux);
+    aux = l;
+    while((aux!=NULL) && (i >= 0))
     {
-        if(CantidadParametros(l) == 1)
-        {
+        strcop(s,l->parametro);
+        aux = aux->sig;
+    }
+    delete aux;
+}
 
+Error ValidarParametros(ListaParametros l,string comando){
+    string p1,p2,p3;
+
+    if(streq(comando,"ayuda")) {
+        if(CantidadParametros(l) == 1){
+            strcrear(p1);
+            DarParametro(l,1,p1);
+            if(ValidarComando(p1)==FALSE) {
+                return COMANDO_INV;
+            }else{
+                return NO_ERR;
+            }
+
+        }else{
+            return CANT_PARAM;
+        }
+    }else if(streq(comando,"atomica")){
+        if(CantidadParametros(l) == 1){
+            strcrear(p1);
+            DarParametro(l,1,p1);
+          if(EsLetra(p1) == FALSE)
+            return TIPO_LETRA_INV;
+          else
+            return NO_ERR;
+        }else{
+           return CANT_PARAM;
+        }
+    }else if(streq(comando,"noatomica")){
+        if(CantidadParametros(l) == 3){
+           strcrear(p1);
+           DarParametro(l,1,p1);
+           if(EsLetra(p1) == FALSE){
+              return TIPO_LETRA_INV;
+           }else{
+              strcrear(p2);
+              DarParametro(l,2,p2);
+              if(EsOperadorValido(p2) == TRUE){
+                strcrear(p3);
+                DarParametro(l,3,p3);
+                if(EsLetra(p3) == TRUE){
+                  return NO_ERR;
+                }else{
+                  return TIPO_LETRA_INV;
+                }
+              }else{
+                return OPERADOR_INV;
+              }
+           }
+        }else if (CantidadParametros(l) == 2){
+           strcrear(p1);
+           DarParametro(l,1,p1);
+           if(EsOperadorValido(p1) == TRUE){
+                strcrear(p2);
+                DarParametro(l,2,p2);
+                if(EsLetra(p2) == TRUE){
+                  return NO_ERR;
+                }else{
+                  return TIPO_LETRA_INV;
+                }
+              }else{
+                return OPERADOR_INV;
+              }
+          }else{
+            return CANT_PARAM;
+          }
+    }else if(streq(comando,"respaldar")){
+        if(CantidadParametros(l) == 2){
+           strcrear(p1);
+           DarParametro(l,1,p1);
+           if(EsNumericoValido(p1) == TRUE){
+               strcrear(p2);
+               DarParametro(l,2,p2);
+               if(EsNombreValido(p2) == TRUE)
+                  return NO_ERR;
+               else
+                  return NOM_ARCH_INV;
+            }else{
+                return TIPO_NUM_INV;
+            }
+
+        }else{
+          return CANT_PARAM;
         }
 
-    }
-    else if(streq(comando,"atomica"))
-    {
-        if(CantidadParametros(l) == 1)
-        {
-
+    }else if(streq(comando,"recuperar")){
+        if(CantidadParametros(l) == 1){
+            strcrear(p1);
+            DarParametro(l,1,p1);
+            if(EsNombreValido(p1) == TRUE)
+              return NO_ERR;
+            else
+              return NOM_ARCH_INV;
+        }else{
+          return CANT_PARAM;
         }
-
-    }
-    else if(streq(comando,"noatomica"))
-    {
-        if((CantidadParametros(l) == 3) ||(CantidadParametros(l) == 2))
-        {
-
+    }else if(streq(comando,"letras")){
+        if(CantidadParametros(l) == 1){
+            strcrear(p1);
+            DarParametro(l,1,p1);
+            if(EsNumericoValido(p1) == TRUE)
+              return NO_ERR;
+            else
+              return TIPO_NUM_INV;
+        }else{
+          return CANT_PARAM;
         }
-
-    }
-    else if(streq(comando,"respaldar"))
-    {
-        if(CantidadParametros(l) == 2)
-        {
-
+    }else if(streq(comando,"evaluar")){
+        if(CantidadParametros(l) == 1){
+            strcrear(p1);
+            DarParametro(l,1,p1);
+            if(EsNumericoValido(p1) == TRUE)
+              return NO_ERR;
+            else
+              return TIPO_NUM_INV;
+        }else{
+          return CANT_PARAM;
         }
-
-    }
-    else if(streq(comando,"recuperar"))
-    {
-        if(CantidadParametros(l) == 1)
-        {
-
+    }else if(streq(comando,"salir")){
+        if(CantidadParametros(l) != 0){
+            return CANT_PARAM;
+        }else{
+            return NO_ERR;
         }
-
-    }
-    else if(streq(comando,"letras"))
-    {
-        if(CantidadParametros(l) == 1)
-        {
-
+    }else if(streq(comando,"mostrar")){
+        if(CantidadParametros(l) == 1){
+          if(EsNumericoValido(p1) == TRUE)
+              return NO_ERR;
+            else
+              return TIPO_NUM_INV;
+        }else{
+          return CANT_PARAM;
         }
-
+    }else{
+        return COMANDO_INV;
     }
-    else if(streq(comando,"evaluar"))
-    {
-        if(CantidadParametros(l) == 1)
-        {
-
-        }
-
-    }
-    else if(streq(comando,"salir"))
-    {
-        if(CantidadParametros(l) == 0)
-        {
-
-        }
-
-    }
-    else if(streq(comando,"mostrar"))
-    {
-        if(CantidadParametros(l) == 1)
-        {
-
-        }
-
-    }
-
-
-
-
 }
 
 int  CantidadParametros(ListaParametros l)
@@ -149,4 +216,38 @@ Boolean EsNombreValido(string parametro)
         es = TRUE;
     }
     return es;
+}
+
+Boolean EsLetra(string parametro){}
+
+Boolean EsOperadorValido(string parametro){
+
+    switch(parametro[0]){
+      case'&':
+      case'|':
+      case'!': return TRUE;
+      default: return FALSE;
+    }
+
+}
+
+void PrimerParametro (ListaParametros l,string &s) {
+  strcop(s,l->parametro);
+}
+
+/* Precondición: lista NO vacía */
+void Restoceder (ListaParametros &l) {
+  ListaParametros aux;
+  aux = l;
+  l = l->sig;
+  delete aux;
+}
+
+void InsFront (ListaParametros &l, string s) {
+  ListaParametros aux;
+  aux = new NodoParametros;
+  strcop(aux->parametro,s);
+ // aux->parametro = s;
+  aux->sig = l;
+  l = aux;
 }

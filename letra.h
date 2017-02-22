@@ -12,13 +12,13 @@ typedef struct
 } InfoLetra;
 
 //Carga la informacion de infoLetra
-void CargarInfoLetra(infoLetra &l,char l,Boolean val);
-//Muestra la letra por pantalla 
-Void MostrarLetra(infoLetra l);
+void CargarInfoLetra(InfoLetra &l,char c,Boolean val);
+//Muestra la letra por pantalla
+void MostrarLetra(InfoLetra l);
 //Devuelve la letra de la estructura
-char DarLetra(infoLetra l);
+char DarLetra(InfoLetra l);
 //Devuelve el valor booleano de la estructura
-Boolean DarValor(infoLetra l);
+Boolean DarValor(InfoLetra l);
 
 
 #endif // LETRA_H_INCLUDED

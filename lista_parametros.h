@@ -14,6 +14,8 @@ typedef NodoParametros *ListaParametros;
 
 void CrearLista(ListaParametros &l);
 
+Boolean EsVacia(ListaParametros l);
+
 void DarParametro(ListaParametros l, int indice, string &s);
 
 Error ValidarParametros(ListaParametros l,string comando);
@@ -25,6 +27,17 @@ Boolean EsNumericoValido(string parametro);
 Boolean EsNumericoValido(string parametro);
 
 Boolean EsNombreValido(string parametro);
+
+//Valida si es de largo uno y es un char [A-a,Z-z]
+Boolean EsLetra(string parametro);
+
+Boolean EsOperadorValido(string parametro);
+
+void PrimerParametro (ListaParametros l,string &s);
+
+void Restoceder (ListaParametros &l);
+
+void InsFront (ListaParametros &l, string s);
 
 
 #endif // LISTA_PARAMETROS_H_INCLUDED

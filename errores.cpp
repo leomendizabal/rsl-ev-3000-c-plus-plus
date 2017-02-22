@@ -1,7 +1,7 @@
 #include "errores.h"
 
 
-void ImprimirError(Error e)
+void MostrarMensajeError(Error e)
 {
 
     switch(e)
