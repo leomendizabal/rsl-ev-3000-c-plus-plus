@@ -1,7 +1,7 @@
 #ifndef COMPONENTE_H_INCLUDED
 #define COMPONENTE_H_INCLUDED
-#include "boolean.h"
 #include "string.h"
+
 //Tipo de datos
 typedef enum {LETRA,OPERADOR,PARENTESIS} TipoDato;
 
@@ -19,11 +19,19 @@ typedef struct
 
 } Componente;
 
-void CargarDato(Componente &c, char dato, TipoDato tipo);
+void CargarDato(Componente &c,int pos, char dato, TipoDato tipo);
+
 char DarDato(Componente c);
+
+int DarPosicion(Componente c);
+
 void MostrarDato(Componente c);
+
 Boolean EsTipoLetra(Componente c);
+
 Boolean EsTipoOperador(Componente c);
+
 Boolean EsTipoParentesis(Componente c);
+
 
 #endif // COMPONENTE_H_INCLUDED
