@@ -19,5 +19,11 @@ typedef struct
 
 } Componente;
 
+void CargarDato(Componente &c, char dato, TipoDato tipo);
+char DarDato(Componente c);
+void MostrarDato(Componente c);
+Boolean EsTipoLetra(Componente c);
+Boolean EsTipoOperador(Componente c);
+Boolean EsTipoParentesis(Componente c);
 
 #endif // COMPONENTE_H_INCLUDED
