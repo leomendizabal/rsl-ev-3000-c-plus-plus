@@ -1,6 +1,6 @@
 #include"componente.h"
 
-void CargarDato(Componente &c, char dato, TipoDato tipo){
+void CargarDato(Componente &c,int pos, char dato, TipoDato tipo){
     switch(tipo){
         case LETRA:
             c.dato.letra = dato;
@@ -15,6 +15,7 @@ void CargarDato(Componente &c, char dato, TipoDato tipo){
             break;
     }
     c.tipo = tipo;
+    c.valor= pos;
 }
 
 char DarDato(Componente c){
@@ -35,6 +36,11 @@ char DarDato(Componente c){
     }
 
     return resultado;
+}
+
+int DarPosicion(Componente c)
+{
+    return c.valor;
 }
 
 void MostrarDato(Componente c){
