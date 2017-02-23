@@ -32,6 +32,12 @@ ArbolComponentes HijoDer(ArbolComponentes abb);
 //Inserta un nodo en el arbol, ordenado por su valor
 void Insertar(ArbolComponentes &abb, Componente c);
 
+//Inserta parentesis abierto como hoja izquierda PRECONDICION: abb !EsVacio
+void InsertarParentesisIzq(ArbolComponentes &abb,Componente c);
+
+//Inserta parentesis cerrado como hoja derecha PRECONDICION: abb !EsVacio
+void InsertarParentesisDer(ArbolComponentes &abb,Componente c);
+
 //Retorna TRUE si encuentra un nodo que contiene a letra
 Boolean ExisteLetra(ArbolComponentes abb, char letra);
 
@@ -43,6 +49,12 @@ void MostrarArbol(ArbolComponentes abb);
 
 //Elimina todos los nodos del arbol y lo deja vacio
 void EliminarArbol(ArbolComponentes abb);
+
+//Devuelve el valor maximo del arbol PRECONDICION: abb !EsVacio
+int Maximo(ArbolComponentes abb);
+
+//Incrementa los valor de cada nodo
+void IncrementarValoresArbol(ArbolComponentes abb, int val);
 
 
 #endif // ARBOL_COMPONENTES_H_INCLUDED
