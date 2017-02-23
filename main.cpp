@@ -13,7 +13,9 @@ int main(){
   strcrear(parametros);
   //Leo la entrad
   scan(entrada);
+  //Parseo
   ParsearComando(entrada,comando,parametros);
+  ParsearParametros(parametros);
 
  do{
     if(ValidarComando(comando) == TRUE) {

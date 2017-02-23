@@ -25,14 +25,37 @@ Boolean ValidarComando(string comando){
     }
 }
 
+
 void ParsearComando(string entrada, string &comando,string &parametros){
     string parametrosAux;
     string entradaAux;
     strcrear(parametrosAux);
     strcrear(entradaAux);
 
-    strtrim(entrada, entradaAux);               //guarda la entrada sin espacios al principio
-    strfirst(entradaAux, ' ', comando);         //guarda el comando
-    strsplit(entradaAux, ' ', parametrosAux);   //guarda la cadena de parametros
-    strtrim(parametrosAux, parametros);         //quita los espacios del principio
+    strtrim(entrada, entradaAux);
+    strfirst(entradaAux, 0, ' ', comando);          //guarda el comando
+    strsplit(entradaAux, ' ', parametrosAux);       //guarda la cadena de parametros
+    strtrim(parametrosAux, parametros);             //quita los espacios del principio
+}
+
+ListaParametros ParsearParametros(string parametros){
+    int i = 0;
+    string param;
+    string restoParam;
+    ListaParametros listaResultado;
+    strcrear(param);
+    strcrear(restoParam);
+    CrearLista(listaResultado);
+
+    while(strlar(parametros)>0){
+        strfirst(parametros, 0, ' ', param);            //obtiene el primer string hasta el espacio
+        InsUltimo(listaResultado, param);               //inserta un nodo con el parametro a la lista
+        strsplit(parametros, ' ', parametros);          //guarda en restoParam toda la cadena menos el primer string
+        strtrim(parametros, parametros);
+    }
+
+    //printf("Lista: ");
+    //Mostrar(listaResultado);
+    return listaResultado;
+
 }

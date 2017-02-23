@@ -138,15 +138,16 @@ void strsplit(string s1, char c, string &s2){
       j++;
     }
     s2[j] = '\0';
+  }else{
+    s2[0] = '\0';
   }
 
 }
 
-
-//Retorna un sub string desde principio a un char dado.
-void strfirst(string s1, char c, string &s2){
+//Retorna un sub string desde index a un char dado.
+void strfirst(string s1, int index, char c, string &s2){
   string aux;
-  int i = 0;
+  int i = index;
 
   while((s1[i]!='\0') && (s1[i] != c)){
     s2[i] = s1[i];
@@ -156,7 +157,7 @@ void strfirst(string s1, char c, string &s2){
   s2[i] = '\0';
 }
 
-//Quita los espacios del principio
+//Quita todos los espacios del principio
 void strtrim(string s1, string &s2){
   int i = 0;
   int j = 0;

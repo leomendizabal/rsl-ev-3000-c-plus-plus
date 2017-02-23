@@ -28,7 +28,7 @@ Boolean streq(string s1,string s2);
 
 void strsplit(string s1, char c, string &s2);
 
-void strfirst(string s1, char c, string &s2);
+void strfirst(string s1, int index, char c, string &s2);
 
 void strtrim(string s1, string &s2);
 
