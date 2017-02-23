@@ -7,10 +7,40 @@ void CrearVacio(ArbolComponentes &abb)
 }
 void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponentes ramaDer, Componente c)
 {
+
     raiz=new NodoArb;
-    raiz->info=c;
-    raiz->Hizq=ramaIzq;
-    raiz->Hder=ramaDer;
+    if (EsTipoLetra(c))
+    {
+        raiz->info=c;
+        raiz->Hizq=NULL;
+        raiz->Hder=NULL;
+    }
+    else
+       if (DarDato(c)=='!')
+       {
+          raiz->Hizq=NULL;
+          //raiz->Hder=NULL;
+          int pos=1;
+          char parenabierto='(';
+          Componente parenizq;
+          CargarDato(parenizq,pos,parenabierto,PARENTESIS);
+          InsertarParentesisIzq(raiz,parenizq);
+          IncrementarValor(c,Maximo(raiz->Hizq)+1);
+          raiz->info=c;
+          ArbolComponentes CopiaRamaDer;
+          CopiarArbol(CopiaRamaDer,ramaDer);
+          IncrementarValoresArbol(CopiaRamaDer,DarPosicion(raiz->info));
+          pos=Maximo(CopiaRamaDer)+1;
+          char parencerrado=')';
+          Componente parender;
+          CargarDato(parender,pos,parencerrado,PARENTESIS);
+          InsertarParentesisDer(CopiaRamaDer,parender);
+          raiz->Hder=CopiaRamaDer;
+       }
+       else
+       {
+
+       }
 
 }
 Boolean EsVacio(ArbolComponentes abb)
@@ -48,6 +78,30 @@ void Insertar(ArbolComponentes &abb, Componente c)
         else
               Insertar(abb->Hder,c);
 
+}
+void InsertarParentesisIzq(ArbolComponentes &abb,Componente c)
+{
+    if (abb->Hizq==NULL)
+    {
+           abb = new NodoArb;
+           abb->info = c;
+           abb->Hizq = NULL;
+           abb->Hder = NULL;
+    }
+    else
+        InsertarParentesisIzq(abb->Hizq,c);
+}
+void InsertarParentesisDer(ArbolComponentes &abb,Componente c)
+{
+  if (abb->Hder==NULL)
+    {
+           abb = new NodoArb;
+           abb->info = c;
+           abb->Hizq = NULL;
+           abb->Hder = NULL;
+    }
+    else
+        InsertarParentesisDer(abb->Hder,c);
 }
 Boolean ExisteLetra(ArbolComponentes abb, char letra)
 {
@@ -90,5 +144,21 @@ void EliminarArbol(ArbolComponentes abb)
         EliminarArbol(abb->Hder);
         delete abb;
         abb=NULL;
+  }
+}
+int Maximo(ArbolComponentes abb)
+{
+   while (abb->Hder != NULL)
+        abb= abb->Hder;
+   return (DarPosicion(abb->info));
+}
+
+void IncrementarValoresArbol(ArbolComponentes abb, int val)
+{
+  if (abb!=NULL)
+  {
+     IncrementarValor(abb->info,val);
+     IncrementarValoresArbol(abb->Hizq,val);
+     IncrementarValoresArbol(abb->Hder,val);
   }
 }
