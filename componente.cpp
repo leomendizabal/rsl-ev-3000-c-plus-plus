@@ -73,3 +73,8 @@ Boolean EsTipoOperador(Componente c){
 Boolean EsTipoParentesis(Componente c){
     return (Boolean)(c.tipo == 2);
 }
+
+void IncrementarValor(Componente &c,int val)
+{
+   c.valor=c.valor+val;
+}
