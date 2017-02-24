@@ -1,80 +1,39 @@
-#include"componente.h"
+#ifndef COMPONENTE_H_INCLUDED
+#define COMPONENTE_H_INCLUDED
+#include "string.h"
 
-void CargarDato(Componente &c,int pos, char dato, TipoDato tipo){
-    switch(tipo){
-        case LETRA:
-            c.dato.letra = dato;
-            break;
-        case OPERADOR:
-            c.dato.operador = dato;
-            break;
-        case PARENTESIS:
-            c.dato.parentesis = dato;
-            break;
-        default:
-            break;
-    }
-    c.tipo = tipo;
-    c.valor= pos;
-}
+//Tipo de datos
+typedef enum {LETRA,OPERADOR,PARENTESIS} TipoDato;
 
-char DarDato(Componente c){
-    char resultado;
-
-    switch(c.tipo){
-        case LETRA:
-            resultado = c.dato.letra;
-            break;
-        case OPERADOR:
-            resultado = c.dato.operador;
-            break;
-        case PARENTESIS:
-            resultado = c.dato.parentesis;
-            break;
-        default:
-            break;
-    }
-
-    return resultado;
-}
-
-int DarPosicion(Componente c)
+//componente de una expresion
+typedef struct
 {
-    return c.valor;
-}
+    int valor;
+    TipoDato tipo;
+    union
+    {
+        char operador;
+        char letra;
+        char parentesis;
+    } dato;
 
-void MostrarDato(Componente c){
-    char resultado;
-    switch(c.tipo){
-        case LETRA:
-            resultado = c.dato.letra;
-            break;
-        case OPERADOR:
-            resultado = c.dato.operador;
-            break;
-        case PARENTESIS:
-            resultado = c.dato.parentesis;
-            break;
-        default:
-            break;
-    }
+} Componente;
 
-    printf("%c", resultado);
-}
+void CargarDato(Componente &c,int pos, char dato, TipoDato tipo);
 
-Boolean EsTipoLetra(Componente c){
-    return (Boolean)(c.tipo == 0);
-}
+char DarDato(Componente c);
 
-Boolean EsTipoOperador(Componente c){
-    return (Boolean)(c.tipo == 1);
-}
+int DarPosicion(Componente c);
 
-Boolean EsTipoParentesis(Componente c){
-    return (Boolean)(c.tipo == 2);
-}
+void MostrarDato(Componente c);
 
-void IncrementarValor(Componente &c,int val)
-{
-   c.valor=c.valor+val;
-}
+Boolean EsTipoLetra(Componente c);
+
+Boolean EsTipoOperador(Componente c);
+
+Boolean EsTipoParentesis(Componente c);
+
+void AsignarPosicion(Componente c,int val);
+
+#endif // COMPONENTE_H_INCLUDED
+
