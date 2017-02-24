@@ -33,7 +33,6 @@ Boolean EsTipoOperador(Componente c);
 
 Boolean EsTipoParentesis(Componente c);
 
-void IncrementarValor(Componente &c,int val);
-
+void AsignarPosicion(Componente c,int val);
 
 #endif // COMPONENTE_H_INCLUDED
