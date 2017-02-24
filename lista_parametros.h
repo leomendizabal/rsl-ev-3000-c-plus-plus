@@ -39,5 +39,9 @@ void Restoceder (ListaParametros &l);
 
 void InsFront (ListaParametros &l, string s);
 
+void InsUltimo (ListaParametros &l, string s);
+
+void MostrarParametros(ListaParametros l);
+
 
 #endif // LISTA_PARAMETROS_H_INCLUDED

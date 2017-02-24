@@ -8,6 +8,9 @@
 Boolean ValidarComando(string comando);
 
 void ParsearComando(string entrada, string &comando,string &parametros);
-ListaParametros ParsearParametros(string parametros);
+
+void ParsearParametros(string parametros,ListaParametros &listaResultado);
+
+void ComandoAyuda(string  comando);
 
 #endif // COMANDOS_H_INCLUDED

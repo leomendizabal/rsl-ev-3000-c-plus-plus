@@ -1,34 +1,33 @@
 #include "errores.h"
 
-
 void MostrarMensajeError(Error e)
 {
 
     switch(e)
     {
     case 1:
-         printf("Error");
+         printf("COMANDO_INV");
         break;
     case 2:
-       printf("Error");
+       printf("CANT_PARAM");
         break;
     case 3:
-       printf("Error");
+       printf("OPERADOR_INV");
         break;
     case 4:
-       printf("Error");
+       printf("NO_EXISTE_EXP");
         break;
     case 5:
-       printf("Error");
+       printf("TIPO_NUM_INV");
         break;
     case 6:
-       printf("Error");
+       printf("TIPO_LETRA_INV");
         break;
     case 7:
-       printf("Error");
+       printf("NOM_ARCH_INV");
         break;
     case 8:
-       printf("Error");
+       printf("ARCH_NO_EXISTE");
         break;
 
     }

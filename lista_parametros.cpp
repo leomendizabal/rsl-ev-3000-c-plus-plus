@@ -3,7 +3,7 @@
 
 void CrearLista(ListaParametros &l)
 {
-    l= NULL;
+    l = NULL;
 }
 
 Boolean EsVacia(ListaParametros l){
@@ -14,14 +14,15 @@ Boolean EsVacia(ListaParametros l){
 }
 
 void DarParametro(ListaParametros l, int indice, string &s){
-    int i = indice;
+    int i = 0;
     ListaParametros aux;
     CrearLista(aux);
     aux = l;
-    while((aux!=NULL) && (i >= 0))
+    while((aux!=NULL) && (i < indice))
     {
-        strcop(s,l->parametro);
+        strcop(s,aux->parametro);
         aux = aux->sig;
+        i++;
     }
     delete aux;
 }
@@ -29,20 +30,19 @@ void DarParametro(ListaParametros l, int indice, string &s){
 Error ValidarParametros(ListaParametros l,string comando){
     string p1,p2,p3;
 
-    if(streq(comando,"ayuda")) {
+    if(streq(comando,"ayuda\0")) {
         if(CantidadParametros(l) == 1){
             strcrear(p1);
             DarParametro(l,1,p1);
-            if(ValidarComando(p1)==FALSE) {
+            if(ValidarComando(p1)== FALSE) {
                 return COMANDO_INV;
             }else{
                 return NO_ERR;
             }
-
         }else{
             return CANT_PARAM;
         }
-    }else if(streq(comando,"atomica")){
+    }else if(streq(comando,"atomica\0")){
         if(CantidadParametros(l) == 1){
             strcrear(p1);
             DarParametro(l,1,p1);
@@ -53,7 +53,7 @@ Error ValidarParametros(ListaParametros l,string comando){
         }else{
            return CANT_PARAM;
         }
-    }else if(streq(comando,"noatomica")){
+    }else if(streq(comando,"noatomica\0")){
         if(CantidadParametros(l) == 3){
            strcrear(p1);
            DarParametro(l,1,p1);
@@ -91,7 +91,7 @@ Error ValidarParametros(ListaParametros l,string comando){
           }else{
             return CANT_PARAM;
           }
-    }else if(streq(comando,"respaldar")){
+    }else if(streq(comando,"respaldar\0")){
         if(CantidadParametros(l) == 2){
            strcrear(p1);
            DarParametro(l,1,p1);
@@ -110,7 +110,7 @@ Error ValidarParametros(ListaParametros l,string comando){
           return CANT_PARAM;
         }
 
-    }else if(streq(comando,"recuperar")){
+    }else if(streq(comando,"recuperar\0")){
         if(CantidadParametros(l) == 1){
             strcrear(p1);
             DarParametro(l,1,p1);
@@ -121,7 +121,7 @@ Error ValidarParametros(ListaParametros l,string comando){
         }else{
           return CANT_PARAM;
         }
-    }else if(streq(comando,"letras")){
+    }else if(streq(comando,"letras\0")){
         if(CantidadParametros(l) == 1){
             strcrear(p1);
             DarParametro(l,1,p1);
@@ -132,7 +132,7 @@ Error ValidarParametros(ListaParametros l,string comando){
         }else{
           return CANT_PARAM;
         }
-    }else if(streq(comando,"evaluar")){
+    }else if(streq(comando,"evaluar\0")){
         if(CantidadParametros(l) == 1){
             strcrear(p1);
             DarParametro(l,1,p1);
@@ -143,13 +143,13 @@ Error ValidarParametros(ListaParametros l,string comando){
         }else{
           return CANT_PARAM;
         }
-    }else if(streq(comando,"salir")){
+    }else if(streq(comando,"salir\0")){
         if(CantidadParametros(l) != 0){
             return CANT_PARAM;
         }else{
             return NO_ERR;
         }
-    }else if(streq(comando,"mostrar")){
+    }else if(streq(comando,"mostrar\0")){
         if(CantidadParametros(l) == 1){
           if(EsNumericoValido(p1) == TRUE)
               return NO_ERR;
@@ -166,11 +166,16 @@ Error ValidarParametros(ListaParametros l,string comando){
 int  CantidadParametros(ListaParametros l)
 {
     int cantidad = 0;
-    while(l != NULL)
+    ListaParametros aux;
+    CrearLista(aux);
+    aux = l;
+    while(aux != NULL)
     {
         cantidad++;
-        l = l ->sig;
+        aux = aux ->sig;
     }
+    //delete aux;
+    return cantidad;
 }
 
 Boolean EsNumericoValido(string parametro)
@@ -247,7 +252,25 @@ void InsFront (ListaParametros &l, string s) {
   ListaParametros aux;
   aux = new NodoParametros;
   strcop(aux->parametro,s);
- // aux->parametro = s;
   aux->sig = l;
   l = aux;
+}
+
+void InsUltimo (ListaParametros &l, string s){
+  if (l == NULL)
+    {
+        l=new NodoParametros;
+        strcop(l->parametro,s);
+        l->sig=NULL;
+    }
+    else
+        InsUltimo(l->sig,s);
+}
+
+void MostrarParametros(ListaParametros l){
+  while(l!= NULL){
+    print(l->parametro);
+    l= l->sig;
+  }
+
 }
