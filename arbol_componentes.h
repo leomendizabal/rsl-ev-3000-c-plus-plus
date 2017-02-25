@@ -56,5 +56,14 @@ int Maximo(ArbolComponentes abb);
 //Incrementa los valor de cada nodo
 void IncrementarValoresArbol(ArbolComponentes abb, int val);
 
+int CantidadDeNodos(ArbolComponentes abb);
+
+
+//Para archivos
+void BajarArbol(ArbolComponentes abb,string nombreArch);
+
+void BajarArbolAux(ArbolComponentes abb,FILE *f);
+
+void LevantarArbol(ArbolComponentes &abb,string nombreArch);
 
 #endif // ARBOL_COMPONENTES_H_INCLUDED

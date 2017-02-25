@@ -12,7 +12,7 @@ typedef struct nodoE
 
 typedef NodoListaE * ListaExpresiones;
 
-void CrearListaExpresiones(ListaExpresiones &l);
+void CrearLista(ListaExpresiones &l);
 
 Boolean EsVacia(ListaExpresiones l);
 
@@ -23,5 +23,9 @@ Expresion PrimerExpresion (ListaExpresiones l);
 void Restoceder (ListaExpresiones &l);
 
 void InsFront (ListaExpresiones &l, Expresion e);
+
+void InsUltimo (ListaExpresiones &l, Expresion s);
+
+int UltimoIndice(ListaExpresiones l);
 
 #endif // LISTA_EXPRESIONES_H_INCLUDED

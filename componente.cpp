@@ -78,3 +78,29 @@ void IncrementarValor(Componente &c,int val)
 {
    c.valor=c.valor+val;
 }
+
+
+void BajarChar(char c, FILE * f)
+{
+    fwrite(&c,sizeof(char),1,f);
+}
+
+void LevantarChar(char &c, FILE * f)
+{
+    fread(&c,sizeof(char),1,f);
+}
+
+void LevantarInt(int &i, FILE * f)
+{
+    fread(&i,sizeof(int),1,f);
+}
+
+void BajarInt(int i, FILE * f)
+{
+    fwrite (&i, sizeof (int), 1, f);
+}
+
+void BajarComponente(Componente c, FILE *f){
+
+}
+

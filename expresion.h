@@ -12,4 +12,16 @@ typedef struct
 } Expresion;
 
 
+void CrearExpresion( Expresion &e, ArbolComponentes a, int indice);
+
+Boolean EsAtomica(Expresion e);
+
+ArbolComponentes DarArbol(Expresion e);
+
+int DarIndice(Expresion e);
+
+void BajarExpresion(Expresion e, string nombreArch);
+
+void LevantarExpresion(Expresion &e, string nombreArch);
+
 #endif // EXPRESION_H_INCLUDED

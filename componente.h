@@ -35,5 +35,19 @@ Boolean EsTipoParentesis(Componente c);
 
 void IncrementarValor(Componente &c,int val);
 
+//Para archivos
+
+void BajarChar (char c, FILE * f);
+
+void LevantarChar (char &c, FILE * f);
+
+void LevantarInt(int &i, FILE * f);
+
+void BajarInt(int i, FILE * f);
+
+void BajarComponente(Componente c, FILE *f);
+
+void LevantarComponente(Componente &c, FILE *f);
+
 
 #endif // COMPONENTE_H_INCLUDED

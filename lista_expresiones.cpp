@@ -2,7 +2,7 @@
 
 
 
-void CrearListaExpresiones(ListaExpresiones &l)
+void CrearLista(ListaExpresiones &l)
 {
     l= NULL;
 }
@@ -43,4 +43,28 @@ void InsFront (ListaExpresiones &l, Expresion e) {
   aux->ex = e;
   aux->sig = l;
   l = aux;
+}
+
+
+void InsUltimo (ListaExpresiones &l, Expresion e){
+  if (l == NULL)
+    {
+        l=new NodoListaE;
+        l->ex = e;
+        l->sig = NULL;
+    }
+    else
+        InsUltimo(l->sig,e);
+}
+
+int UltimoIndice(ListaExpresiones l){
+  ListaExpresiones aux;
+  CrearLista(aux);
+
+  while(EsVacia(l->sig) == FALSE){
+    l= l->sig;
+  }
+
+  return DarIndice(l->ex);
+
 }

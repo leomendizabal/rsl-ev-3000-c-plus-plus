@@ -162,3 +162,26 @@ void IncrementarValoresArbol(ArbolComponentes abb, int val)
      IncrementarValoresArbol(abb->Hder,val);
   }
 }
+
+int CantidadDeNodos(ArbolComponentes abb){
+   if(abb ==NULL){
+      return 0;
+   }else{
+      return 1+ CantidadDeNodos(abb->Hizq)+CantidadDeNodos(abb->Hder);
+   }
+}
+
+
+
+void BajarArbol(ArbolComponentes abb,FILE *f)
+{
+
+}
+void BajarArbolAux(ArbolComponentes abb,FILE *f)
+{
+
+}
+void LevantarArbol(ArbolComponentes &abb,FILE *f)
+{
+
+}

@@ -18,16 +18,6 @@ Boolean Existe (string nomArch)
 }
 
 
-void Bajar_Char(char c, FILE * f)
-{
-    fwrite(&c,sizeof(char),1,f);
-}
-
-void Levantar_Char(char &c, FILE * f)
-{
-    fread(&c,sizeof(char),1,f);
-}
-
 void Bajar_String (string s, FILE * f)
 {
     int i=0;
@@ -53,25 +43,5 @@ void Levantar_String (string &s, FILE * f)
     delete [] saux;
 }
 
-void Levantar_Int(int &i, FILE * f)
-{
-    fread(&i,sizeof(int),1,f);
-}
 
-void Bajar_Int(int i, FILE * f)
-{
-    fwrite (&i, sizeof (int), 1, f);
-}
 
-void Bajar_Arbol(ArbolComponentes abb,string nombreArch)
-{
-
-}
-void Bajar_Arbol_Aux(ArbolComponentes abb,FILE *f)
-{
-
-}
-void Levantar_Arbol(ArbolComponentes &abb,string nombreArch)
-{
-
-}
