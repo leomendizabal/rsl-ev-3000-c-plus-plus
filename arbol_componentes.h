@@ -14,7 +14,7 @@ typedef NodoArb *ArbolComponentes;
 //crea el arbol vacio
 void CrearVacio(ArbolComponentes &abb);
 
-//crea un arbol, setea c como info de la raiz y sus ramas izq/der con los subArboles ramaIzq/ramaDer.
+//crea un arbol, setea c como raiz y sus ramas izq/der con los subArboles ramaIzq/ramaDer.
 void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponentes ramaDer, Componente c);
 
 //devuelve TRUE si es vacio
@@ -53,8 +53,8 @@ void EliminarArbol(ArbolComponentes abb);
 //Devuelve el valor maximo del arbol PRECONDICION: abb !EsVacio
 int Maximo(ArbolComponentes abb);
 
-//Incrementa los valor de cada nodo
-void IncrementarValoresArbol(ArbolComponentes abb, int val);
+//Asigna posiciones de los componentes ordenados de menor a mayor
+void AsignarPosicionOrdenado(ArbolComponentes &abb, int &val);
 
 int CantidadDeNodos(ArbolComponentes abb);
 

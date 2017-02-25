@@ -8,38 +8,51 @@ void CrearVacio(ArbolComponentes &abb)
 void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponentes ramaDer, Componente c)
 {
 
-    raiz=new NodoArb;
-    if (EsTipoLetra(c))
+    raiz=new NodoArb;    // Creo nueva memoria para guardar el componente
+    if (EsTipoLetra(c))  // Si componente es letra , creo un arbol vacio con raiz c
     {
         raiz->info=c;
         raiz->Hizq=NULL;
         raiz->Hder=NULL;
     }
     else
-       if (DarDato(c)=='!')
+       if (DarDato(c)=='!')   //Cuando el componente es un NOT
        {
-          raiz->Hizq=NULL;
-          //raiz->Hder=NULL;
+          raiz->Hizq=NULL;          //  El hijo izquierdo de la raiz va a ser el parentesis "("
           int pos=1;
           char parenabierto='(';
           Componente parenizq;
           CargarDato(parenizq,pos,parenabierto,PARENTESIS);
           InsertarParentesisIzq(raiz,parenizq);
-          IncrementarValor(c,Maximo(raiz->Hizq)+1);
-          raiz->info=c;
+          raiz->info=c;                      // Inserto el operador como raiz
           ArbolComponentes CopiaRamaDer;
-          CopiarArbol(CopiaRamaDer,ramaDer);
-          IncrementarValoresArbol(CopiaRamaDer,DarPosicion(raiz->info));
-          pos=Maximo(CopiaRamaDer)+1;
+          CopiarArbol(CopiaRamaDer,ramaDer);  // Copio la rama derecha
           char parencerrado=')';
           Componente parender;
           CargarDato(parender,pos,parencerrado,PARENTESIS);
-          InsertarParentesisDer(CopiaRamaDer,parender);
-          raiz->Hder=CopiaRamaDer;
+          InsertarParentesisDer(CopiaRamaDer,parender);    // Inserto el parentesis ")" como hoja derecha de la rama derecha
+          raiz->Hder=CopiaRamaDer;              // El hijo derecho de la raiz va a ser la copia de la rama derecha
+          AsignarPosicionOrdenado(raiz,pos);  // Ordeno cada componente del arbol con su pocision en orden (De menor a mayor)
        }
-       else
+       else       // Cuando el componente es un OR o AND
        {
-
+          int pos=1;
+          char parenabierto='(';
+          Componente parenizq;
+          CargarDato(parenizq,pos,parenabierto,PARENTESIS);
+          ArbolComponentes CopiaRamaIzq;
+          CopiarArbol(CopiaRamaIzq,ramaIzq);
+          InsertarParentesisIzq(CopiaRamaIzq,parenizq);  // Inserto el parentesis "(" como hoja izquierda de la rama izquierda
+          raiz->info=c;                    // Inserto el operador como raiz
+          ArbolComponentes CopiaRamaDer;
+          CopiarArbol(CopiaRamaDer,ramaDer);    // Copio la rama derecha
+          char parencerrado=')';
+          Componente parender;
+          CargarDato(parender,pos,parencerrado,PARENTESIS);
+          InsertarParentesisDer(CopiaRamaDer,parender);  // Inserto el parentesis ")" como hoja derecha de la rama derecha
+          raiz->Hizq=CopiaRamaIzq;
+          raiz->Hder=CopiaRamaDer;            //Inserto como hijo izquierdo de la raiz a la copia de rama izquierda y como hijo derecho a la copia de rama derecha
+          AsignarPosicionOrdenado(raiz,pos);  // Ordeno cada componente con su pocision en orden (De menor a mayor)
        }
 
 }
@@ -153,14 +166,16 @@ int Maximo(ArbolComponentes abb)
    return (DarPosicion(abb->info));
 }
 
-void IncrementarValoresArbol(ArbolComponentes abb, int val)
+
+void AsignarPosicionOrdenado(ArbolComponentes &abb, int &val)
 {
-  if (abb!=NULL)
-  {
-     IncrementarValor(abb->info,val);
-     IncrementarValoresArbol(abb->Hizq,val);
-     IncrementarValoresArbol(abb->Hder,val);
-  }
+    if (abb!=NULL)
+    {
+        AsignarPosicionOrdenado(abb->Hizq,val);
+        AsignarPosicion(abb->info,val);
+        val=val+1;
+        AsignarPosicionOrdenado(abb->Hder,val);
+    }
 }
 
 int CantidadDeNodos(ArbolComponentes abb){

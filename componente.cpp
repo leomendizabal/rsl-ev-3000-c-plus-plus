@@ -74,12 +74,13 @@ Boolean EsTipoParentesis(Componente c){
     return (Boolean)(c.tipo == 2);
 }
 
-void IncrementarValor(Componente &c,int val)
+void AsignarPosicion(Componente c,int val)
 {
-   c.valor=c.valor+val;
+   c.valor=val;
 }
 
 
+<<<<<<< HEAD
 void BajarChar(char c, FILE * f)
 {
     fwrite(&c,sizeof(char),1,f);
@@ -104,3 +105,5 @@ void BajarComponente(Componente c, FILE *f){
 
 }
 
+=======
+>>>>>>> 2aef2cc7a13c24e56e1a87cfa3269572f15641d5
