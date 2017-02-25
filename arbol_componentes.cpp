@@ -190,11 +190,18 @@ int CantidadDeNodos(ArbolComponentes abb){
 
 void BajarArbol(ArbolComponentes abb,FILE *f)
 {
-
+  FILE * f = fopen (nomArch, "wb");
+  BajarArbolAux(abb,f);
+  fclose (f);
 }
 void BajarArbolAux(ArbolComponentes abb,FILE *f)
 {
-
+   if (abb!= NULL)
+    {
+     BajarComponente(abb->info,f);
+     Bajar_ABB_Aux (abb->Hizq, f);
+     Bajar_ABB_Aux (abb->Hder, f);
+    }
 }
 void LevantarArbol(ArbolComponentes &abb,FILE *f)
 {
