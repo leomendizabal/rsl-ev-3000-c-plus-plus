@@ -199,11 +199,19 @@ void BajarArbolAux(ArbolComponentes abb,FILE *f)
    if (abb!= NULL)
     {
      BajarComponente(abb->info,f);
-     Bajar_ABB_Aux (abb->Hizq, f);
-     Bajar_ABB_Aux (abb->Hder, f);
+     BajarArbolAux(abb->Hizq, f);
+     BajarArbolAux(abb->Hder, f);
     }
 }
 void LevantarArbol(ArbolComponentes &abb,string nombreArch)
 {
-
+  FILE * f = fopen (nomArch, "rb");
+  Componente buffer;
+  LevantarComponente(buffer,f);
+  while (!feof(f))
+  {
+     Insertar(abb,buffer);
+     LevantarComponente(buffer,f);
+  }
+  fclose(f);
 }
