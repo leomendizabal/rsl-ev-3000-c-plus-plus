@@ -33,7 +33,7 @@ Boolean EsTipoOperador(Componente c);
 
 Boolean EsTipoParentesis(Componente c);
 
-<<<<<<< HEAD
+
 void IncrementarValor(Componente &c,int val);
 
 //Para archivos
@@ -50,8 +50,8 @@ void BajarComponente(Componente c, FILE *f);
 
 void LevantarComponente(Componente &c, FILE *f);
 
-=======
+
 void AsignarPosicion(Componente c,int val);
->>>>>>> 2aef2cc7a13c24e56e1a87cfa3269572f15641d5
+
 
 #endif // COMPONENTE_H_INCLUDED

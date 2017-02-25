@@ -80,7 +80,7 @@ void AsignarPosicion(Componente c,int val)
 }
 
 
-<<<<<<< HEAD
+
 void BajarChar(char c, FILE * f)
 {
     fwrite(&c,sizeof(char),1,f);
@@ -105,5 +105,3 @@ void BajarComponente(Componente c, FILE *f){
 
 }
 
-=======
->>>>>>> 2aef2cc7a13c24e56e1a87cfa3269572f15641d5
