@@ -190,7 +190,7 @@ int CantidadDeNodos(ArbolComponentes abb){
 
 void BajarArbol(ArbolComponentes abb,string nombreArch)
 {
-  FILE * f = fopen (nomArch, "wb");
+  FILE * f = fopen (nombreArch, "wb");
   BajarArbolAux(abb,f);
   fclose (f);
 }
@@ -205,7 +205,7 @@ void BajarArbolAux(ArbolComponentes abb,FILE *f)
 }
 void LevantarArbol(ArbolComponentes &abb,string nombreArch)
 {
-  FILE * f = fopen (nomArch, "rb");
+  FILE * f = fopen (nombreArch, "rb");
   Componente buffer;
   LevantarComponente(buffer,f);
   while (!feof(f))
