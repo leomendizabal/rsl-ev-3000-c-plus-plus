@@ -14,6 +14,17 @@ Boolean EsVacia(ListaExpresiones l){
       return FALSE;
 }
 
+Boolean ExisteExpresion(listaExpresion l,int indice){
+    int i = 0;
+    ListaExpresiones aux = l;
+    while((aux!= NULL) && (i != indice)){
+      i = aux->ex.indice;
+      aux = aux->sig;
+    }
+    delete aux;
+    return i==indice ? TRUE : FALSE;
+}
+
 Expresion DarExpresion(ListaExpresiones l,int indice){
     int i = -1;
     ListaExpresiones aux = l;

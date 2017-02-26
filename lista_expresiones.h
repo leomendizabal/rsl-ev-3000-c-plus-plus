@@ -16,6 +16,8 @@ void CrearLista(ListaExpresiones &l);
 
 Boolean EsVacia(ListaExpresiones l);
 
+Boolean ExisteExpresion(listaExpresion l,int indice);
+
 Expresion DarExpresion(ListaExpresiones l,int indice);
 
 Expresion PrimerExpresion (ListaExpresiones l);
