@@ -55,7 +55,7 @@ void ParsearParametros(string parametros,ListaParametros &listaResultado){
     }
 
     //printf("Lista: ");
-    //Mostrar(listaResultado);
+    //MostrarParametros(listaResultado);
     //return listaResultado;
 
 }
@@ -95,9 +95,24 @@ void ComandoAyuda(string  comando){
       }else if(streq(comando,"recuperar\0")){
         printf("Recupera a memoria la expresión guardada en el archivo nombrearchivo.dat y le asigna el próximo índice disponible.");
       }
+}
 
+void ComandoAtomica(ListaExpresiones &l, string p){
+    Componente c;
+    ArbolComponentes arbol;
+    Expresion e;
+    char letraProposicional = p[0];
 
+    CrearVacio(arbol);
 
+    int indice = UltimoIndice(l) + 1;
+    CargarDato(c, 0, letraProposicional, LETRA);          //cargo el componente con la letra proposicional
+
+    Insertar(arbol, c);                     //inserto el componente en ArbolComponente
+    CrearExpresion(e, arbol, indice);       //creo una expresion con el indice y el arbol
+    InsUltimo(l, e);                        //inserto la expresion en la lista de expresiones
+
+    MostrarListaExpresiones(l);
 }
 
 

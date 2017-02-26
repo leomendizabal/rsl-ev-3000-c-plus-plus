@@ -1,6 +1,7 @@
 #ifndef COMANDOS_H_INCLUDED
 #define COMANDOS_H_INCLUDED
 
+#include "lista_expresiones.h"
 #include "lista_parametros.h"
 #include "string.h"
 
@@ -12,5 +13,8 @@ void ParsearComando(string entrada, string &comando,string &parametros);
 void ParsearParametros(string parametros,ListaParametros &listaResultado);
 
 void ComandoAyuda(string  comando);
+
+//crea una expresion atomica y la inserta al final de la lista de expresiones
+void ComandoAtomica(ListaExpresiones &l, string p);
 
 #endif // COMANDOS_H_INCLUDED
