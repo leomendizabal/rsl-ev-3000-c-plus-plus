@@ -28,7 +28,7 @@ void DarParametro(ListaParametros l, int indice, string &s){
         strcop(s,aux->parametro);
     }
 
-    delete aux;
+    //delete aux;
 }
 
 Error ValidarParametros(ListaParametros l,string comando){
