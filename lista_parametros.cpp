@@ -14,16 +14,20 @@ Boolean EsVacia(ListaParametros l){
 }
 
 void DarParametro(ListaParametros l, int indice, string &s){
-    int i = 0;
+    int i = 1;
     ListaParametros aux;
     CrearLista(aux);
     aux = l;
-    while((aux!=NULL) && (i < indice))
+
+    while((aux!=NULL) && (i < indice)) //mientras no sea el indice del parametro que quiero obtener
     {
-        strcop(s,aux->parametro);
-        aux = aux->sig;
+        aux = aux->sig;                //paso al siguiente parametro
         i++;
     }
+    if(indice == i && aux != NULL){                   //si encontre el parametro con el indice que buscaba, lo copio a s
+        strcop(s,aux->parametro);
+    }
+
     delete aux;
 }
 
