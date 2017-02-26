@@ -10,14 +10,16 @@ int main(){
   Boolean salir = FALSE;
   ListaParametros listaParametros;
   ListaExpresiones listaExpresiones;
-  //Inicializo
-  strcrear(entrada);
-  strcrear(comando);
-  strcrear(parametros);
-  CrearLista(listaParametros);
+
   CrearLista(listaExpresiones);
 
  do{
+    //Inicializo la entrada, el comando ingresado y los parametros cada vez que se ingresa
+    strcrear(entrada);
+    strcrear(comando);
+    strcrear(parametros);
+    CrearLista(listaParametros);
+
      //Leo la entrada
     scan(entrada);
     //Parseo
@@ -37,7 +39,7 @@ int main(){
             string p;
             strcrear(p);
             DarParametro(listaParametros,1,p);
-            //ComandoAtomica(listaExpresiones, p);
+            ComandoAtomica(listaExpresiones, p);
           }else if(streq(comando,"noatomica\0")){
 
           }else if(streq(comando,"respaldar\0")){
