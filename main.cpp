@@ -37,7 +37,7 @@ int main(){
             string p;
             strcrear(p);
             DarParametro(listaParametros,1,p);
-            ComandoAtomica(listaExpresiones, p);
+            //ComandoAtomica(listaExpresiones, p);
           }else if(streq(comando,"noatomica\0")){
 
           }else if(streq(comando,"respaldar\0")){
