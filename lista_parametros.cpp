@@ -223,7 +223,9 @@ Boolean EsNombreValido(string parametro)
     return es;
 }
 
-Boolean EsLetra(string parametro){}
+Boolean EsLetra(string parametro){
+    return (Boolean)(((parametro[0]>='a' && parametro[0]<='z') || (parametro[0]>='A' && parametro[0]<='Z')) && parametro[1]=='\0');
+}
 
 Boolean EsOperadorValido(string parametro){
 
