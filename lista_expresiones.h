@@ -30,4 +30,6 @@ void InsUltimo (ListaExpresiones &l, Expresion s);
 
 int UltimoIndice(ListaExpresiones l);
 
+void MostrarListaExpresiones(ListaExpresiones l);
+
 #endif // LISTA_EXPRESIONES_H_INCLUDED

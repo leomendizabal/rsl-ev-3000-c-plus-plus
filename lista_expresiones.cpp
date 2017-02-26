@@ -71,11 +71,30 @@ void InsUltimo (ListaExpresiones &l, Expresion e){
 int UltimoIndice(ListaExpresiones l){
   ListaExpresiones aux;
   CrearLista(aux);
+  aux = l;
 
-  while(EsVacia(l->sig) == FALSE){
-    l= l->sig;
+  if(aux == NULL){
+    return 0;
+  }else{
+    while(EsVacia(aux->sig) == FALSE){
+      aux = aux->sig;
+    }
   }
 
-  return DarIndice(l->ex);
+  return DarIndice(aux->ex);
 
+}
+
+void MostrarListaExpresiones(ListaExpresiones l){
+    ListaExpresiones aux;
+    CrearLista(aux);
+    aux = l;
+
+    printf("Lista de indices de las expresiones: \n");
+    while(EsVacia(aux) == FALSE){
+      MostrarExpresion(aux->ex);
+      aux= aux->sig;
+    }
+
+    delete aux;
 }
