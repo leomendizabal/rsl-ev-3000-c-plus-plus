@@ -24,4 +24,5 @@ void BajarExpresion(Expresion e, string nombreArch);
 
 void LevantarExpresion(Expresion &e, string nombreArch);
 
+void MostrarExpresion(Expresion e);
 #endif // EXPRESION_H_INCLUDED
