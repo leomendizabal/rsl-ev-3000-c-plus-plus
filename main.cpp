@@ -72,9 +72,22 @@ int main(){
              }
 
           }else if(streq(comando,"noatomica\0")){
+            Error errorNoAt =  ValidarParametros(listaParametros,comando);
+             if(errorNoAt == NO_ERR){
+                //Implementacion del comando
+
+             }else{
+                 MostrarMensajeError(errorNoAt);
+             }
 
           }else if(streq(comando,"respaldar\0")){
+            Error errorResp=  ValidarParametros(listaParametros,comando);
+             if(errorResp == NO_ERR){
+                //Implementacion del comando
 
+             }else{
+                 MostrarMensajeError(errorResp);
+             }
           }else if(streq(comando,"recuperar\0")){
 
           }else if(streq(comando,"letras\0")){
