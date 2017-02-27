@@ -41,7 +41,7 @@ void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponent
           Componente parenizq;
           CargarDato(parenizq,pos,parenabierto,PARENTESIS);
           ArbolComponentes CopiaRamaIzq;
-          CopiarArbol(CopiaRamaIzq,ramaIzq);
+          CopiarArbol(CopiaRamaIzq,ramaIzq);    //Copio la rama izquierda
           InsertarParentesisIzq(CopiaRamaIzq,parenizq);  // Inserto el parentesis "(" como hoja izquierda de la rama izquierda
           raiz->info=c;                    // Inserto el operador como raiz
           ArbolComponentes CopiaRamaDer;
