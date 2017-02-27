@@ -144,8 +144,18 @@ void MostrarArbol(ArbolComponentes abb)
   {
         MostrarArbol(abb->Hizq);
         MostrarDato(abb->info);
-        if (EsTipoParentesis(abb->info)==FALSE)
-              printf(" ");
+        if (EsTipoOperador(abb->info))
+           {
+            if (DarDato(abb->info)=='!')
+                printf("! ");
+            else
+                if (DarDato(abb->info)=='|')
+                    printf(" | ");
+                else
+                    printf(" & ");
+           }
+        else
+             MostrarDato(abb->info);
         MostrarArbol(abb->Hder);
   }
 }
