@@ -50,7 +50,6 @@ void BajarComponente(Componente c, FILE *f);
 
 void LevantarComponente(Componente &c, FILE *f);
 
-
 void AsignarPosicion(Componente c,int val);
 
 

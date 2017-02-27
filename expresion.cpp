@@ -24,9 +24,20 @@ int DarIndice(Expresion e){
 
 
 void BajarExpresion(Expresion e, string nombreArch){
-
+   FILE * f=fopen(nombreArch,"wb");
+   BajarInt(e.indice,f);
+   BajarArbolAux(e.arb,f);
+   fclose(f);
 }
 
 void LevantarExpresion(Expresion &e, string nombreArch){
+    FILE * f = fopen (nombreArch, "rb");
+    LevantarInt(e.indice,f);
+    LevantarArbol(e.arb,f);
+    fclose(f);
+}
 
+void MostrarExpresion(Expresion e){
+    printf("%d: ", e.indice);
+    MostrarArbol(e.arb);
 }

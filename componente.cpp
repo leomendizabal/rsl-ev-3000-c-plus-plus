@@ -103,5 +103,10 @@ void BajarInt(int i, FILE * f)
 
 void BajarComponente(Componente c, FILE *f){
 
+    fwrite(&c,sizeof(Componente),1,f);
 }
 
+void LevantarComponente(Componente &c, FILE *f)
+{
+   fread(&c,sizeof(Componente),1,f);
+}

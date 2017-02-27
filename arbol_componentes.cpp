@@ -41,7 +41,7 @@ void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponent
           Componente parenizq;
           CargarDato(parenizq,pos,parenabierto,PARENTESIS);
           ArbolComponentes CopiaRamaIzq;
-          CopiarArbol(CopiaRamaIzq,ramaIzq);
+          CopiarArbol(CopiaRamaIzq,ramaIzq);    //Copio la rama izquierda
           InsertarParentesisIzq(CopiaRamaIzq,parenizq);  // Inserto el parentesis "(" como hoja izquierda de la rama izquierda
           raiz->info=c;                    // Inserto el operador como raiz
           ArbolComponentes CopiaRamaDer;
@@ -144,8 +144,18 @@ void MostrarArbol(ArbolComponentes abb)
   {
         MostrarArbol(abb->Hizq);
         MostrarDato(abb->info);
-        if (EsTipoParentesis(abb->info)==FALSE)
-              printf(" ");
+        if (EsTipoOperador(abb->info))
+           {
+            if (DarDato(abb->info)=='!')
+                printf("! ");
+            else
+                if (DarDato(abb->info)=='|')
+                    printf(" | ");
+                else
+                    printf(" & ");
+           }
+        else
+             MostrarDato(abb->info);
         MostrarArbol(abb->Hder);
   }
 }
@@ -190,13 +200,26 @@ int CantidadDeNodos(ArbolComponentes abb){
 
 void BajarArbol(ArbolComponentes abb,FILE *f)
 {
-
+  BajarArbolAux(abb,f);
+  fclose (f);
 }
 void BajarArbolAux(ArbolComponentes abb,FILE *f)
 {
-
+   if (abb!= NULL)
+    {
+     BajarComponente(abb->info,f);
+     BajarArbolAux(abb->Hizq, f);
+     BajarArbolAux(abb->Hder, f);
+    }
 }
 void LevantarArbol(ArbolComponentes &abb,FILE *f)
 {
-
+  Componente buffer;
+  LevantarComponente(buffer,f);
+  while (!feof(f))
+  {
+     Insertar(abb,buffer);
+     LevantarComponente(buffer,f);
+  }
+  fclose(f);
 }

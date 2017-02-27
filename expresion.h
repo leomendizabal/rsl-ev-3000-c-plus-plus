@@ -2,8 +2,6 @@
 #define EXPRESION_H_INCLUDED
 #include "arbol_componentes.h"
 
-#include "arbol_componentes.h"
-
 //Expresion corresponde a un struct con un arbol y el numero de expresion
 typedef struct
 {
@@ -23,5 +21,7 @@ int DarIndice(Expresion e);
 void BajarExpresion(Expresion e, string nombreArch);
 
 void LevantarExpresion(Expresion &e, string nombreArch);
+
+void MostrarExpresion(Expresion e);
 
 #endif // EXPRESION_H_INCLUDED

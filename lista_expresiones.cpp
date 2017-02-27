@@ -14,6 +14,17 @@ Boolean EsVacia(ListaExpresiones l){
       return FALSE;
 }
 
+Boolean ExisteExpresion(ListaExpresiones l,int indice){
+    int i = 0;
+    ListaExpresiones aux = l;
+    while((aux!= NULL) && (i != indice)){
+      i = aux->ex.indice;
+      aux = aux->sig;
+    }
+    delete aux;
+    return i==indice ? TRUE : FALSE;
+}
+
 Expresion DarExpresion(ListaExpresiones l,int indice){
     int i = -1;
     ListaExpresiones aux = l;
@@ -60,11 +71,30 @@ void InsUltimo (ListaExpresiones &l, Expresion e){
 int UltimoIndice(ListaExpresiones l){
   ListaExpresiones aux;
   CrearLista(aux);
+  aux = l;
 
-  while(EsVacia(l->sig) == FALSE){
-    l= l->sig;
+  if(aux == NULL){
+    return 0;
+  }else{
+    while(EsVacia(aux->sig) == FALSE){
+      aux = aux->sig;
+    }
   }
 
-  return DarIndice(l->ex);
+  return DarIndice(aux->ex);
 
+}
+
+void MostrarListaExpresiones(ListaExpresiones l){
+    ListaExpresiones aux;
+    CrearLista(aux);
+    aux = l;
+
+    printf("Lista de indices de las expresiones: \n");
+    while(EsVacia(aux) == FALSE){
+      MostrarExpresion(aux->ex);
+      aux= aux->sig;
+    }
+
+    delete aux;
 }

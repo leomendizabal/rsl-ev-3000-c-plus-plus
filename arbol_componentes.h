@@ -60,10 +60,10 @@ int CantidadDeNodos(ArbolComponentes abb);
 
 
 //Para archivos
-void BajarArbol(ArbolComponentes abb,string nombreArch);
+void BajarArbol(ArbolComponentes abb,FILE *f);
 
 void BajarArbolAux(ArbolComponentes abb,FILE *f);
 
-void LevantarArbol(ArbolComponentes &abb,string nombreArch);
+void LevantarArbol(ArbolComponentes &abb,FILE *f);
 
 #endif // ARBOL_COMPONENTES_H_INCLUDED

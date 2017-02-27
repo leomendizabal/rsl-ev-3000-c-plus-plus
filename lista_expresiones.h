@@ -16,6 +16,8 @@ void CrearLista(ListaExpresiones &l);
 
 Boolean EsVacia(ListaExpresiones l);
 
+Boolean ExisteExpresion(ListaExpresiones l,int indice);
+
 Expresion DarExpresion(ListaExpresiones l,int indice);
 
 Expresion PrimerExpresion (ListaExpresiones l);
@@ -27,5 +29,7 @@ void InsFront (ListaExpresiones &l, Expresion e);
 void InsUltimo (ListaExpresiones &l, Expresion s);
 
 int UltimoIndice(ListaExpresiones l);
+
+void MostrarListaExpresiones(ListaExpresiones l);
 
 #endif // LISTA_EXPRESIONES_H_INCLUDED

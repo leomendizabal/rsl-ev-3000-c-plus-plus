@@ -18,7 +18,7 @@ Boolean Existe (string nomArch)
 }
 
 
-void Bajar_String (string s, FILE * f)
+void BajarString (string s, FILE * f)
 {
     int i=0;
     while(s[i]!='\0')
@@ -29,7 +29,7 @@ void Bajar_String (string s, FILE * f)
     fwrite(&s[i],sizeof(char),1,f);
 }
 
-void Levantar_String (string &s, FILE * f)
+void LevantarString (string &s, FILE * f)
 {
     int i=0;
     string saux=new char[MAX];
