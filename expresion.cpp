@@ -24,13 +24,19 @@ int DarIndice(Expresion e){
 
 
 void BajarExpresion(Expresion e, string nombreArch){
-
+   FILE * f=fopen(nombreArch,"wb");
+   BajarInt(e.indice);
+   BajarArbolAux(e.arb,f);
+      
 }
 
 void LevantarExpresion(Expresion &e, string nombreArch){
-
+    FILE * f = fopen (nombreArch, "rb");
+    LevantarInt(e.indice);
+    Levantar_Arbol(e.arb,f);
 }
 
 void MostrarExpresion(Expresion e){
-    printf("-> %d", e.indice);
+    printf("%d: ", e.indice);
+    MostrarArbol(e.arb);
 }
