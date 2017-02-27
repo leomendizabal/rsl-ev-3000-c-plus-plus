@@ -2,17 +2,21 @@
 #include "comandos.h"
 #include "errores.h"
 #include "lista_parametros.h"
-
+//#include  "componente.h"
 int main(){
 
   string entrada, comando, parametros;
   Boolean salir = FALSE;
+  ListaExpresiones listaExpresiones;
   ListaParametros listaParametros;
   //Inicializo
   strcrear(entrada);
   strcrear(comando);
   strcrear(parametros);
+
+  CrearLista(listaExpresiones);
   CrearLista(listaParametros);
+
 
 
  do{
@@ -36,6 +40,26 @@ int main(){
          }
 
       }else if(streq(comando,"atomica\0")){
+         print(comando);
+         Error errorAt =  ValidarParametros(listaParametros,comando);
+         if( errorAt == NO_ERR){
+            string p;
+            DarParametro(listaParametros,1,p);
+            Componente compAto;
+
+            int posAto = 0;
+            if(EsVacia(listaExpresiones) == FALSE){
+              posAto = UltimoIndice(listaExpresiones);
+            }
+            printf("posicion %d",posAto);
+            CargarDato(compAto,posAto,p[0],LETRA);
+            /*ArbolComponentes arbAto;
+            CrearVacio(arbAto);
+            CrearArbol(arbAto,NULL,NULL,compAto);
+            MostrarArbol(arbAto);*/
+         }else{
+            MostrarMensajeError(errorAt);
+         }
 
       }else if(streq(comando,"noatomica\0")){
 

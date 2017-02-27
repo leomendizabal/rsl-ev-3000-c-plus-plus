@@ -2,6 +2,7 @@
 #define COMANDOS_H_INCLUDED
 
 #include "lista_parametros.h"
+#include "lista_expresiones.h"
 #include "string.h"
 
 //Retorna TRUE si el comando es correcto y FALSE  si es incorrecto
