@@ -52,7 +52,9 @@ int main(){
               }else if(streq(comando,"salir\0")){
                     salir = TRUE;
               }else if(streq(comando,"mostrar\0")){
-
+                    string indice;
+                    DarParametro(listaParametros,1,indice);
+                    ComandoMostrar(listaExpresiones,strToInt(indice));
               }
           }else{
                 MostrarMensajeError(error);

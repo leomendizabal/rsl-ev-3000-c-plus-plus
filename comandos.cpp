@@ -115,11 +115,24 @@ void ComandoAtomica(ListaExpresiones &l, string p){
     MostrarListaExpresiones(l);
 }
 
+void ComandoMostrar(ListaExpresiones l,int ind)
+{
+  if (ExisteExpresion(l,ind))
+  {
+     Expresion exp;
+     DarExpresion(l,ind, exp);
+
+  }
+  else
+    MostrarMensajeError(NO_EXISTE_EXP);
+}
+
 void ComandoLetras(ListaExpresiones l, int indice){
     Expresion e;
-       if(ExisteExpresion(l, indice)==TRUE){
-        DarExpresion(l, indice, e);
-        printf("expresion: %d", e.indice);
+    if(ExisteExpresion(l, indice)==TRUE){
+
+    DarExpresion(l, indice, e);
+    printf("expresion: %d", e.indice);
         //MostrarExpresion(e);
     }else{
         printf("la expresion no existe");
