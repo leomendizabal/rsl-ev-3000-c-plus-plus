@@ -155,6 +155,8 @@ Error ValidarParametros(ListaParametros l,string comando){
         }
     }else if(streq(comando,"mostrar\0")){
         if(CantidadParametros(l) == 1){
+          strcrear(p1);
+          DarParametro(l,1,p1);
           if(EsNumericoValido(p1) == TRUE)
               return NO_ERR;
             else

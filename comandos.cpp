@@ -117,7 +117,7 @@ void ComandoAtomica(ListaExpresiones &l, string p){
 
 void ComandoMostrar(ListaExpresiones l,int ind)
 {
-  if (ExisteExpresion(l,ind))
+  if (ExisteExpresion(l,ind)==TRUE)
   {
      Expresion exp;
      DarExpresion(l,ind, exp);
