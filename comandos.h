@@ -17,11 +17,10 @@ void ComandoAyuda(string  comando);
 //crea una expresion atomica y la inserta al final de la lista de expresiones
 void ComandoAtomica(ListaExpresiones &l, string p);
 
-void ComandoSalir(ListaExpresiones &l);
+void ComandoSalir(ListaExpresiones &l,ListaParametros &lp);
 
 //Muestra la expresion de la lista l , cuyo indice esta determinado en el parametro p
 void ComandoMostrar(ListaExpresiones l,int indice);
-
 
 void ComandoLetras(ListaExpresiones l, int indice);
 

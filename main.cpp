@@ -50,6 +50,7 @@ int main(){
               }else if(streq(comando,"evaluar\0")){
 
               }else if(streq(comando,"salir\0")){
+                    ComandoSalir(listaExpresiones,listaParametros);
                     salir = TRUE;
               }else if(streq(comando,"mostrar\0")){
                     string indice;

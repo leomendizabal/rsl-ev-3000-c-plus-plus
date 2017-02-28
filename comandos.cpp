@@ -140,8 +140,9 @@ void ComandoLetras(ListaExpresiones l, int indice){
 }
 
 
-void ComandoSalir(ListaExpresiones &l){
-   EliminarLista(l);
+void ComandoSalir(ListaExpresiones &lp,ListaParametros &lp){
+   EliminarLista(le);
+   EliminarLista(lp);
 }
 
 

@@ -1,6 +1,7 @@
 #ifndef ERRORES_H_INCLUDED
 #define ERRORES_H_INCLUDED
 #include<stdio.h>
+#include<stdlib.h>
 
 
 typedef enum { NO_ERR,
