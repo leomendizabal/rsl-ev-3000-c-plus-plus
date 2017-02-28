@@ -17,25 +17,32 @@ Boolean EsVacia(ListaExpresiones l){
 Boolean ExisteExpresion(ListaExpresiones l,int indice){
     int i = 0;
     ListaExpresiones aux = l;
-    while((aux!= NULL) && (i != indice)){
-      i = aux->ex.indice;
-      aux = aux->sig;
+    Boolean terminar = FALSE;
+
+    while((aux != NULL) && !terminar){
+      if(indice != aux->ex.indice)
+        aux = aux->sig;
+      else{
+        i = aux->ex.indice;
+        terminar = TRUE;
+      }
     }
-    delete aux;
+
     return i==indice ? TRUE : FALSE;
 }
 
-Expresion DarExpresion(ListaExpresiones l,int indice){
-    int i = -1;
+void DarExpresion(ListaExpresiones l,int indice, Expresion &e){
     ListaExpresiones aux = l;
-    while((aux!= NULL) && (i != indice)){
-      i = aux->ex.indice;
-      aux = aux->sig;
+    Boolean terminar = FALSE;
+
+    while((aux != NULL) && !terminar){
+      if(indice != aux->ex.indice)
+        aux = aux->sig;
+      else{
+        e = aux->ex;
+        terminar = TRUE;
+      }
     }
-    if(i == indice){
-      return aux->ex;
-    }
-    delete aux;
 }
 
 Expresion PrimerExpresion (ListaExpresiones l) {

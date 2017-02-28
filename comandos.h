@@ -3,7 +3,6 @@
 
 #include "lista_expresiones.h"
 #include "lista_parametros.h"
-#include "lista_expresiones.h"
 #include "string.h"
 
 //Retorna TRUE si el comando es correcto y FALSE  si es incorrecto
@@ -17,8 +16,9 @@ void ComandoAyuda(string  comando);
 
 //crea una expresion atomica y la inserta al final de la lista de expresiones
 void ComandoAtomica(ListaExpresiones &l, string p);
+
 //Muestra la expresion de la lista l , cuyo indice esta determinado en el parametro p
-void ComandoMostrar(ListaExpresiones l,string p);
+void ComandoMostrar(ListaExpresiones l,int indice);
 
-
+void ComandoLetras(ListaExpresiones l, int indice);
 #endif // COMANDOS_H_INCLUDED

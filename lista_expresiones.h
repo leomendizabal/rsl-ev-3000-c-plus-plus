@@ -18,7 +18,8 @@ Boolean EsVacia(ListaExpresiones l);
 
 Boolean ExisteExpresion(ListaExpresiones l,int indice);
 
-Expresion DarExpresion(ListaExpresiones l,int indice);
+//PRECONDICION: la expresion existe en la lista
+void DarExpresion(ListaExpresiones l,int indice, Expresion &e);
 
 Expresion PrimerExpresion (ListaExpresiones l);
 

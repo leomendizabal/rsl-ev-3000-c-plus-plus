@@ -1,36 +1,35 @@
+#include<stdlib.h>
 #include "errores.h"
 
 void MostrarMensajeError(Error e)
 {
-
+    system("cls");
     switch(e)
     {
     case 1:
-         printf("COMANDO_INV");
+         printf("Comando ingresado no es valido\n");
         break;
     case 2:
-       printf("CANT_PARAM");
+       printf("La cantidad de parametros es incorrecta\n");
         break;
     case 3:
-       printf("OPERADOR_INV");
+       printf("El operador ingresado no es valido\n");
         break;
     case 4:
-       printf("NO_EXISTE_EXP");
+       printf("La expresion no existe\n");
         break;
     case 5:
-       printf("TIPO_NUM_INV");
+       printf("El tipo de dato debe ser un numero\n");
         break;
     case 6:
-       printf("TIPO_LETRA_INV");
+       printf("El tipo de dato debe ser una letra\n");
         break;
     case 7:
-       printf("NOM_ARCH_INV");
+       printf("El nombre del archivo no es valido\n");
         break;
     case 8:
-       printf("ARCH_NO_EXISTE");
+       printf("No existe el archivo con ese nombre\n");
         break;
 
     }
-
-
 }

@@ -2,10 +2,6 @@
 #include "comandos.h"
 #include "errores.h"
 
-#include "lista_parametros.h"
-#include "lista_expresiones.h"
-
-
 int main(){
 
   string entrada, comando, parametros;
@@ -31,7 +27,7 @@ int main(){
    // MostrarParametros(listaParametros);
     if(ValidarComando(comando) == TRUE) {
           Error error =  ValidarParametros(listaParametros,comando);
-          if( error == NO_ERR){
+          if(error == NO_ERR){
               if(streq(comando,"ayuda\0")){
                     string p;
                     strcrear(p);
@@ -48,7 +44,9 @@ int main(){
               }else if(streq(comando,"recuperar\0")){
 
               }else if(streq(comando,"letras\0")){
-
+                    string indice;
+                    DarParametro(listaParametros,1,indice);
+                    ComandoLetras(listaExpresiones, strToInt(indice));
               }else if(streq(comando,"evaluar\0")){
 
               }else if(streq(comando,"salir\0")){
@@ -56,7 +54,7 @@ int main(){
               }else if(streq(comando,"mostrar\0")){
                     string indice;
                     DarParametro(listaParametros,1,indice);
-                    ComandoMostrar(listaParametros,strToInt(indice));
+                    ComandoMostrar(listaExpresiones,strToInt(indice));
               }
           }else{
                 MostrarMensajeError(error);

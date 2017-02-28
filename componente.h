@@ -23,9 +23,19 @@ void CargarDato(Componente &c,int pos, char dato, TipoDato tipo);
 
 char DarDato(Componente c);
 
+int DarValor(Componente c);
+
+TipoDato DarTipo(Componente c);
+
 int DarPosicion(Componente c);
 
 void MostrarDato(Componente c);
+
+void CargarValor(Componente &c, int valor);
+
+void CargarTipo(Componente &c,int tipo);
+
+void CargarDatoTipo(Componente &c,char dato);
 
 Boolean EsTipoLetra(Componente c);
 
@@ -33,8 +43,9 @@ Boolean EsTipoOperador(Componente c);
 
 Boolean EsTipoParentesis(Componente c);
 
-
 void IncrementarValor(Componente &c,int val);
+
+TipoDato IntATipoDato(int valor);
 
 //Para archivos
 
