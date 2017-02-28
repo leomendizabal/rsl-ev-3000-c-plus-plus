@@ -1,6 +1,7 @@
 #ifndef ARBOL_COMPONENTES_H_INCLUDED
 #define ARBOL_COMPONENTES_H_INCLUDED
 #include "Componente.h"
+#include "Lista_letras.h"
 
 typedef struct nodoA
 {
@@ -58,6 +59,7 @@ void AsignarPosicionOrdenado(ArbolComponentes &abb, int &val);
 
 int CantidadDeNodos(ArbolComponentes abb);
 
+void ObtenerLetras(ArbolComponentes abb, ListaLetras &lista);
 
 //Para archivos
 void BajarArbol(ArbolComponentes abb,FILE *f);

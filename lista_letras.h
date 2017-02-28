@@ -25,4 +25,5 @@ void InsFront (ListaLetras &l, InfoLetra info);
 
 void InsUltimo (ListaLetras &l, InfoLetra info);
 
+void MostrarListaLetras(ListaLetras l);
 #endif // LISTA_LETRAS_H_INCLUDED
