@@ -116,6 +116,10 @@ void ComandoAtomica(ListaExpresiones &l, string p){
 }
 
 
+void ComandoSalir(ListaExpresiones &l){
+   EliminarLista(l);
+}
+
 
 
 

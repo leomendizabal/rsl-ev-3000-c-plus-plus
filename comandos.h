@@ -17,4 +17,6 @@ void ComandoAyuda(string  comando);
 //crea una expresion atomica y la inserta al final de la lista de expresiones
 void ComandoAtomica(ListaExpresiones &l, string p);
 
+void ComandoSalir(ListaExpresiones &l);
+
 #endif // COMANDOS_H_INCLUDED

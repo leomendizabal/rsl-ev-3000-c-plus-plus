@@ -32,4 +32,6 @@ int UltimoIndice(ListaExpresiones l);
 
 void MostrarListaExpresiones(ListaExpresiones l);
 
+void EliminarLista(ListaExpresiones &l);
+
 #endif // LISTA_EXPRESIONES_H_INCLUDED
