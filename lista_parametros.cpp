@@ -280,3 +280,13 @@ void MostrarParametros(ListaParametros l){
   }
 
 }
+
+void EliminarLista(ListaParametros &l){
+    if(l!=NULL)
+    {
+        EliminarLista(l->sig);
+        strdestruir(l->parametro);
+        delete l;
+        l=NULL;
+    }
+}

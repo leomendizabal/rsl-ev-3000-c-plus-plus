@@ -130,13 +130,20 @@ void ComandoMostrar(ListaExpresiones l,int ind)
 void ComandoLetras(ListaExpresiones l, int indice){
     Expresion e;
     if(ExisteExpresion(l, indice)==TRUE){
-        DarExpresion(l, indice, e);
-        printf("expresion: %d", e.indice);
+
+    DarExpresion(l, indice, e);
+    printf("expresion: %d", e.indice);
         //MostrarExpresion(e);
     }else{
         printf("la expresion no existe");
     }
 }
+
+
+void ComandoSalir(ListaExpresiones &l){
+   EliminarLista(l);
+}
+
 
 
 

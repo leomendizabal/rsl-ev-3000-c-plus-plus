@@ -43,5 +43,7 @@ void InsUltimo (ListaParametros &l, string s);
 
 void MostrarParametros(ListaParametros l);
 
+void EliminarLista(ListaParametros &l);
+
 
 #endif // LISTA_PARAMETROS_H_INCLUDED

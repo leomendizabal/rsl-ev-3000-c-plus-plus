@@ -105,3 +105,13 @@ void MostrarListaExpresiones(ListaExpresiones l){
 
     delete aux;
 }
+
+void EliminarLista(ListaExpresiones &l){
+    if(l!=NULL)
+    {
+        EliminarLista(l->sig);
+        EliminarArbol(DarArbol(l->ex));
+        delete l;
+        l=NULL;
+    }
+}
