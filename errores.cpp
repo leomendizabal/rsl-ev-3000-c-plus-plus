@@ -1,8 +1,9 @@
+#include<stdlib.h>
 #include "errores.h"
 
 void MostrarMensajeError(Error e)
 {
-
+    system("cls");
     switch(e)
     {
     case 1:
@@ -31,6 +32,4 @@ void MostrarMensajeError(Error e)
         break;
 
     }
-
-
 }
