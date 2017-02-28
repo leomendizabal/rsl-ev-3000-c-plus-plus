@@ -15,7 +15,7 @@ void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponent
         raiz->Hizq=NULL;
         raiz->Hder=NULL;
     }
-    else
+    else{
        if (DarDato(c)=='!')   //Cuando el componente es un NOT
        {
           raiz->Hizq=NULL;          //  El hijo izquierdo de la raiz va a ser el parentesis "("
@@ -38,21 +38,31 @@ void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponent
        {
           int pos=1;
           char parenabierto='(';
-          Componente parenizq;
-          CargarDato(parenizq,pos,parenabierto,PARENTESIS);
-          ArbolComponentes CopiaRamaIzq;
-          CopiarArbol(CopiaRamaIzq,ramaIzq);    //Copio la rama izquierda
-          InsertarParentesisIzq(CopiaRamaIzq,parenizq);  // Inserto el parentesis "(" como hoja izquierda de la rama izquierda
-          raiz->info=c;                    // Inserto el operador como raiz
-          ArbolComponentes CopiaRamaDer;
-          CopiarArbol(CopiaRamaDer,ramaDer);    // Copio la rama derecha
           char parencerrado=')';
           Componente parender;
           CargarDato(parender,pos,parencerrado,PARENTESIS);
-          InsertarParentesisDer(CopiaRamaDer,parender);  // Inserto el parentesis ")" como hoja derecha de la rama derecha
+
+          Componente parenizq;
+          CargarDato(parenizq,pos,parenabierto,PARENTESIS);
+
+          ArbolComponentes CopiaRamaIzq;
+          CrearVacio(CopiaRamaIzq);
+          CopiarArbol(CopiaRamaIzq,ramaIzq);    //Copio la rama izquierda
+          // Inserto el parentesis "(" como hoja izquierda de la rama izquierda
+          // Inserto el operador como raiz
+          ArbolComponentes CopiaRamaDer;
+          CrearVacio(CopiaRamaDer);
+          CopiarArbol(CopiaRamaDer,ramaDer);    // Copio la rama derecha
+
+          raiz->info= c;
           raiz->Hizq=CopiaRamaIzq;
-          raiz->Hder=CopiaRamaDer;            //Inserto como hijo izquierdo de la raiz a la copia de rama izquierda y como hijo derecho a la copia de rama derecha
+          raiz->Hder=CopiaRamaDer;
+
+          InsertarParentesisIzq(raiz,parenizq);
+          InsertarParentesisDer(raiz,parender);  // Inserto el parentesis ")" como hoja derecha de la rama derecha
+           //Inserto como hijo izquierdo de la raiz a la copia de rama izquierda y como hijo derecho a la copia de rama derecha
           AsignarPosicionOrdenado(raiz,pos);  // Ordeno cada componente con su pocision en orden (De menor a mayor)
+       }
        }
 
 }
@@ -85,11 +95,13 @@ void Insertar(ArbolComponentes &abb, Componente c)
            abb->Hizq = NULL;
            abb->Hder = NULL;
        }
-    else
-        if (DarPosicion(c)<DarPosicion(abb->info))
+    else{
+       if (DarPosicion(c)<DarPosicion(abb->info))
               Insertar(abb->Hizq,c);
         else
               Insertar(abb->Hder,c);
+
+    }
 
 }
 void InsertarParentesisIzq(ArbolComponentes &abb,Componente c)
@@ -144,7 +156,7 @@ void MostrarArbol(ArbolComponentes abb)
   {
         MostrarArbol(abb->Hizq);
         //MostrarDato(abb->info);
-        if (EsTipoOperador(abb->info))
+        /*if (EsTipoOperador(abb->info))
            {
             if (DarDato(abb->info)=='!')
                 printf("! ");
@@ -154,7 +166,7 @@ void MostrarArbol(ArbolComponentes abb)
                 else
                     printf(" & ");
            }
-        else
+        else*/
              MostrarDato(abb->info);
         MostrarArbol(abb->Hder);
   }

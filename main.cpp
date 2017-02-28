@@ -16,6 +16,7 @@ int main(){
     strcrear(entrada);
     strcrear(comando);
     strcrear(parametros);
+
     CrearLista(listaParametros);
 
      //Leo la entrada
@@ -38,7 +39,7 @@ int main(){
                     DarParametro(listaParametros,1,p);
                     ComandoAtomica(listaExpresiones, p);
               }else if(streq(comando,"noatomica\0")){
-
+                  ComandoNoAtomica(listaExpresiones,listaParametros);
               }else if(streq(comando,"respaldar\0")){
 
               }else if(streq(comando,"recuperar\0")){
@@ -63,6 +64,7 @@ int main(){
     }else{
       MostrarMensajeError(COMANDO_INV);
     }
+
   }while(salir != TRUE);
 
 

@@ -61,18 +61,18 @@ Error ValidarParametros(ListaParametros l,string comando){
         if(CantidadParametros(l) == 3){
            strcrear(p1);
            DarParametro(l,1,p1);
-           if(EsLetra(p1) == FALSE){
-              return TIPO_LETRA_INV;
+           if(EsNumericoValido(p1) == FALSE){
+              return TIPO_NUM_INV;
            }else{
               strcrear(p2);
               DarParametro(l,2,p2);
               if(EsOperadorValido(p2) == TRUE){
                 strcrear(p3);
                 DarParametro(l,3,p3);
-                if(EsLetra(p3) == TRUE){
+                if(EsNumericoValido(p3) == TRUE){
                   return NO_ERR;
                 }else{
-                  return TIPO_LETRA_INV;
+                  return TIPO_NUM_INV;
                 }
               }else{
                 return OPERADOR_INV;
@@ -84,10 +84,10 @@ Error ValidarParametros(ListaParametros l,string comando){
            if(EsOperadorValido(p1) == TRUE){
                 strcrear(p2);
                 DarParametro(l,2,p2);
-                if(EsLetra(p2) == TRUE){
+                if(EsNumericoValido(p2) == TRUE){
                   return NO_ERR;
                 }else{
-                  return TIPO_LETRA_INV;
+                  return TIPO_NUM_INV;
                 }
               }else{
                 return OPERADOR_INV;
@@ -167,6 +167,9 @@ Error ValidarParametros(ListaParametros l,string comando){
     }else{
         return COMANDO_INV;
     }
+    strdestruir(p1);
+    strdestruir(p2);
+    strdestruir(p3);
 }
 
 int  CantidadParametros(ListaParametros l)

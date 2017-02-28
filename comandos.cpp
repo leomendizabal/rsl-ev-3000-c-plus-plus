@@ -42,6 +42,7 @@ void ParsearParametros(string parametros,ListaParametros &listaResultado){
     int i = 0;
     string param;
     string restoParam;
+
     //ListaParametros listaResultado;
     strcrear(param);
     strcrear(restoParam);
@@ -111,8 +112,8 @@ void ComandoAtomica(ListaExpresiones &l, string p){
     Insertar(arbol, c);                     //inserto el componente en ArbolComponente
     CrearExpresion(e, arbol, indice);       //creo una expresion con el indice y el arbol
     InsUltimo(l, e);                        //inserto la expresion en la lista de expresiones
-
-    MostrarListaExpresiones(l);
+    MostrarExpresion(e);
+   // MostrarListaExpresiones(l);
 }
 
 void ComandoMostrar(ListaExpresiones l,int ind)
@@ -122,6 +123,7 @@ void ComandoMostrar(ListaExpresiones l,int ind)
      Expresion exp;
      DarExpresion(l,ind, exp);
      MostrarArbol(DarArbol(exp));
+     printf("\n");
   }
   else
     MostrarMensajeError(NO_EXISTE_EXP);
@@ -151,6 +153,46 @@ void ComandoSalir(ListaExpresiones &le,ListaParametros &lp){
 
 
 
+
+
+void ComandoNoAtomica(ListaExpresiones le,ListaParametros lp){
+
+    Expresion e1,e2;
+    string p1,p2,p3;
+
+    strcrear(p1);
+    strcrear(p2);
+    strcrear(p3);
+    DarParametro(lp,1,p1);
+    DarParametro(lp,2,p2);
+    DarParametro(lp,3,p3);
+
+    DarExpresion(le,strToInt(p1),e1);
+    DarExpresion(le,strToInt(p3),e2);
+
+    //MostrarArbol(DarArbol(e1));
+    //MostrarArbol(DarArbol(e2));
+
+    Componente comp;
+    CargarDato(comp,0,p2[0],OPERADOR);
+    ArbolComponentes arb;
+    CrearVacio(arb);
+    CrearArbol(arb,DarArbol(e1),DarArbol(e2),comp);
+    Expresion expr;
+    //int indice = UltimoIndice(le) + 1;
+    CrearExpresion(expr,arb,5);
+    InsUltimo(le,expr);
+    MostrarListaExpresiones(le);
+
+}
+
+
+
+void ComandoRespaldar(ListaExpresiones le,ListaParametros lp){}
+
+void ComandoRecuperar(ListaExpresiones le,ListaParametros lp){}
+
+void ComandoEvaluar(ListaExpresiones le,int indice){}
 
 
 

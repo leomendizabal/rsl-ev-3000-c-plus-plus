@@ -40,4 +40,5 @@ void LevantarExpresion(Expresion &e, string nombreArch){
 void MostrarExpresion(Expresion e){
     printf("%d: ", e.indice);
     MostrarArbol(e.arb);
+    printf("\n");
 }

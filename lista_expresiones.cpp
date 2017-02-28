@@ -97,7 +97,7 @@ void MostrarListaExpresiones(ListaExpresiones l){
     CrearLista(aux);
     aux = l;
 
-    printf("Lista de indices de las expresiones: \n");
+    //printf("Lista de indices de las expresiones: \n");
     while(EsVacia(aux) == FALSE){
       MostrarExpresion(aux->ex);
       aux= aux->sig;

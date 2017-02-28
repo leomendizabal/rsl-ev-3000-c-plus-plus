@@ -124,9 +124,7 @@ Boolean streq(string s1,string s2)
 
 //Retorna retorna la un sub string desde un char dado  hacia el final.
 void strsplit(string s1, char c, string &s2){
-  string aux;
   int i = 0;
-  strcrear(aux);
   while((s1[i]!='\0') && (s1[i] != c)){
     i++;
   }
@@ -146,7 +144,7 @@ void strsplit(string s1, char c, string &s2){
 
 //Retorna un sub string desde index a un char dado.
 void strfirst(string s1, int index, char c, string &s2){
-  string aux;
+
   int i = index;
 
   while((s1[i]!='\0') && (s1[i] != c)){

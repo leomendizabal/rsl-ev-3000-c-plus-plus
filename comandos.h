@@ -25,4 +25,14 @@ void ComandoMostrar(ListaExpresiones l,int indice);
 
 void ComandoLetras(ListaExpresiones l, int indice);
 
+
+
+void ComandoNoAtomica(ListaExpresiones le,ListaParametros lp);
+
+void ComandoRespaldar(ListaExpresiones le,ListaParametros lp);
+
+void ComandoRecuperar(ListaExpresiones le,ListaParametros lp);
+
+void ComandoEvaluar(ListaExpresiones le,int indice);
+
 #endif // COMANDOS_H_INCLUDED
