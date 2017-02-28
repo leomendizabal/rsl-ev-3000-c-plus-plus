@@ -28,11 +28,15 @@ Boolean DarValorLetra(ListaLetras l,char s){
 
 Boolean ExisteLetra(ListaLetras l,char letra){
   Boolean valor = FALSE;
-  while((EsVacia(l) == FALSE) && (DarLetra(l->info) != letra)){
-    l=l->sig;
-  }
-  if(DarLetra(l->info) == letra){
-    valor = TRUE;
+  if(EsVacia(l))
+    valor = FALSE;
+  else{
+    while((EsVacia(l) == FALSE) && (DarLetra(l->info) != letra)){
+        l=l->sig;
+    }
+    if(DarLetra(l->info) == letra){
+        valor = TRUE;
+    }
   }
   return valor;
 }
@@ -64,4 +68,11 @@ void InsUltimo (ListaLetras &l, InfoLetra info){
     else
         InsUltimo(l->sig,info);
 
+}
+
+void MostrarListaLetras(ListaLetras l){
+    while(l!= NULL){
+        MostrarLetra(l->info);
+        l= l->sig;
+    }
 }

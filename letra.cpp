@@ -8,7 +8,7 @@ void CargarInfoLetra(InfoLetra &l,char c,Boolean val){
 //Muestra la letra por pantalla
 void MostrarLetra(InfoLetra l){
     printf("%c",l.letra);
-    Mostrar(l.valor);
+    //Mostrar(l.valor);
 }
 //Devuelve la letra de la estructura
 char DarLetra(InfoLetra l){

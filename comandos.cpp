@@ -136,7 +136,10 @@ void ComandoLetras(ListaExpresiones l, int indice){
         Expresion e;
         DarExpresion(l, indice, e);
 
-        //ObtenerLetras(e.arb, letras);
+        ObtenerLetras(DarArbol(e), letras);
+
+        printf("Lista de la expresion %d: ", indice);
+        MostrarListaLetras(letras);
     }else{
         MostrarMensajeError(NO_EXISTE_EXP);
     }

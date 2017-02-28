@@ -196,7 +196,17 @@ int CantidadDeNodos(ArbolComponentes abb){
    }
 }
 
-
+void ObtenerLetras(ArbolComponentes abb, ListaLetras &lista){
+  if (abb != NULL){
+    if(EsTipoLetra(abb->info) && (!ExisteLetra(lista, DarDato(abb->info)))){
+        InfoLetra letra;
+        CargarInfoLetra(letra, DarDato(abb->info), FALSE);
+        InsUltimo(lista, letra);
+    }
+    ObtenerLetras(abb->Hizq,lista);
+    ObtenerLetras(abb->Hder,lista);
+  }
+}
 
 void BajarArbol(ArbolComponentes abb,FILE *f)
 {
