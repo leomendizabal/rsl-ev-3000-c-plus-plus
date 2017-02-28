@@ -44,7 +44,9 @@ int main(){
               }else if(streq(comando,"recuperar\0")){
 
               }else if(streq(comando,"letras\0")){
-
+                    string indice;
+                    DarParametro(listaParametros,1,indice);
+                    ComandoLetras(listaExpresiones, strToInt(indice));
               }else if(streq(comando,"evaluar\0")){
 
               }else if(streq(comando,"salir\0")){

@@ -19,4 +19,6 @@ void ComandoAtomica(ListaExpresiones &l, string p);
 
 void ComandoSalir(ListaExpresiones &l);
 
+void ComandoLetras(ListaExpresiones l, int indice);
+
 #endif // COMANDOS_H_INCLUDED
