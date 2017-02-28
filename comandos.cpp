@@ -121,7 +121,7 @@ void ComandoMostrar(ListaExpresiones l,int ind)
   {
      Expresion exp;
      DarExpresion(l,ind, exp);
-
+     MostrarArbol(DarArbol(exp));
   }
   else
     MostrarMensajeError(NO_EXISTE_EXP);
