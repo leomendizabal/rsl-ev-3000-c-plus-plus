@@ -1,7 +1,7 @@
 #include"componente.h"
 
 void CargarDato(Componente &c,int pos, char dato, TipoDato tipo){
-    switch(tipo){
+    /*switch(tipo){
         case LETRA:
             c.dato.letra = dato;
             break;
@@ -15,7 +15,10 @@ void CargarDato(Componente &c,int pos, char dato, TipoDato tipo){
             break;
     }
     c.tipo = tipo;
-    c.valor= pos;
+    c.valor= pos;*/
+    CargarValor(c,pos);
+    CargarTipo(c,tipo);
+    CargarDatoTipo(c,dato);
 }
 
 char DarDato(Componente c){
@@ -38,9 +41,38 @@ char DarDato(Componente c){
     return resultado;
 }
 
+void CargarValor(Componente &c, int valor){
+  c.valor = valor;
+}
+
+void CargarTipo(Componente &c,int tipo){
+   switch(tipo){
+    case 0: c.tipo = LETRA; break;
+    case 1: c.tipo = OPERADOR;  break;
+    case 2: c.tipo = PARENTESIS;  break;
+   }
+}
+
+void CargarDatoTipo(Componente &c,char dato){
+  switch(c.tipo){
+    case LETRA: c.dato.letra = dato; break;
+    case OPERADOR:c.dato.operador = dato;  break;
+    case PARENTESIS:c.dato.operador = dato;  break;
+  }
+
+}
+
+TipoDato DarTipo(Componente c){
+  return c.tipo;
+}
+
 int DarPosicion(Componente c)
 {
     return c.valor;
+}
+
+int DarValor(Componente c){
+  return c.valor;
 }
 
 void MostrarDato(Componente c){
@@ -79,6 +111,15 @@ void AsignarPosicion(Componente c,int val)
    c.valor=val;
 }
 
+TipoDato IntATipoDato(int valor){
+  switch(valor){
+      case 0: return LETRA;
+      case 1: return OPERADOR;
+      case 2: return PARENTESIS;
+
+  }
+
+}
 
 
 void BajarChar(char c, FILE * f)
@@ -102,11 +143,17 @@ void BajarInt(int i, FILE * f)
 }
 
 void BajarComponente(Componente c, FILE *f){
-
-    fwrite(&c,sizeof(Componente),1,f);
+    BajarInt(DarValor(c),f);
+    BajarInt(DarTipo(c),f);
+    BajarChar(DarDato(c),f);
 }
 
 void LevantarComponente(Componente &c, FILE *f)
 {
-   fread(&c,sizeof(Componente),1,f);
+   int valor,tipo;
+   char dato;
+   LevantarInt(valor,f);
+   LevantarInt(tipo,f);
+   LevantarChar(dato,f);
+   CargarDato(c,valor,dato,IntATipoDato(tipo));
 }
