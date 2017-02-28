@@ -174,3 +174,13 @@ void strtrim(string s1, string &s2){
   s2[j] = '\0';
 }
 
+int strToInt(string s){
+    int resultado = 0;
+    int largo = strlar(s);
+
+    for(int i=0; i<largo; i++){
+        resultado = resultado * 10 + (s[i] - '0');
+    }
+
+    return resultado;
+}
