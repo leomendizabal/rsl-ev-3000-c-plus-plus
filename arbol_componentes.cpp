@@ -143,7 +143,7 @@ void MostrarArbol(ArbolComponentes abb)
   if (abb!=NULL)
   {
         MostrarArbol(abb->Hizq);
-        MostrarDato(abb->info);
+        //MostrarDato(abb->info);
         if (EsTipoOperador(abb->info))
            {
             if (DarDato(abb->info)=='!')
