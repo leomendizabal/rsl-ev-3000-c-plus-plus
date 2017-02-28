@@ -115,6 +115,16 @@ void ComandoAtomica(ListaExpresiones &l, string p){
     MostrarListaExpresiones(l);
 }
 
+void ComandoMostrar(ListaExpresiones l,int ind)
+{
+  if (ExisteExpresion(l,ind))
+  {
+     Expresion exp=DarExpresion(l,ind);
+
+  }
+  else
+    MostrarMensajeError(NO_EXISTE_EXP);
+}
 
 
 
