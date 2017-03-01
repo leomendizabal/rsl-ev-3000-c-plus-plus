@@ -199,22 +199,20 @@ void ComandoNoAtomica(ListaExpresiones le,ListaParametros lp){
 
 
 
-void ComandoRespaldar(ListaExpresiones le,ListaParametros lp){}
+void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch){}
 
-void ComandoRecuperar(ListaExpresiones le,ListaParametros lp){
+void ComandoRecuperar(ListaExpresiones le,string nombreArch){
 
-string p1;
-strcrear(p1);
-DarParametro(lp,1,p1);
-if (EsNombreValido(p1)==TRUE){        //Verifica si el nombre del parametro es sintacticamente correcto
-    if (Existe(p1)==TRUE)              //Verifica si el archivo existe en disco
+
+if (EsNombreValido(nombreArch)==TRUE){        //Verifica si el nombre del parametro es sintacticamente correcto
+    if (Existe(nombreArch) == TRUE)              //Verifica si el archivo existe en disco
        {
            ArbolComponentes arb;
            CrearVacio(arb);
            Expresion exp;
            int ind = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
            CrearExpresion(exp,arb,ind);
-           LevantarExpresion(exp,p1);      //Levanta a memoria la expresion guardada en el archivo
+           LevantarExpresion(exp,nombreArch);      //Levanta a memoria la expresion guardada en el archivo
            InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
            MostrarExpresion(exp);         //Muestra en pantalla la expresion
        }
