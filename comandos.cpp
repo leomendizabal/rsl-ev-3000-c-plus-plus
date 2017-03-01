@@ -201,7 +201,29 @@ void ComandoNoAtomica(ListaExpresiones le,ListaParametros lp){
 
 void ComandoRespaldar(ListaExpresiones le,ListaParametros lp){}
 
-void ComandoRecuperar(ListaExpresiones le,ListaParametros lp){}
+void ComandoRecuperar(ListaExpresiones le,ListaParametros lp){
+
+string p1;
+strcrear(p1);
+DarParametro(lp,1,p1);
+if (EsNombreValido(p1)==TRUE){        //Verifica si el nombre del parametro es sintacticamente correcto
+    if (Existe(p1)==TRUE)              //Verifica si el archivo existe en disco
+       {
+           ArbolComponentes arb;
+           CrearVacio(arb);
+           Expresion exp;
+           int ind = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
+           CrearExpresion(exp,arb,ind);
+           LevantarExpresion(exp,p1);      //Levanta a memoria la expresion guardada en el archivo
+           InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
+           MostrarExpresion(exp);         //Muestra en pantalla la expresion
+       }
+    else
+        MostrarMensajeError(ARCH_NO_EXISTE);
+    }
+else
+    MostrarMensajeError(NOM_ARCH_INV);
+}
 
 void ComandoEvaluar(ListaExpresiones le,int indice){}
 
