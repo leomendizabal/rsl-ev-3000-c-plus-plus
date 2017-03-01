@@ -162,30 +162,38 @@ void ComandoNoAtomica(ListaExpresiones le,ListaParametros lp){
 
     Expresion e1,e2;
     string p1,p2,p3;
-
-    strcrear(p1);
-    strcrear(p2);
-    strcrear(p3);
-    DarParametro(lp,1,p1);
-    DarParametro(lp,2,p2);
-    DarParametro(lp,3,p3);
-
-    DarExpresion(le,strToInt(p1),e1);
-    DarExpresion(le,strToInt(p3),e2);
-
-    //MostrarArbol(DarArbol(e1));
-    //MostrarArbol(DarArbol(e2));
-
-    Componente comp;
-    CargarDato(comp,0,p2[0],OPERADOR);
     ArbolComponentes arb;
     CrearVacio(arb);
-    CrearArbol(arb,DarArbol(e1),DarArbol(e2),comp);
+
+    if(CantidadParametros(lp) == 3){
+        strcrear(p1);
+        strcrear(p2);
+        strcrear(p3);
+        DarParametro(lp,1,p1);
+        DarParametro(lp,2,p2);
+        DarParametro(lp,3,p3);
+        DarExpresion(le,strToInt(p1),e1);
+        DarExpresion(le,strToInt(p3),e2);
+        Componente comp;
+        CargarDato(comp,0,p2[0],OPERADOR);
+        CrearArbol(arb,DarArbol(e1),DarArbol(e2),comp);
+
+    }else if(CantidadParametros(lp) == 2){
+        strcrear(p1);
+        strcrear(p2);
+        DarParametro(lp,1,p1);
+        DarParametro(lp,2,p2);
+        DarExpresion(le,strToInt(p2),e1);
+        Componente comp;
+        CargarDato(comp,0,p1[0],OPERADOR);
+        CrearArbol(arb,NULL,DarArbol(e1),comp);
+    }
+
     Expresion expr;
-    //int indice = UltimoIndice(le) + 1;
-    CrearExpresion(expr,arb,5);
+    int indice = UltimoIndice(le) + 1;
+    CrearExpresion(expr,arb,indice);
     InsUltimo(le,expr);
-    MostrarListaExpresiones(le);
+    //MostrarListaExpresiones(le);
 
 }
 

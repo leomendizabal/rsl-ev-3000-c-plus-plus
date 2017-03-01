@@ -21,24 +21,30 @@ void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponent
           raiz->Hizq=NULL;          //  El hijo izquierdo de la raiz va a ser el parentesis "("
           int pos=1;
           char parenabierto='(';
+          char parencerrado=')';
+
           Componente parenizq;
           CargarDato(parenizq,pos,parenabierto,PARENTESIS);
-          InsertarParentesisIzq(raiz,parenizq);
-          raiz->info=c;                      // Inserto el operador como raiz
-          ArbolComponentes CopiaRamaDer;
-          CopiarArbol(CopiaRamaDer,ramaDer);  // Copio la rama derecha
-          char parencerrado=')';
           Componente parender;
           CargarDato(parender,pos,parencerrado,PARENTESIS);
+
+          ArbolComponentes CopiaRamaDer;
+          CopiarArbol(CopiaRamaDer,ramaDer);
+
+          raiz->info=c;
+          raiz->Hizq = NULL;
+          raiz->Hder=CopiaRamaDer;
+
+          InsertarParentesisIzq(raiz,parenizq);
           InsertarParentesisDer(CopiaRamaDer,parender);    // Inserto el parentesis ")" como hoja derecha de la rama derecha
-          raiz->Hder=CopiaRamaDer;              // El hijo derecho de la raiz va a ser la copia de la rama derecha
           AsignarPosicionOrdenado(raiz,pos);  // Ordeno cada componente del arbol con su pocision en orden (De menor a mayor)
-       }
-       else       // Cuando el componente es un OR o AND
-       {
+
+       }else{
+
           int pos=1;
           char parenabierto='(';
           char parencerrado=')';
+          //Creo los componentes con los respectivos parentesis
           Componente parender;
           CargarDato(parender,pos,parencerrado,PARENTESIS);
 
@@ -47,12 +53,11 @@ void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponent
 
           ArbolComponentes CopiaRamaIzq;
           CrearVacio(CopiaRamaIzq);
-          CopiarArbol(CopiaRamaIzq,ramaIzq);    //Copio la rama izquierda
-          // Inserto el parentesis "(" como hoja izquierda de la rama izquierda
-          // Inserto el operador como raiz
+          CopiarArbol(CopiaRamaIzq,ramaIzq);
+
           ArbolComponentes CopiaRamaDer;
           CrearVacio(CopiaRamaDer);
-          CopiarArbol(CopiaRamaDer,ramaDer);    // Copio la rama derecha
+          CopiarArbol(CopiaRamaDer,ramaDer);
 
           raiz->info= c;
           raiz->Hizq=CopiaRamaIzq;
@@ -106,7 +111,7 @@ void Insertar(ArbolComponentes &abb, Componente c)
 }
 void InsertarParentesisIzq(ArbolComponentes &abb,Componente c)
 {
-    if (abb->Hizq==NULL)
+    if (abb == NULL)
     {
            abb = new NodoArb;
            abb->info = c;
@@ -118,7 +123,7 @@ void InsertarParentesisIzq(ArbolComponentes &abb,Componente c)
 }
 void InsertarParentesisDer(ArbolComponentes &abb,Componente c)
 {
-  if (abb->Hder==NULL)
+  if (abb==NULL)
     {
            abb = new NodoArb;
            abb->info = c;
