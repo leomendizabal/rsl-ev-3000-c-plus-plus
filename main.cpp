@@ -43,7 +43,7 @@ int main(){
               }else if(streq(comando,"respaldar\0")){
 
               }else if(streq(comando,"recuperar\0")){
-
+                    ComandoRecuperar(listaExpresiones,listaParametros);
               }else if(streq(comando,"letras\0")){
                     string indice;
                     DarParametro(listaParametros,1,indice);
