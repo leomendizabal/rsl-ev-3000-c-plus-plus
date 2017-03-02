@@ -152,6 +152,7 @@ void ComandoLetras(ListaExpresiones l, int indice){
 void ComandoSalir(ListaExpresiones &le,ListaParametros &lp){
    EliminarLista(le);
    EliminarLista(lp);
+   printf("hasta la proxima\n");
 }
 
 
