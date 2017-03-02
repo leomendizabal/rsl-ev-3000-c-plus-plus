@@ -199,7 +199,7 @@ void AsignarPosicionOrdenado(ArbolComponentes &abb, int &val)
     if (abb!=NULL)
     {
         AsignarPosicionOrdenado(abb->Hizq,val);
-        AsignarPosicion(abb->info,val);
+        CargarValor(abb->info,val);
         val=val+1;
         AsignarPosicionOrdenado(abb->Hder,val);
     }

@@ -42,3 +42,9 @@ void MostrarExpresion(Expresion e){
     MostrarArbol(e.arb);
     printf("\n");
 }
+
+
+void ModificarIndExpresion(Expresion &e,int indice)
+{
+  e.indice = indice;
+}

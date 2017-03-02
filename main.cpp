@@ -76,6 +76,6 @@ int main(){
 
   }while(salir != TRUE);
 
-
+EliminarLista(listaParametros);
 
 }

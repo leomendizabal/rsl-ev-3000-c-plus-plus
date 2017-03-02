@@ -158,7 +158,7 @@ void ComandoSalir(ListaExpresiones &le,ListaParametros &lp){
 
 
 
-void ComandoNoAtomica(ListaExpresiones le,ListaParametros lp){
+void ComandoNoAtomica(ListaExpresiones &le,ListaParametros lp){
 
     Expresion e1,e2;
     string p1,p2,p3;
@@ -193,6 +193,7 @@ void ComandoNoAtomica(ListaExpresiones le,ListaParametros lp){
     int indice = UltimoIndice(le) + 1;
     CrearExpresion(expr,arb,indice);
     InsUltimo(le,expr);
+    MostrarExpresion(expr);
     //MostrarListaExpresiones(le);
 
 }
@@ -204,10 +205,14 @@ void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch){
     if(ExisteExpresion(le, indice)==TRUE){
         DarExpresion(le, indice, e);
         BajarExpresion(e, nombreArch);
+        printf("expresion respaldada correctamente\n");
     }
+    else
+        MostrarMensajeError(NO_EXISTE_EXP);
+
 }
 
-void ComandoRecuperar(ListaExpresiones le,string nombreArch){
+void ComandoRecuperar(ListaExpresiones &le,string nombreArch){
 
 
 if (EsNombreValido(nombreArch)==TRUE){        //Verifica si el nombre del parametro es sintacticamente correcto
@@ -216,9 +221,10 @@ if (EsNombreValido(nombreArch)==TRUE){        //Verifica si el nombre del parame
            ArbolComponentes arb;
            CrearVacio(arb);
            Expresion exp;
-           int ind = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
-           CrearExpresion(exp,arb,ind);
+           int indi = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
+           CrearExpresion(exp,arb,indi);
            LevantarExpresion(exp,nombreArch);      //Levanta a memoria la expresion guardada en el archivo
+           ModificarIndExpresion(exp,indi);      // Asigna a la expresion el ultimo indice disponibe en la lista
            InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
            MostrarExpresion(exp);         //Muestra en pantalla la expresion
        }
@@ -229,7 +235,8 @@ else
     MostrarMensajeError(NOM_ARCH_INV);
 }
 
-void ComandoEvaluar(ListaExpresiones le,int indice){}
+void ComandoEvaluar(ListaExpresiones le,int indice)
+{}
 
 
 
