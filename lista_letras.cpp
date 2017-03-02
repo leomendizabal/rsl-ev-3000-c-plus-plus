@@ -28,16 +28,12 @@ Boolean DarValorLetra(ListaLetras l,char s){
 
 Boolean ExisteLetra(ListaLetras l,char letra){
   Boolean valor = FALSE;
-  if(EsVacia(l))
-    valor = FALSE;
-  else{
-    while((EsVacia(l) == FALSE) && (DarLetra(l->info) != letra)){
-        l=l->sig;
-    }
-    if(DarLetra(l->info) == letra){
-        valor = TRUE;
-    }
+
+  while((EsVacia(l) == FALSE) && !valor){
+    valor = (Boolean)(DarLetra(l->info) == letra);
+    l=l->sig;
   }
+
   return valor;
 }
 
