@@ -199,7 +199,13 @@ void ComandoNoAtomica(ListaExpresiones le,ListaParametros lp){
 
 
 
-void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch){}
+void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch){
+    Expresion e;
+    if(ExisteExpresion(le, indice)==TRUE){
+        DarExpresion(le, indice, e);
+        BajarExpresion(e, nombreArch);
+    }
+}
 
 void ComandoRecuperar(ListaExpresiones le,string nombreArch){
 

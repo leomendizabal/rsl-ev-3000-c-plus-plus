@@ -41,7 +41,13 @@ int main(){
               }else if(streq(comando,"noatomica\0")){
                   ComandoNoAtomica(listaExpresiones,listaParametros);
               }else if(streq(comando,"respaldar\0")){
-
+                    string nombreArchivo;
+                    string indice;
+                    strcrear(nombreArchivo);
+                    strcrear(indice);
+                    DarParametro(listaParametros,1,indice);
+                    DarParametro(listaParametros,2,nombreArchivo);
+                    ComandoRespaldar(listaExpresiones, strToInt(indice), nombreArchivo);
               }else if(streq(comando,"recuperar\0")){
                   string nombreArch;
                   strcrear(nombreArch);
