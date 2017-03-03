@@ -48,3 +48,7 @@ void ModificarIndExpresion(Expresion &e,int indice)
 {
   e.indice = indice;
 }
+
+TipoExpresion EvaluarExpresion(Expresion e){
+    return CONTRADICCION;
+}

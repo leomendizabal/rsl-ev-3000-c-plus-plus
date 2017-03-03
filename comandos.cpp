@@ -199,30 +199,47 @@ void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch){
 }
 
 void ComandoRecuperar(ListaExpresiones &le,string nombreArch){
-
-
-if (EsNombreValido(nombreArch)==TRUE){        //Verifica si el nombre del parametro es sintacticamente correcto
-    if (Existe(nombreArch) == TRUE)              //Verifica si el archivo existe en disco
-       {
-           ArbolComponentes arb;
-           CrearVacio(arb);
-           Expresion exp;
-           int indi = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
-           CrearExpresion(exp,arb,indi);
-           LevantarExpresion(exp,nombreArch);      //Levanta a memoria la expresion guardada en el archivo
-           ModificarIndExpresion(exp,indi);      // Asigna a la expresion el ultimo indice disponibe en la lista
-           InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
-           MostrarExpresion(exp);         //Muestra en pantalla la expresion
-       }
+    if (EsNombreValido(nombreArch)==TRUE){        //Verifica si el nombre del parametro es sintacticamente correcto
+        if (Existe(nombreArch) == TRUE)              //Verifica si el archivo existe en disco
+           {
+               ArbolComponentes arb;
+               CrearVacio(arb);
+               Expresion exp;
+               int indi = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
+               CrearExpresion(exp,arb,indi);
+               LevantarExpresion(exp,nombreArch);      //Levanta a memoria la expresion guardada en el archivo
+               ModificarIndExpresion(exp,indi);      // Asigna a la expresion el ultimo indice disponibe en la lista
+               InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
+               MostrarExpresion(exp);         //Muestra en pantalla la expresion
+           }
+        else
+            MostrarMensajeError(ARCH_NO_EXISTE);
+        }
     else
-        MostrarMensajeError(ARCH_NO_EXISTE);
-    }
-else
-    MostrarMensajeError(NOM_ARCH_INV);
+        MostrarMensajeError(NOM_ARCH_INV);
 }
 
-void ComandoEvaluar(ListaExpresiones le,int indice)
-{}
+void ComandoEvaluar(ListaExpresiones le,int indice){
+    Expresion e;
+    TipoExpresion tipoExpresion;
+
+    DarExpresion(le, indice, e);
+    tipoExpresion = EvaluarExpresion(e);
+
+    switch(tipoExpresion){
+        case TAUTOLOGIA:
+            printf("La expresion %d es TAUTOLOGIA", indice);
+            break;
+        case CONTRADICCION:
+            printf("La expresion %d es CONTRADICCION", indice);
+            break;
+        case CONTINGENCIA:
+            printf("La expresion %d es CONTINGENCIA");
+            break;
+        default:
+            break;
+    }
+}
 
 
 
