@@ -2,7 +2,7 @@
 
 void MostrarMensajeError(Error e)
 {
-    system("cls");
+    //system("cls");
 
     switch(e)
     {

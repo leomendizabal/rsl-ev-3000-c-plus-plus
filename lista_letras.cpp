@@ -69,6 +69,7 @@ void InsUltimo (ListaLetras &l, InfoLetra info){
 void MostrarListaLetras(ListaLetras l){
     while(l!= NULL){
         MostrarLetra(l->info);
+        printf(" ");
         l= l->sig;
     }
 }
