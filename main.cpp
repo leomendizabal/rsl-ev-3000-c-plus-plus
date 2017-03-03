@@ -21,6 +21,8 @@ int main(){
 
      //Leo la entrada
     scan(entrada);
+    strToLowerCase(entrada); //pasa a minuscula la entrada completa
+
     //Parseo
     ParsearComando(entrada,comando,parametros);
    // print(comando);
