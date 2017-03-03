@@ -159,19 +159,17 @@ void ComandoSalir(ListaExpresiones &le,ListaParametros &lp){
 
 
 
-void ComandoNoAtomica(ListaExpresiones &le,string p1,string p2,string p3){
+void ComandoNoAtomica(ListaExpresiones &le,int cant,string p1,string p2,string p3){
     Expresion e1,e2;
     ArbolComponentes arb;
     CrearVacio(arb);
-    if(CantidadParametros(lp) == 3){
+    if(cant == 3){
        DarExpresion(le,strToInt(p1),e1);
        DarExpresion(le,strToInt(p3),e2);
        Componente comp;
        CargarDato(comp,0,charAt(p2,0),OPERADOR);
        CrearArbol(arb,DarArbol(e1),DarArbol(e2),comp);
-    }else if(CantidadParametros(lp) == 2){
-        DarParametro(lp,1,p1);
-        DarParametro(lp,2,p2);
+    }else if(cant == 2){
         DarExpresion(le,strToInt(p2),e1);
         Componente comp;
         CargarDato(comp,0,charAt(p1,0),OPERADOR);

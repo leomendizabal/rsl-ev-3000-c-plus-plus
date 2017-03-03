@@ -48,14 +48,14 @@ int main(){
                     strcrear(p1);
                     strcrear(p2);
                     strcrear(p3);
-                    DarParametro(lp,1,p1);
-                    DarParametro(lp,2,p2);
-                    DarParametro(lp,3,p3);
+                    DarParametro(listaParametros,1,p1);
+                    DarParametro(listaParametros,2,p2);
+                    DarParametro(listaParametros,3,p3);
                     if(ExisteExpresion(listaExpresiones,strToInt(p1))== TRUE &&
                        ExisteExpresion(listaExpresiones,strToInt(p3))== TRUE){
-                       ComandoNoAtomica(listaExpresiones,p1,p2,p3);
+                       ComandoNoAtomica(listaExpresiones,CantidadParametros(listaParametros),p1,p2,p3);
                     }else{
-                        MostrarMensajeError(CANT_PARAM);
+                        MostrarMensajeError(NO_EXISTE_EXP);
                     }
                     strdestruir(p1);
                     strdestruir(p2);
@@ -63,15 +63,17 @@ int main(){
                   }else if(CantidadParametros(listaParametros) == 2){
                     strcrear(p1);
                     strcrear(p2);
-                    DarParametro(lp,1,p1);
-                    DarParametro(lp,2,p2);
+                    DarParametro(listaParametros,1,p1);
+                    DarParametro(listaParametros,2,p2);
                     if(ExisteExpresion(listaExpresiones,strToInt(p2))== TRUE){
-                        ComandoNoAtomica(listaExpresiones,p1,p2,p3);
+                        ComandoNoAtomica(listaExpresiones,CantidadParametros(listaParametros),p1,p2,p3);
                     }else{
-                        MostrarMensajeError(EXIT_FAILURE);
+                        MostrarMensajeError(NO_EXISTE_EXP);
                     }
                     strdestruir(p1);
                     strdestruir(p2);
+                  }else{
+                    MostrarMensajeError(CANT_PARAM);
                   }
 
               }else if(streq(comando,"respaldar\0")){
