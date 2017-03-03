@@ -35,11 +35,41 @@ int main(){
                     DarParametro(listaParametros,1,p);
                     ComandoAyuda(p);
               }else if(streq(comando,"atomica\0")){
-                    string p;
-                    DarParametro(listaParametros,1,p);
-                    ComandoAtomica(listaExpresiones, p);
+                  string p;
+                  DarParametro(listaParametros,1,p);
+                  ComandoAtomica(listaExpresiones, p);
               }else if(streq(comando,"noatomica\0")){
-                  ComandoNoAtomica(listaExpresiones,listaParametros);
+                  string p1,p2,p3;
+                  if(CantidadParametros(listaParametros) == 3){
+                    strcrear(p1);
+                    strcrear(p2);
+                    strcrear(p3);
+                    DarParametro(lp,1,p1);
+                    DarParametro(lp,2,p2);
+                    DarParametro(lp,3,p3);
+                    if(ExisteExpresion(listaExpresiones,strToInt(p1))== TRUE &&
+                       ExisteExpresion(listaExpresiones,strToInt(p3))== TRUE){
+                       ComandoNoAtomica(listaExpresiones,p1,p2,p3);
+                    }else{
+                        MostrarMensajeError(CANT_PARAM);
+                    }
+                    strdestruir(p1);
+                    strdestruir(p2);
+                    strdestruir(p3);
+                  }else if(CantidadParametros(listaParametros) == 2){
+                    strcrear(p1);
+                    strcrear(p2);
+                    DarParametro(lp,1,p1);
+                    DarParametro(lp,2,p2);
+                    if(ExisteExpresion(listaExpresiones,strToInt(p2))== TRUE){
+                        ComandoNoAtomica(listaExpresiones,p1,p2,p3);
+                    }else{
+                        MostrarMensajeError(EXIT_FAILURE);
+                    }
+                    strdestruir(p1);
+                    strdestruir(p2);
+                  }
+
               }else if(streq(comando,"respaldar\0")){
                     string nombreArchivo;
                     string indice;

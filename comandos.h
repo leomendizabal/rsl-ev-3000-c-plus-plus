@@ -28,7 +28,7 @@ void ComandoLetras(ListaExpresiones l, int indice);
 
 
 
-void ComandoNoAtomica(ListaExpresiones &le,ListaParametros lp);
+void ComandoNoAtomica(ListaExpresiones &le,string p1,string p2,string p3);
 
 void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch);
 
