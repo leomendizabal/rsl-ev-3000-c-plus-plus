@@ -182,3 +182,16 @@ int strToInt(string s){
 
     return resultado;
 }
+
+void strToLowerCase(string &s){
+    int largo = strlar(s);
+
+    for(int i=0; i<largo; i++){
+        if(s[i]>= 65 && s[i]<=90)
+            s[i] += 32;
+    }
+}
+ //precondicion: el indice es menor al largo del string
+char charAt(string s, int index){
+    return s[index];
+}
