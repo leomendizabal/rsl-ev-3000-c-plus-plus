@@ -34,4 +34,5 @@ void strtrim(string s1, string &s2);
 
 int strToInt(string s);
 
+void strToLowerCase(string &s);
 #endif // STRING_H_INCLUDED
