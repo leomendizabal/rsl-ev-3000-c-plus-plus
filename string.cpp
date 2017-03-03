@@ -191,3 +191,7 @@ void strToLowerCase(string &s){
             s[i] += 32;
     }
 }
+ //precondicion: el indice es menor al largo del string
+char charAt(string s, int index){
+    return s[index];
+}
