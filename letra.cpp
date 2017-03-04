@@ -18,3 +18,15 @@ char DarLetra(InfoLetra l){
 Boolean DarValor(InfoLetra l){
   return l.valor;
 }
+
+int DarPotencia(int base, int potencia){
+    int resultado = 1;
+
+    if(potencia != 0){
+        for(int i=0; i<potencia; i++){
+            resultado = resultado*base;
+        }
+    }
+
+    return resultado;
+}

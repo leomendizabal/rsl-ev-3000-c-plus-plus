@@ -20,5 +20,6 @@ char DarLetra(InfoLetra l);
 //Devuelve el valor booleano de la estructura
 Boolean DarValor(InfoLetra l);
 
+int DarPotencia(int base, int potencia);
 
 #endif // LETRA_H_INCLUDED
