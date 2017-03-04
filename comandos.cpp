@@ -142,6 +142,7 @@ void ComandoLetras(ListaExpresiones l, int indice){
 
         printf("Lista de la expresion %d: ", indice);
         MostrarListaLetras(letras);
+        printf("\n");
     }else{
         MostrarMensajeError(NO_EXISTE_EXP);
     }

@@ -81,6 +81,7 @@ int CantidadLetras(ListaLetras l){
 void MostrarListaLetras(ListaLetras l){
     while(l!= NULL){
         MostrarLetra(l->info);
+        printf(" ");
         l= l->sig;
     }
 }
