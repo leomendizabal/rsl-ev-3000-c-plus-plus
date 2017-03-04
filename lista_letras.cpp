@@ -100,12 +100,14 @@ void MostrarListaLetras(ListaLetras l){
 }
 
 void decimalToBinary(int n,int largo,string &result) {
- int remainder;
- while(n != 0 && strlar(result)!= largo) {
-     remainder = n%2;
-     n = n/2;
-     straddchar(result,intToChar(remainder));
- }
- for(int i= strlar(result); strlar(result) < largo;i++ )
-   straddchar(result,intToChar(0));
+     int remainder;
+     while(n != 0 && strlar(result)!= largo) {
+         remainder = n%2;
+         n = n/2;
+         straddchar(result,intToChar(remainder));
+     }
+     for(int i= strlar(result); strlar(result) < largo;i++ )
+       straddchar(result,intToChar(0));
+
+     strreverter(result, result);
 }

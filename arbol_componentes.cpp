@@ -224,6 +224,28 @@ void ObtenerLetras(ArbolComponentes abb, ListaLetras &lista){
   }
 }
 
+Boolean EvaluarArbol(ArbolComponentes arb, ListaLetras letras){
+    if (arb == NULL)
+        return TRUE;
+    else{
+         if (EsTipoLetra(DevolverRaiz(arb)))
+            return DarValorLetra(letras, DarDato(arb->info));
+         else{
+             switch(DarDato(arb->info)){
+                 case '|':
+                    return (Boolean)(EvaluarArbol(arb->Hizq, letras) || EvaluarArbol(arb->Hder, letras));
+                    break;
+                 case '&':
+                    return (Boolean)(EvaluarArbol(arb->Hizq, letras) && EvaluarArbol(arb->Hder, letras));
+                    break;
+                 case '!':
+                    return (Boolean)(!EvaluarArbol(arb->Hder, letras));
+                    break;
+             }
+         }
+     }
+}
+
 void BajarArbol(ArbolComponentes abb,FILE *f)
 {
   BajarArbolAux(abb,f);

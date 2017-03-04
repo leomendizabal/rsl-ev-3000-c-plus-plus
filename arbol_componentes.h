@@ -61,6 +61,8 @@ int CantidadDeNodos(ArbolComponentes abb);
 
 void ObtenerLetras(ArbolComponentes abb, ListaLetras &lista);
 
+Boolean EvaluarArbol(ArbolComponentes arbol, ListaLetras letras);
+
 //Para archivos
 void BajarArbol(ArbolComponentes abb,FILE *f);
 

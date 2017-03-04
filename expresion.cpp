@@ -51,16 +51,41 @@ void ModificarIndExpresion(Expresion &e,int indice)
 
 TipoExpresion EvaluarExpresion(Expresion e){
     ListaLetras letras;
+    TipoExpresion tipo;
     int cantidadLetras = 0;
-    CrearLista(letras);
+    int iteraciones = 0;
 
+    CrearLista(letras);
     ObtenerLetras(DarArbol(e), letras);
     cantidadLetras = CantidadLetras(letras);
 
-    AsignarValor(letras, "010");
+    Boolean resultadoEvaluar = FALSE;
+    Boolean resultadoAnterior = FALSE;
 
-    printf("la lista de letras es: \n");
-    MostrarListaLetras(letras);
+    string binario;
+    strcrear(binario);
 
-    return CONTRADICCION;
+    decimalToBinary(iteraciones, cantidadLetras, binario);
+    AsignarValor(letras, binario);
+    resultadoEvaluar = EvaluarArbol(DarArbol(e), letras);
+    resultadoAnterior = resultadoEvaluar;
+
+    while(resultadoEvaluar == resultadoAnterior && iteraciones<DarPotencia(2, cantidadLetras)){
+        iteraciones++;
+        decimalToBinary(iteraciones, cantidadLetras, binario);
+        AsignarValor(letras, binario);
+        resultadoEvaluar = EvaluarArbol(DarArbol(e), letras);
+    }
+
+    if(DarPotencia(2, cantidadLetras)==(iteraciones)){
+        tipo = resultadoEvaluar==TRUE ? TAUTOLOGIA : CONTRADICCION;
+    }else{
+        tipo = CONTINGENCIA;
+    }
+
+    strdestruir(binario);
+    //printf("la lista de letras es: \n");
+    //MostrarListaLetras(letras);
+
+    return tipo;
 }
