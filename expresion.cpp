@@ -50,5 +50,13 @@ void ModificarIndExpresion(Expresion &e,int indice)
 }
 
 TipoExpresion EvaluarExpresion(Expresion e){
+    ListaLetras letras;
+    int cantidadLetras = 0;
+
+    CrearLista(letras);
+    ObtenerLetras(DarArbol(e), letras);
+    cantidadLetras = CantidadLetras(letras);
+
+    printf("cantidad de letras: %d", cantidadLetras);
     return CONTRADICCION;
 }

@@ -25,5 +25,7 @@ void InsFront (ListaLetras &l, InfoLetra info);
 
 void InsUltimo (ListaLetras &l, InfoLetra info);
 
+int CantidadLetras(ListaLetras l);
+
 void MostrarListaLetras(ListaLetras l);
 #endif // LISTA_LETRAS_H_INCLUDED
