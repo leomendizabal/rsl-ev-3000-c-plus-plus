@@ -26,8 +26,6 @@ void ComandoMostrar(ListaExpresiones l,int indice);
 
 void ComandoLetras(ListaExpresiones l, int indice);
 
-
-
 void ComandoNoAtomica(ListaExpresiones &le,int cant,string p1,string p2,string p3);
 
 void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch);
@@ -35,5 +33,8 @@ void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch);
 void ComandoRecuperar(ListaExpresiones &le,string nombreArch);
 
 void ComandoEvaluar(ListaExpresiones le,int indice);
+
+int CantidadParametrosComando(string comando);
+
 
 #endif // COMANDOS_H_INCLUDED

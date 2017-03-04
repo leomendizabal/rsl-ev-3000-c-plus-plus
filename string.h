@@ -37,4 +37,9 @@ int strToInt(string s);
 void strToLowerCase(string &s);
 
 char charAt(string s, int index);
+
+void straddchar(string &s,char c);
+
+void strreverter(string in,string &out);
+
 #endif // STRING_H_INCLUDED

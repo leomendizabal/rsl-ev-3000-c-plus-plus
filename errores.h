@@ -1,8 +1,7 @@
 #ifndef ERRORES_H_INCLUDED
 #define ERRORES_H_INCLUDED
 #include<stdio.h>
-#include<stdlib.h>
-
+#include "string.h"
 
 typedef enum { NO_ERR,
                COMANDO_INV,
@@ -15,6 +14,6 @@ typedef enum { NO_ERR,
                ARCH_NO_EXISTE
               } Error ;
 
-void MostrarMensajeError(Error e);
+void MostrarMensajeError(Error e, string etiqueta,int valor);
 
 #endif // ERRORES_H_INCLUDED

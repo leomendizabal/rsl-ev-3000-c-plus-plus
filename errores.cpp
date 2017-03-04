@@ -1,35 +1,40 @@
 #include "errores.h"
 
-void MostrarMensajeError(Error e)
+void MostrarMensajeError(Error e, string etiqueta,int valor)
 {
-    system("cls");
 
     switch(e)
     {
     case COMANDO_INV:
-         printf("Comando ingresado no es valido\n");
+        printf("El comando "); print(etiqueta); printf(" ingresado no es valido");
         break;
     case CANT_PARAM:
-       printf("La cantidad de parametros es incorrecta\n");
+        printf("La cantidad de parametros para el comando ");print(etiqueta); printf(" debe ser: ");
+        //int cant = CantidadParametrosComando(etiqueta);
+        if (valor == 5){
+            printf("%d",2);printf(" o ");printf("%d",3);
+        }else{
+             printf("%d",valor);
+        }
         break;
     case OPERADOR_INV:
-       printf("El operador ingresado no es valido\n");
+       printf("El operador ");print(etiqueta);printf(" no es valido");
         break;
     case NO_EXISTE_EXP:
-       printf("La expresion no existe\n");
-        break;
+       printf("La expresion ");print(etiqueta);printf(" no existe en memoria");
+       break;
     case TIPO_NUM_INV:
-       printf("El tipo de dato debe ser un numero\n");
+        printf("El parametro ");print(etiqueta);printf(" no es un numero");
         break;
     case TIPO_LETRA_INV:
-       printf("El tipo de dato debe ser una letra\n");
+       printf("El parametro ");print(etiqueta);printf(" no es una letra");
         break;
     case NOM_ARCH_INV:
-       printf("El nombre del archivo no es valido\n");
+       printf("El nombre ");print(etiqueta);printf(" no es valido para un archivo");
         break;
     case ARCH_NO_EXISTE:
-       printf("No existe el archivo con ese nombre\n");
-        break;
-
+       printf("No existe el archivo con nombre ");print(etiqueta);
+       break;
     }
+    print(".\n");
 }

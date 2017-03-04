@@ -18,3 +18,11 @@ char DarLetra(InfoLetra l){
 Boolean DarValor(InfoLetra l){
   return l.valor;
 }
+
+char intToChar(int numero){
+    switch(numero){
+        case 1: return '1';
+        case 0: return '0';
+    }
+
+}

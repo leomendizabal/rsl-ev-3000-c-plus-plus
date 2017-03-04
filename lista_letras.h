@@ -1,6 +1,7 @@
 #ifndef LISTA_LETRAS_H_INCLUDED
 #define LISTA_LETRAS_H_INCLUDED
 #include"letra.h"
+#include "string.h"
 
 //Lista de expresion
 typedef struct nodoL
@@ -26,4 +27,7 @@ void InsFront (ListaLetras &l, InfoLetra info);
 void InsUltimo (ListaLetras &l, InfoLetra info);
 
 void MostrarListaLetras(ListaLetras l);
+
+void decimalToBinary(int n,int largo,string &result);
+
 #endif // LISTA_LETRAS_H_INCLUDED

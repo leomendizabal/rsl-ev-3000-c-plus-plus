@@ -20,5 +20,6 @@ char DarLetra(InfoLetra l);
 //Devuelve el valor booleano de la estructura
 Boolean DarValor(InfoLetra l);
 
+char intToChar(int numero);
 
 #endif // LETRA_H_INCLUDED

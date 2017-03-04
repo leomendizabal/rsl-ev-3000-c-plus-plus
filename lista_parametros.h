@@ -2,6 +2,7 @@
 #define LISTA_PARAMETROS_H_INCLUDED
 #include "string.h"
 #include "errores.h"
+
 //Tipo lista de parametros
 typedef struct nodoP
 {
@@ -18,11 +19,9 @@ Boolean EsVacia(ListaParametros l);
 
 void DarParametro(ListaParametros l, int indice, string &s);
 
-Error ValidarParametros(ListaParametros l,string comando);
+void ValidarParametros(ListaParametros l,string comando, Error &err, string &tag);
 
 int  CantidadParametros(ListaParametros l);
-
-Boolean EsNumericoValido(string parametro);
 
 Boolean EsNumericoValido(string parametro);
 

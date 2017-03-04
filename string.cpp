@@ -142,6 +142,7 @@ void strsplit(string s1, char c, string &s2){
 
 }
 
+
 //Retorna un sub string desde index a un char dado.
 void strfirst(string s1, int index, char c, string &s2){
 
@@ -194,4 +195,21 @@ void strToLowerCase(string &s){
  //precondicion: el indice es menor al largo del string
 char charAt(string s, int index){
     return s[index];
+}
+
+void straddchar(string &s,char c){
+    s[strlar(s)]=c;
+    s[strlar(s)+1]='\0';
+}
+
+void strreverter(string in,string &out){
+  int len = strlar(in);
+  int m=0, n=len;
+  char tem;
+    while(n > m){
+      tem = in[m];
+      in[m++] = in[--n];
+      in[n] = tem;
+    }
+    strcop(out,in);
 }
