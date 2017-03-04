@@ -1,6 +1,7 @@
 #include <iostream>
 #include "comandos.h"
 #include "errores.h"
+#include "confirmacion.h"
 
 int main(){
 
@@ -29,7 +30,10 @@ int main(){
     ParsearParametros(parametros,listaParametros);
    // MostrarParametros(listaParametros);
     if(ValidarComando(comando) == TRUE) {
-          Error error =  ValidarParametros(listaParametros,comando);
+          Error error = NO_ERR;
+          string etiqueta;
+          strcrear(etiqueta);
+          ValidarParametros(listaParametros,comando,error,etiqueta);
           if(error == NO_ERR){
               if(streq(comando,"ayuda\0")){
                     string p;
@@ -51,11 +55,12 @@ int main(){
                     DarParametro(listaParametros,1,p1);
                     DarParametro(listaParametros,2,p2);
                     DarParametro(listaParametros,3,p3);
-                    if(ExisteExpresion(listaExpresiones,strToInt(p1))== TRUE &&
-                       ExisteExpresion(listaExpresiones,strToInt(p3))== TRUE){
+                    Boolean ex1 = ExisteExpresion(listaExpresiones,strToInt(p1));
+                    Boolean ex2 = ExisteExpresion(listaExpresiones,strToInt(p3));
+                    if( ex1 == TRUE && ex2 == TRUE){
                        ComandoNoAtomica(listaExpresiones,CantidadParametros(listaParametros),p1,p2,p3);
                     }else{
-                        MostrarMensajeError(NO_EXISTE_EXP);
+                        MostrarMensajeError(NO_EXISTE_EXP,(ex1 == TRUE)? p3: p1,0);
                     }
                     strdestruir(p1);
                     strdestruir(p2);
@@ -68,12 +73,12 @@ int main(){
                     if(ExisteExpresion(listaExpresiones,strToInt(p2))== TRUE){
                         ComandoNoAtomica(listaExpresiones,CantidadParametros(listaParametros),p1,p2,p3);
                     }else{
-                        MostrarMensajeError(NO_EXISTE_EXP);
+                        MostrarMensajeError(NO_EXISTE_EXP,p2,0);
                     }
                     strdestruir(p1);
                     strdestruir(p2);
                   }else{
-                    MostrarMensajeError(CANT_PARAM);
+                    MostrarMensajeError(CANT_PARAM,comando,CantidadParametrosComando(comando));
                   }
 
               }else if(streq(comando,"respaldar\0")){
@@ -83,20 +88,33 @@ int main(){
                     strcrear(indice);
                     DarParametro(listaParametros,1,indice);
                     DarParametro(listaParametros,2,nombreArchivo);
-                    ComandoRespaldar(listaExpresiones, strToInt(indice), nombreArchivo);
+                    if(ExisteExpresion(listaExpresiones, strToInt(indice))==TRUE){
+                        ComandoRespaldar(listaExpresiones, strToInt(indice), nombreArchivo);
+                        MostrarMensajeConfirmacion(RESP,indice,nombreArchivo);
+                    }else{
+                        MostrarMensajeError(NOM_ARCH_INV,indice,0);
+                    }
                     strdestruir(nombreArchivo);
                     strdestruir(indice);
               }else if(streq(comando,"recuperar\0")){
                   string nombreArch;
                   strcrear(nombreArch);
                   DarParametro(listaParametros,1,nombreArch);
-                  ComandoRecuperar(listaExpresiones,nombreArch);
+                  if (Existe(nombreArch) == TRUE) {
+                     ComandoRecuperar(listaExpresiones,nombreArch);
+                  }else{
+                    MostrarMensajeError(ARCH_NO_EXISTE,nombreArch,0);
+                  }
                   strdestruir(nombreArch);
               }else if(streq(comando,"letras\0")){
                     string indice;
                     strcrear(indice);
                     DarParametro(listaParametros,1,indice);
-                    ComandoLetras(listaExpresiones, strToInt(indice));
+                    if(ExisteExpresion(listaExpresiones, strToInt(indice))==TRUE){
+                        ComandoLetras(listaExpresiones, strToInt(indice));
+                    }else{
+                        MostrarMensajeError(NO_EXISTE_EXP,indice,0);
+                    }
                     strdestruir(indice);
               }else if(streq(comando,"evaluar\0")){
                     string indice;
@@ -105,28 +123,34 @@ int main(){
                     if(ExisteExpresion(listaExpresiones, strToInt(indice))==TRUE){
                         ComandoEvaluar(listaExpresiones, strToInt(indice));
                     }else{
-                        MostrarMensajeError(NO_EXISTE_EXP);
+                        MostrarMensajeError(NO_EXISTE_EXP,indice,0);
                     }
                     strdestruir(indice);
               }else if(streq(comando,"salir\0")){
                     ComandoSalir(listaExpresiones,listaParametros);
+                    MostrarMensajeConfirmacion(SALUDO,"","");
                     salir = TRUE;
               }else if(streq(comando,"mostrar\0")){
                     string indice;
+                    strcrear(indice);
                     DarParametro(listaParametros,1,indice);
-                    ComandoMostrar(listaExpresiones,strToInt(indice));
+                    if (ExisteExpresion(listaExpresiones,strToInt(indice))==TRUE){
+                       ComandoMostrar(listaExpresiones,strToInt(indice));
+                    }else{
+                        MostrarMensajeError(NO_EXISTE_EXP,indice,0);
+                    }
                     strdestruir(indice);
               }
           }else{
-                MostrarMensajeError(error);
-            }
+                MostrarMensajeError(error,etiqueta,CantidadParametrosComando(comando));
+          }
+          strdestruir(etiqueta);
     }else{
-      MostrarMensajeError(COMANDO_INV);
+      MostrarMensajeError(COMANDO_INV,comando,0);
     }
     strdestruir(entrada);
     strdestruir(comando);
     strdestruir(parametros);
   }while(salir != TRUE);
-
 
 }

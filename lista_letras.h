@@ -33,4 +33,6 @@ void AsignarValor(ListaLetras letras, string binario);
 
 void MostrarListaLetras(ListaLetras l);
 
+void decimalToBinary(int n,int largo,string &result);
+
 #endif // LISTA_LETRAS_H_INCLUDED

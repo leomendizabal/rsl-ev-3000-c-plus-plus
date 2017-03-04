@@ -2,23 +2,23 @@
 
 
 Boolean ValidarComando(string comando){
-    if(streq(comando,"ayuda")){
+    if(streq(comando,"ayuda\0")){
        return TRUE;
-    }else if(streq(comando,"atomica")){
+    }else if(streq(comando,"atomica\0")){
         return TRUE;
-    }else if(streq(comando,"noatomica")){
+    }else if(streq(comando,"noatomica\0")){
        return TRUE;
-    }else if(streq(comando,"respaldar")){
+    }else if(streq(comando,"respaldar\0")){
         return TRUE;
-    }else if(streq(comando,"recuperar")){
+    }else if(streq(comando,"recuperar\0")){
        return TRUE;
-    }else if(streq(comando,"letras")){
+    }else if(streq(comando,"letras\0")){
        return TRUE;
-    }else if(streq(comando,"evaluar")){
+    }else if(streq(comando,"evaluar\0")){
        return TRUE;
-    }else if(streq(comando,"salir")){
+    }else if(streq(comando,"salir\0")){
         return TRUE;
-    }else if(streq(comando,"mostrar")){
+    }else if(streq(comando,"mostrar\0")){
        return TRUE;
     }else{
        return FALSE;
@@ -46,19 +46,41 @@ void ParsearParametros(string parametros,ListaParametros &listaResultado){
     //ListaParametros listaResultado;
     strcrear(param);
     strcrear(restoParam);
+    //strcop(restoParam,parametros)
     //CrearLista(listaResultado);
 
     while(strlar(parametros)>0){
+        strcrear(param);
         strfirst(parametros, 0, ' ', param);            //obtiene el primer string hasta el espacio
-        InsUltimo(listaResultado, param);               //inserta un nodo con el parametro a la lista
+        InsUltimo(listaResultado, param);
+        strdestruir(param);                             //inserta un nodo con el parametro a la lista
         strsplit(parametros, ' ', parametros);          //guarda en restoParam toda la cadena menos el primer string
         strtrim(parametros, parametros);
+
     }
-
-    //printf("Lista: ");
-    //MostrarParametros(listaResultado);
-    //return listaResultado;
-
+   /* string aux;
+    int i,j;
+    strcrear(aux);
+    i=0;
+    j=0;
+    while(parametros[i] != '\0'){
+        if(parametros[i]==' ' && j != 0){
+            aux[j]='\0';
+            InsUltimo(listaResultado,aux);
+            j=0;
+            strdestruir(aux);
+            strcrear(aux);
+        }else{
+            if(parametros[i]!=' '){
+                aux[j]=parametros[i];
+                j++;
+            }
+        }
+        i++;
+    }
+    aux[j]='\0';
+    InsUltimo(listaResultado,aux);
+    strdestruir(aux);*/
 }
 
 void ComandoAyuda(string  comando){
@@ -118,34 +140,22 @@ void ComandoAtomica(ListaExpresiones &l, string p){
 
 void ComandoMostrar(ListaExpresiones l,int ind)
 {
-  if (ExisteExpresion(l,ind)==TRUE)
-  {
      Expresion exp;
      DarExpresion(l,ind, exp);
      MostrarArbol(DarArbol(exp));
      printf("\n");
-  }
-  else
-    MostrarMensajeError(NO_EXISTE_EXP);
+
 }
 
 void ComandoLetras(ListaExpresiones l, int indice){
+    ListaLetras letras;
+    CrearLista(letras);
 
-    if(ExisteExpresion(l, indice)==TRUE){
-        ListaLetras letras;
-        CrearLista(letras);
+    Expresion e;
+    DarExpresion(l, indice, e);
 
-        Expresion e;
-        DarExpresion(l, indice, e);
-
-        ObtenerLetras(DarArbol(e), letras);
-
-        printf("Lista de la expresion %d: ", indice);
-        MostrarListaLetras(letras);
-        printf("\n");
-    }else{
-        MostrarMensajeError(NO_EXISTE_EXP);
-    }
+    ObtenerLetras(DarArbol(e), letras);
+    MostrarListaLetras(letras);
 }
 
 
@@ -153,7 +163,6 @@ void ComandoLetras(ListaExpresiones l, int indice){
 void ComandoSalir(ListaExpresiones &le,ListaParametros &lp){
    EliminarLista(le);
    EliminarLista(lp);
-   printf("hasta la proxima\n");
 }
 
 
@@ -189,35 +198,23 @@ void ComandoNoAtomica(ListaExpresiones &le,int cant,string p1,string p2,string p
 
 void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch){
     Expresion e;
-    if(ExisteExpresion(le, indice)==TRUE){
-        DarExpresion(le, indice, e);
-        BajarExpresion(e, nombreArch);
-        printf("expresion respaldada correctamente\n");
-    }
-    else
-        MostrarMensajeError(NO_EXISTE_EXP);
-
+    DarExpresion(le, indice, e);
+    BajarExpresion(e, nombreArch);
 }
 
 void ComandoRecuperar(ListaExpresiones &le,string nombreArch){
-    if (EsNombreValido(nombreArch)==TRUE){        //Verifica si el nombre del parametro es sintacticamente correcto
-        if (Existe(nombreArch) == TRUE)              //Verifica si el archivo existe en disco
-           {
-               ArbolComponentes arb;
-               CrearVacio(arb);
-               Expresion exp;
-               int indi = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
-               CrearExpresion(exp,arb,indi);
-               LevantarExpresion(exp,nombreArch);      //Levanta a memoria la expresion guardada en el archivo
-               ModificarIndExpresion(exp,indi);      // Asigna a la expresion el ultimo indice disponibe en la lista
-               InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
-               MostrarExpresion(exp);         //Muestra en pantalla la expresion
-           }
-        else
-            MostrarMensajeError(ARCH_NO_EXISTE);
-        }
-    else
-        MostrarMensajeError(NOM_ARCH_INV);
+
+   ArbolComponentes arb;
+   CrearVacio(arb);
+   Expresion exp;
+   int indi = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
+   CrearExpresion(exp,arb,indi);
+   LevantarExpresion(exp,nombreArch);      //Levanta a memoria la expresion guardada en el archivo
+   ModificarIndExpresion(exp,indi);      // Asigna a la expresion el ultimo indice disponibe en la lista
+   InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
+   MostrarExpresion(exp);         //Muestra en pantalla la expresion
+
+
 }
 
 void ComandoEvaluar(ListaExpresiones le,int indice){
@@ -244,5 +241,17 @@ void ComandoEvaluar(ListaExpresiones le,int indice){
     printf("\n");
 }
 
+int CantidadParametrosComando(string comando){
+    if(streq(comando,"ayuda\0")|| streq(comando,"mostrar\0") || streq(comando,"evaluar\0")||
+       streq(comando,"letras\0")||streq(comando,"recuperar\0") || streq(comando,"atomica\0")){
+       return 1;
+    }else if(streq(comando,"noatomica\0")){
+       return 5;
+    }else if(streq(comando,"respaldar\0")){
+       return 2;
+    }else if(streq(comando,"salir\0")){
+       return 0;
+    }
 
+}
 

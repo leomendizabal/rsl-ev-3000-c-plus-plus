@@ -15,23 +15,16 @@ Boolean EsVacia(ListaParametros l){
 
 void DarParametro(ListaParametros l, int indice, string &s){
     int i = 1;
-    ListaParametros aux;
-    CrearLista(aux);
-    aux = l;
-
-    while((aux!=NULL) && (i < indice)) //mientras no sea el indice del parametro que quiero obtener
+    while((l!=NULL) && (i < indice)) //mientras no sea el indice del parametro que quiero obtener
     {
-        aux = aux->sig;                //paso al siguiente parametro
+        l = l->sig;                //paso al siguiente parametro
         i++;
     }
-    if(indice == i && aux != NULL){                   //si encontre el parametro con el indice que buscaba, lo copio a s
-        strcop(s,aux->parametro);
+    if(indice == i && l != NULL){                   //si encontre el parametro con el indice que buscaba, lo copio a s
+        strcop(s,l->parametro);
     }
-
-    //delete aux;
 }
-
-Error ValidarParametros(ListaParametros l,string comando){
+void ValidarParametros(ListaParametros l,string comando, Error &err, string &tag){
     string p1,p2,p3;
 
     if(streq(comando,"ayuda\0")) {
@@ -39,30 +32,38 @@ Error ValidarParametros(ListaParametros l,string comando){
             strcrear(p1);
             DarParametro(l,1,p1);
             if(ValidarComando(p1)== FALSE) {
-                return COMANDO_INV;
+                err =  COMANDO_INV;
+                strcop(tag,p1);
             }else{
-                return NO_ERR;
+                err = NO_ERR;
+                strcop(tag,comando);
             }
         }else{
-            return CANT_PARAM;
+            err =  CANT_PARAM;
+            strcop(tag,comando);
         }
     }else if(streq(comando,"atomica\0")){
         if(CantidadParametros(l) == 1){
-            strcrear(p1);
-            DarParametro(l,1,p1);
-          if(EsLetra(p1) == FALSE)
-            return TIPO_LETRA_INV;
-          else
-            return NO_ERR;
+          strcrear(p1);
+          DarParametro(l,1,p1);
+          if(EsLetra(p1) == FALSE){
+            err = TIPO_LETRA_INV;
+            strcop(tag,p1);
+          }else{
+            err = NO_ERR;
+            strcop(tag,comando);
+          }
         }else{
-           return CANT_PARAM;
+           err = CANT_PARAM;
+           strcop(tag,comando);
         }
     }else if(streq(comando,"noatomica\0")){
         if(CantidadParametros(l) == 3){
            strcrear(p1);
            DarParametro(l,1,p1);
            if(EsNumericoValido(p1) == FALSE){
-              return TIPO_NUM_INV;
+              err = TIPO_NUM_INV;
+              strcop(tag,p1);
            }else{
               strcrear(p2);
               DarParametro(l,2,p2);
@@ -70,31 +71,38 @@ Error ValidarParametros(ListaParametros l,string comando){
                 strcrear(p3);
                 DarParametro(l,3,p3);
                 if(EsNumericoValido(p3) == TRUE){
-                  return NO_ERR;
+                  err = NO_ERR;
+                  strcop(tag,comando);
                 }else{
-                  return TIPO_NUM_INV;
+                  err = TIPO_NUM_INV;
+                  strcop(tag,p3);
                 }
               }else{
-                return OPERADOR_INV;
+                err = OPERADOR_INV;
+                strcop(tag,p2);
               }
            }
         }else if (CantidadParametros(l) == 2){
            strcrear(p1);
            DarParametro(l,1,p1);
            if(EsOperadorValido(p1) == TRUE){
-                strcrear(p2);
-                DarParametro(l,2,p2);
-                if(EsNumericoValido(p2) == TRUE){
-                  return NO_ERR;
-                }else{
-                  return TIPO_NUM_INV;
-                }
+              strcrear(p2);
+              DarParametro(l,2,p2);
+              if(EsNumericoValido(p2) == TRUE){
+                 err = NO_ERR;
+                 strcop(tag,comando);
               }else{
-                return OPERADOR_INV;
+                 err = TIPO_NUM_INV;
+                 strcop(tag,p2);
               }
-          }else{
-            return CANT_PARAM;
-          }
+           }else{
+              err = OPERADOR_INV;
+              strcop(tag,p1);
+           }
+         }else{
+            err = CANT_PARAM;
+            strcop(tag,comando);
+         }
     }else if(streq(comando,"respaldar\0")){
         if(CantidadParametros(l) == 2){
            strcrear(p1);
@@ -102,70 +110,92 @@ Error ValidarParametros(ListaParametros l,string comando){
            if(EsNumericoValido(p1) == TRUE){
                strcrear(p2);
                DarParametro(l,2,p2);
-               if(EsNombreValido(p2) == TRUE)
-                  return NO_ERR;
-               else
-                  return NOM_ARCH_INV;
+               if(EsNombreValido(p2) == TRUE){
+                  err = NO_ERR;
+                  strcop(tag,comando);
+               }else{
+                  err = NOM_ARCH_INV;
+                  strcop(tag,p2);
+               }
             }else{
-                return TIPO_NUM_INV;
+                err = TIPO_NUM_INV;
+                strcop(tag,p1);
             }
-
         }else{
-          return CANT_PARAM;
+          err = CANT_PARAM;
+          strcop(tag,comando);
         }
-
     }else if(streq(comando,"recuperar\0")){
         if(CantidadParametros(l) == 1){
             strcrear(p1);
             DarParametro(l,1,p1);
-            if(EsNombreValido(p1) == TRUE)
-              return NO_ERR;
-            else
-              return NOM_ARCH_INV;
+            if(EsNombreValido(p1) == TRUE){
+                err = NO_ERR;
+                strcop(tag,comando);
+            }else{
+                err = NOM_ARCH_INV;
+                strcop(tag,p1);
+            }
         }else{
-          return CANT_PARAM;
+          err = CANT_PARAM;
+          strcop(tag,comando);
         }
     }else if(streq(comando,"letras\0")){
         if(CantidadParametros(l) == 1){
             strcrear(p1);
             DarParametro(l,1,p1);
-            if(EsNumericoValido(p1) == TRUE)
-              return NO_ERR;
-            else
-              return TIPO_NUM_INV;
+            if(EsNumericoValido(p1) == TRUE){
+                err = NO_ERR;
+                strcop(tag,comando);
+            }else{
+                err = TIPO_NUM_INV;
+                strcop(tag,p1);
+            }
         }else{
-          return CANT_PARAM;
+          err = CANT_PARAM;
+          strcop(tag,comando);
         }
     }else if(streq(comando,"evaluar\0")){
         if(CantidadParametros(l) == 1){
             strcrear(p1);
             DarParametro(l,1,p1);
-            if(EsNumericoValido(p1) == TRUE)
-              return NO_ERR;
-            else
-              return TIPO_NUM_INV;
+            if(EsNumericoValido(p1) == TRUE){
+                err = NO_ERR;
+                strcop(tag,comando);
+            }else{
+                err = TIPO_NUM_INV;
+                strcop(tag,p1);
+            }
         }else{
-          return CANT_PARAM;
+          err = CANT_PARAM;
+          strcop(tag,comando);
         }
     }else if(streq(comando,"salir\0")){
         if(CantidadParametros(l) != 0){
-            return CANT_PARAM;
+            err = CANT_PARAM;
+            strcop(tag,comando);
         }else{
-            return NO_ERR;
+            err = NO_ERR;
+            strcop(tag,comando);
         }
     }else if(streq(comando,"mostrar\0")){
         if(CantidadParametros(l) == 1){
           strcrear(p1);
           DarParametro(l,1,p1);
-          if(EsNumericoValido(p1) == TRUE)
-              return NO_ERR;
-            else
-              return TIPO_NUM_INV;
+          if(EsNumericoValido(p1) == TRUE){
+             err = NO_ERR;
+             strcop(tag,comando);
+          }else{
+            err = TIPO_NUM_INV;
+            strcop(tag,p1);
+          }
         }else{
-          return CANT_PARAM;
+          err = CANT_PARAM;
+          strcop(tag,comando);
         }
     }else{
-        return COMANDO_INV;
+        err = COMANDO_INV;
+        strcop(tag,comando);
     }
     strdestruir(p1);
     strdestruir(p2);

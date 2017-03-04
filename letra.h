@@ -22,4 +22,6 @@ Boolean DarValor(InfoLetra l);
 
 int DarPotencia(int base, int potencia);
 
+char intToChar(int numero);
+
 #endif // LETRA_H_INCLUDED

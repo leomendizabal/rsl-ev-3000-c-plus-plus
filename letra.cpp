@@ -30,3 +30,10 @@ int DarPotencia(int base, int potencia){
 
     return resultado;
 }
+
+char intToChar(int numero){
+    switch(numero){
+        case 1: return '1';
+        case 0: return '0';
+    }
+}
