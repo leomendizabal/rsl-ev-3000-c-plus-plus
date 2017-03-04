@@ -27,14 +27,14 @@ Boolean DarValorLetra(ListaLetras l,char s){
 }
 
 Boolean ExisteLetra(ListaLetras l,char letra){
-  Boolean valor = FALSE;
+  Boolean existe = FALSE;
 
-  while((EsVacia(l) == FALSE) && !valor){
-    valor = (Boolean)(DarLetra(l->info) == letra);
+  while((EsVacia(l) == FALSE) && !existe){
+    existe = (Boolean)(DarLetra(l->info) == letra);
     l=l->sig;
   }
 
-  return valor;
+  return existe;
 }
 
 void Restoceder (ListaLetras &l){
@@ -66,9 +66,35 @@ void InsUltimo (ListaLetras &l, InfoLetra info){
 
 }
 
+int CantidadLetras(ListaLetras l){
+    int cantidad = 0;
+
+    while(EsVacia(l) == FALSE){
+        cantidad++;
+        l=l->sig;
+    }
+
+    return cantidad;
+}
+
+void AsignarValor(ListaLetras letras, string binario){
+     int i = 0;
+     Boolean valorProposicional = FALSE;
+
+     while(EsVacia(letras) == FALSE && binario[i] != '\0'){
+        valorProposicional = binario[i] == '0' ? FALSE : TRUE;
+        CargarInfoLetra(letras->info, DarLetra(letras->info), valorProposicional);
+        i++;
+        letras=letras->sig;
+    }
+}
+
 void MostrarListaLetras(ListaLetras l){
     while(l!= NULL){
         MostrarLetra(l->info);
+        printf(" ");
+        Mostrar(DarValor(l->info));
+        printf("\n");
         l= l->sig;
     }
 }

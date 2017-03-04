@@ -108,6 +108,7 @@ int main(){
                   strdestruir(nombreArch);
               }else if(streq(comando,"letras\0")){
                     string indice;
+                    strcrear(indice);
                     DarParametro(listaParametros,1,indice);
                     if(ExisteExpresion(listaExpresiones, strToInt(indice))==TRUE){
                         ComandoLetras(listaExpresiones, strToInt(indice));
@@ -116,7 +117,15 @@ int main(){
                     }
                     strdestruir(indice);
               }else if(streq(comando,"evaluar\0")){
-
+                    string indice;
+                    strcrear(indice);
+                    DarParametro(listaParametros,1,indice);
+                    if(ExisteExpresion(listaExpresiones, strToInt(indice))==TRUE){
+                        ComandoEvaluar(listaExpresiones, strToInt(indice));
+                    }else{
+                        MostrarMensajeError(NO_EXISTE_EXP,indice,0);
+                    }
+                    strdestruir(indice);
               }else if(streq(comando,"salir\0")){
                     ComandoSalir(listaExpresiones,listaParametros);
                     MostrarMensajeConfirmacion(SALUDO,"","");

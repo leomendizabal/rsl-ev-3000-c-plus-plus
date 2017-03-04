@@ -155,8 +155,6 @@ void ComandoLetras(ListaExpresiones l, int indice){
     DarExpresion(l, indice, e);
 
     ObtenerLetras(DarArbol(e), letras);
-
-    //printf("Lista de la expresion %d: ", indice);
     MostrarListaLetras(letras);
 }
 
@@ -216,10 +214,32 @@ void ComandoRecuperar(ListaExpresiones &le,string nombreArch){
    InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
    MostrarExpresion(exp);         //Muestra en pantalla la expresion
 
+
 }
 
-void ComandoEvaluar(ListaExpresiones le,int indice)
-{}
+void ComandoEvaluar(ListaExpresiones le,int indice){
+    Expresion e;
+    TipoExpresion tipoExpresion;
+
+    DarExpresion(le, indice, e);
+    tipoExpresion = EvaluarExpresion(e);
+
+    switch(tipoExpresion){
+        case TAUTOLOGIA:
+            printf("La expresion %d es TAUTOLOGIA", indice);
+            break;
+        case CONTRADICCION:
+            printf("La expresion %d es CONTRADICCION", indice);
+            break;
+        case CONTINGENCIA:
+            printf("La expresion %d es CONTINGENCIA");
+            break;
+        default:
+            break;
+    }
+
+    printf("\n");
+}
 
 int CantidadParametrosComando(string comando){
     if(streq(comando,"ayuda\0")|| streq(comando,"mostrar\0") || streq(comando,"evaluar\0")||

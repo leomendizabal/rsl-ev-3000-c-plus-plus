@@ -48,3 +48,19 @@ void ModificarIndExpresion(Expresion &e,int indice)
 {
   e.indice = indice;
 }
+
+TipoExpresion EvaluarExpresion(Expresion e){
+    ListaLetras letras;
+    int cantidadLetras = 0;
+    CrearLista(letras);
+
+    ObtenerLetras(DarArbol(e), letras);
+    cantidadLetras = CantidadLetras(letras);
+
+    AsignarValor(letras, "010");
+
+    printf("la lista de letras es: \n");
+    MostrarListaLetras(letras);
+
+    return CONTRADICCION;
+}
