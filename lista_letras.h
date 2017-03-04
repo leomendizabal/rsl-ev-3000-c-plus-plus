@@ -1,6 +1,7 @@
 #ifndef LISTA_LETRAS_H_INCLUDED
 #define LISTA_LETRAS_H_INCLUDED
-#include"letra.h"
+#include "letra.h"
+#include "string.h"
 
 //Lista de expresion
 typedef struct nodoL
@@ -27,5 +28,9 @@ void InsUltimo (ListaLetras &l, InfoLetra info);
 
 int CantidadLetras(ListaLetras l);
 
+//recorre el binario y asigna TRUE/FALSE a cada letra dependiendo sea 1/0 el valor que le corresponde en el binario
+void AsignarValor(ListaLetras letras, string binario);
+
 void MostrarListaLetras(ListaLetras l);
+
 #endif // LISTA_LETRAS_H_INCLUDED

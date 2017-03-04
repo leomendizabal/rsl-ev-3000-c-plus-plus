@@ -240,6 +240,8 @@ void ComandoEvaluar(ListaExpresiones le,int indice){
         default:
             break;
     }
+
+    printf("\n");
 }
 
 

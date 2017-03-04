@@ -30,7 +30,6 @@ Boolean ExisteLetra(ListaLetras l,char letra){
   Boolean existe = FALSE;
 
   while((EsVacia(l) == FALSE) && !existe){
-    MostrarLetra(l->info);
     existe = (Boolean)(DarLetra(l->info) == letra);
     l=l->sig;
   }
@@ -78,10 +77,24 @@ int CantidadLetras(ListaLetras l){
     return cantidad;
 }
 
+void AsignarValor(ListaLetras letras, string binario){
+     int i = 0;
+     Boolean valorProposicional = FALSE;
+
+     while(EsVacia(letras) == FALSE && binario[i] != '\0'){
+        valorProposicional = binario[i] == '0' ? FALSE : TRUE;
+        CargarInfoLetra(letras->info, DarLetra(letras->info), valorProposicional);
+        i++;
+        letras=letras->sig;
+    }
+}
+
 void MostrarListaLetras(ListaLetras l){
     while(l!= NULL){
         MostrarLetra(l->info);
         printf(" ");
+        Mostrar(DarValor(l->info));
+        printf("\n");
         l= l->sig;
     }
 }
