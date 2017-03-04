@@ -42,6 +42,8 @@
 		<Unit filename="comandos.h" />
 		<Unit filename="componente.cpp" />
 		<Unit filename="componente.h" />
+		<Unit filename="confirmacion.cpp" />
+		<Unit filename="confirmacion.h" />
 		<Unit filename="errores.cpp" />
 		<Unit filename="errores.h" />
 		<Unit filename="expresion.cpp" />
