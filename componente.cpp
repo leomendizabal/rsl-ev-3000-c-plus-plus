@@ -113,10 +113,10 @@ void AsignarPosicion(Componente c,int val)
 
 TipoDato IntATipoDato(int valor){
   switch(valor){
-      case 0: return LETRA;
-      case 1: return OPERADOR;
-      case 2: return PARENTESIS;
-
+      case 0: return LETRA;break;
+      case 1: return OPERADOR;break;
+      case 2: return PARENTESIS;break;
+      default: return LETRA;break;
   }
 
 }

@@ -19,19 +19,30 @@ Boolean ExisteExpresion(ListaExpresiones l,int indice){
     ListaExpresiones aux = l;
     Boolean terminar = FALSE;
 
+    /*while ((EsVacia(l) == FALSE) && (indice != DarIndice(l->ex))){
+        l = l->sig;
+    }
+    return EsVacia(l);*/
     while((aux != NULL) && !terminar){
-      if(indice != aux->ex.indice)
+      if(indice != DarIndice(aux->ex))
         aux = aux->sig;
       else{
-        i = aux->ex.indice;
+        i = DarIndice(aux->ex);
         terminar = TRUE;
       }
     }
 
     return i==indice ? TRUE : FALSE;
+
 }
 
 void DarExpresion(ListaExpresiones l,int indice, Expresion &e){
+    /*while ((EsVacia(l) == FALSE) && (indice != DarIndice(l->ex))){
+        l = l->sig;
+    }
+    if (EsVacia(l) == FALSE)
+          e = l->ex;*/
+
     ListaExpresiones aux = l;
     Boolean terminar = FALSE;
 

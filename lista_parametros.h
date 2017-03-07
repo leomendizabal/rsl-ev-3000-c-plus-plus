@@ -10,6 +10,18 @@ typedef struct nodoP
     nodoP *sig;
 } NodoParametros;
 
+typedef enum
+{   AYU,
+	ATO,
+	NOATO,
+	MOS,
+	RES,
+	REC,
+	LET,
+	EVA,
+	SAL,
+	INV
+}Comando;
 
 typedef NodoParametros *ListaParametros;
 
@@ -19,7 +31,7 @@ Boolean EsVacia(ListaParametros l);
 
 void DarParametro(ListaParametros l, int indice, string &s);
 
-void ValidarParametros(ListaParametros l,string comando, Error &err, string &tag);
+void ValidarParametros(ListaParametros l,Comando cmd,string comando, Error &err, string &tag);
 
 int  CantidadParametros(ListaParametros l);
 

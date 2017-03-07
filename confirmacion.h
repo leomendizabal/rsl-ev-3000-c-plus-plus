@@ -11,6 +11,6 @@ typedef enum{
         SALUDO
  }Confirmacion;
 
-void MostrarMensajeConfirmacion(Confirmacion c,string tag1,string tag2);
+void MostrarMensajeConfirmacion(Confirmacion c,int tag1,string tag2);
 
 #endif // CONFIRMACION_H_INCLUDED

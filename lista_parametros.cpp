@@ -1,5 +1,4 @@
 #include "lista_parametros.h"
-#include "comandos.h"
 
 void CrearLista(ListaParametros &l)
 {
@@ -24,184 +23,184 @@ void DarParametro(ListaParametros l, int indice, string &s){
         strcop(s,l->parametro);
     }
 }
-void ValidarParametros(ListaParametros l,string comando, Error &err, string &tag){
-    string p1,p2,p3;
 
-    if(streq(comando,"ayuda\0")) {
-        if(CantidadParametros(l) == 1){
-            strcrear(p1);
-            DarParametro(l,1,p1);
-            if(ValidarComando(p1)== FALSE) {
-                err =  COMANDO_INV;
-                strcop(tag,p1);
-            }else{
-                err = NO_ERR;
-                strcop(tag,comando);
-            }
-        }else{
-            err =  CANT_PARAM;
-            strcop(tag,comando);
-        }
-    }else if(streq(comando,"atomica\0")){
-        if(CantidadParametros(l) == 1){
-          strcrear(p1);
-          DarParametro(l,1,p1);
-          if(EsLetra(p1) == FALSE){
-            err = TIPO_LETRA_INV;
-            strcop(tag,p1);
-          }else{
-            err = NO_ERR;
-            strcop(tag,comando);
-          }
-        }else{
-           err = CANT_PARAM;
-           strcop(tag,comando);
-        }
-    }else if(streq(comando,"noatomica\0")){
-        if(CantidadParametros(l) == 3){
-           strcrear(p1);
-           DarParametro(l,1,p1);
-           if(EsNumericoValido(p1) == FALSE){
-              err = TIPO_NUM_INV;
-              strcop(tag,p1);
-           }else{
-              strcrear(p2);
-              DarParametro(l,2,p2);
-              if(EsOperadorValido(p2) == TRUE){
-                strcrear(p3);
-                DarParametro(l,3,p3);
-                if(EsNumericoValido(p3) == TRUE){
-                  err = NO_ERR;
-                  strcop(tag,comando);
-                }else{
-                  err = TIPO_NUM_INV;
-                  strcop(tag,p3);
-                }
-              }else{
-                err = OPERADOR_INV;
-                strcop(tag,p2);
-              }
-           }
-        }else if (CantidadParametros(l) == 2){
-           strcrear(p1);
-           DarParametro(l,1,p1);
-           if(EsOperadorValido(p1) == TRUE){
-              strcrear(p2);
-              DarParametro(l,2,p2);
-              if(EsNumericoValido(p2) == TRUE){
-                 err = NO_ERR;
-                 strcop(tag,comando);
-              }else{
-                 err = TIPO_NUM_INV;
-                 strcop(tag,p2);
-              }
-           }else{
-              err = OPERADOR_INV;
-              strcop(tag,p1);
-           }
-         }else{
-            err = CANT_PARAM;
-            strcop(tag,comando);
-         }
-    }else if(streq(comando,"respaldar\0")){
-        if(CantidadParametros(l) == 2){
-           strcrear(p1);
-           DarParametro(l,1,p1);
-           if(EsNumericoValido(p1) == TRUE){
-               strcrear(p2);
-               DarParametro(l,2,p2);
-               if(EsNombreValido(p2) == TRUE){
-                  err = NO_ERR;
-                  strcop(tag,comando);
-               }else{
-                  err = NOM_ARCH_INV;
-                  strcop(tag,p2);
-               }
-            }else{
-                err = TIPO_NUM_INV;
-                strcop(tag,p1);
-            }
-        }else{
-          err = CANT_PARAM;
-          strcop(tag,comando);
-        }
-    }else if(streq(comando,"recuperar\0")){
-        if(CantidadParametros(l) == 1){
-            strcrear(p1);
-            DarParametro(l,1,p1);
-            if(EsNombreValido(p1) == TRUE){
-                err = NO_ERR;
-                strcop(tag,comando);
-            }else{
-                err = NOM_ARCH_INV;
-                strcop(tag,p1);
-            }
-        }else{
-          err = CANT_PARAM;
-          strcop(tag,comando);
-        }
-    }else if(streq(comando,"letras\0")){
-        if(CantidadParametros(l) == 1){
-            strcrear(p1);
-            DarParametro(l,1,p1);
-            if(EsNumericoValido(p1) == TRUE){
-                err = NO_ERR;
-                strcop(tag,comando);
-            }else{
-                err = TIPO_NUM_INV;
-                strcop(tag,p1);
-            }
-        }else{
-          err = CANT_PARAM;
-          strcop(tag,comando);
-        }
-    }else if(streq(comando,"evaluar\0")){
-        if(CantidadParametros(l) == 1){
-            strcrear(p1);
-            DarParametro(l,1,p1);
-            if(EsNumericoValido(p1) == TRUE){
-                err = NO_ERR;
-                strcop(tag,comando);
-            }else{
-                err = TIPO_NUM_INV;
-                strcop(tag,p1);
-            }
-        }else{
-          err = CANT_PARAM;
-          strcop(tag,comando);
-        }
-    }else if(streq(comando,"salir\0")){
-        if(CantidadParametros(l) != 0){
-            err = CANT_PARAM;
-            strcop(tag,comando);
-        }else{
-            err = NO_ERR;
-            strcop(tag,comando);
-        }
-    }else if(streq(comando,"mostrar\0")){
-        if(CantidadParametros(l) == 1){
-          strcrear(p1);
-          DarParametro(l,1,p1);
-          if(EsNumericoValido(p1) == TRUE){
-             err = NO_ERR;
-             strcop(tag,comando);
-          }else{
-            err = TIPO_NUM_INV;
-            strcop(tag,p1);
-          }
-        }else{
-          err = CANT_PARAM;
-          strcop(tag,comando);
-        }
-    }else{
-        err = COMANDO_INV;
-        strcop(tag,comando);
+void ValidarParametros(ListaParametros l,Comando cmd,string comando, Error &err, string &tag){
+    string p1,p2,p3;
+	switch(cmd){
+        case AYU:
+        	if(CantidadParametros(l) != 1){
+              err =  CANT_PARAM;
+	          strcop(tag,comando);
+	        }
+        	break;
+        case ATO:
+            if(CantidadParametros(l) == 1){
+	          strcrear(p1);
+	          DarParametro(l,1,p1);
+	          if(EsLetra(p1) == FALSE){
+	            err = TIPO_LETRA_INV;
+	            strcop(tag,p1);
+	          }else{
+	            err = NO_ERR;
+	            strcop(tag,comando);
+	          }
+	        }else{
+	           err = CANT_PARAM;
+	           strcop(tag,comando);
+	        }
+        	break;
+        case NOATO:
+            if(CantidadParametros(l) == 3){
+	           strcrear(p1);
+	           DarParametro(l,1,p1);
+	           if(EsNumericoValido(p1) == FALSE){
+	              err = TIPO_NUM_INV;
+	              strcop(tag,p1);
+	           }else{
+	              strcrear(p2);
+	              DarParametro(l,2,p2);
+	              if(EsOperadorValido(p2) == TRUE){
+	                strcrear(p3);
+	                DarParametro(l,3,p3);
+	                if(EsNumericoValido(p3) == TRUE){
+	                  err = NO_ERR;
+	                  strcop(tag,comando);
+	                }else{
+	                  err = TIPO_NUM_INV;
+	                  strcop(tag,p3);
+	                }
+	              }else{
+	                err = OPERADOR_INV;
+	                strcop(tag,p2);
+	              }
+	           }
+	       }else if (CantidadParametros(l) == 2){
+	           strcrear(p1);
+	           DarParametro(l,1,p1);
+	           if(EsOperadorValido(p1) == TRUE){
+	              strcrear(p2);
+	              DarParametro(l,2,p2);
+	              if(EsNumericoValido(p2) == TRUE){
+	                 err = NO_ERR;
+	                 strcop(tag,comando);
+	              }else{
+	                 err = TIPO_NUM_INV;
+	                 strcop(tag,p2);
+	              }
+	           }else{
+	              err = OPERADOR_INV;
+	              strcop(tag,p1);
+	           }
+	         }else{
+	            err = CANT_PARAM;
+	            strcop(tag,comando);
+	        }
+        	break;
+        case MOS:
+        	if(CantidadParametros(l) == 1){
+	          strcrear(p1);
+	          DarParametro(l,1,p1);
+	          if(EsNumericoValido(p1) == TRUE){
+	             err = NO_ERR;
+	             strcop(tag,comando);
+	          }else{
+	            err = TIPO_NUM_INV;
+	            strcop(tag,p1);
+	          }
+	        }else{
+	          err = CANT_PARAM;
+	          strcop(tag,comando);
+	        }
+        	break;
+        case EVA:
+        	if(CantidadParametros(l) == 1){
+	            strcrear(p1);
+	            DarParametro(l,1,p1);
+	            if(EsNumericoValido(p1) == TRUE){
+	                err = NO_ERR;
+	                strcop(tag,comando);
+	            }else{
+	                err = TIPO_NUM_INV;
+	                strcop(tag,p1);
+	            }
+	        }else{
+	          err = CANT_PARAM;
+	          strcop(tag,comando);
+	        }
+        	break;
+        case RES:
+        	if(CantidadParametros(l) == 2){
+	           strcrear(p1);
+	           DarParametro(l,1,p1);
+	           if(EsNumericoValido(p1) == TRUE){
+	               strcrear(p2);
+	               DarParametro(l,2,p2);
+	               if(EsNombreValido(p2) == TRUE){
+	                  err = NO_ERR;
+	                  strcop(tag,comando);
+	               }else{
+	                  err = NOM_ARCH_INV;
+	                  strcop(tag,p2);
+	               }
+	            }else{
+	                err = TIPO_NUM_INV;
+	                strcop(tag,p1);
+	            }
+	        }else{
+	          err = CANT_PARAM;
+	          strcop(tag,comando);
+	        }
+        	break;
+        case REC:
+        	if(CantidadParametros(l) == 1){
+	            strcrear(p1);
+	            DarParametro(l,1,p1);
+	            if(EsNombreValido(p1) == TRUE){
+	                err = NO_ERR;
+	                strcop(tag,comando);
+	            }else{
+	                err = NOM_ARCH_INV;
+	                strcop(tag,p1);
+	            }
+	        }else{
+	          err = CANT_PARAM;
+	          strcop(tag,comando);
+	        }
+        	break;
+        case SAL:
+        	if(CantidadParametros(l) != 0){
+	            err = CANT_PARAM;
+	            strcop(tag,comando);
+	        }else{
+	            err = NO_ERR;
+	            strcop(tag,comando);
+	        }
+        	break;
+        case LET:
+        	if(CantidadParametros(l) == 1){
+	            strcrear(p1);
+	            DarParametro(l,1,p1);
+	            if(EsNumericoValido(p1) == TRUE){
+	                err = NO_ERR;
+	                strcop(tag,comando);
+	            }else{
+	                err = TIPO_NUM_INV;
+	                strcop(tag,p1);
+	            }
+	        }else{
+	          err = CANT_PARAM;
+	          strcop(tag,comando);
+	        }
+	        break;
+	    default:
+	    	err = COMANDO_INV;
+        	strcop(tag,comando);
+
     }
     strdestruir(p1);
     strdestruir(p2);
     strdestruir(p3);
 }
-
 int  CantidadParametros(ListaParametros l)
 {
     int cantidad = 0;

@@ -1,28 +1,57 @@
 #include "comandos.h"
 
 
-Boolean ValidarComando(string comando){
-    if(streq(comando,"ayuda\0")){
-       return TRUE;
-    }else if(streq(comando,"atomica\0")){
-        return TRUE;
-    }else if(streq(comando,"noatomica\0")){
-       return TRUE;
-    }else if(streq(comando,"respaldar\0")){
-        return TRUE;
-    }else if(streq(comando,"recuperar\0")){
-       return TRUE;
-    }else if(streq(comando,"letras\0")){
-       return TRUE;
-    }else if(streq(comando,"evaluar\0")){
-       return TRUE;
-    }else if(streq(comando,"salir\0")){
-        return TRUE;
-    }else if(streq(comando,"mostrar\0")){
-       return TRUE;
-    }else{
-       return FALSE;
-    }
+Comando ValidarComando(string comando){
+		 char ayudaArr[MAX] = "ayuda\0";
+		 string ayuda = ayudaArr;
+		 char atomicaArr[MAX] = "atomica\0";
+		 string atomica = atomicaArr;
+		 char noatomicaArr[MAX] = "noatomica\0";
+		 string noatomica = noatomicaArr;
+		 char mostrarArr[MAX] = "mostrar\0";
+		 string mostrar = mostrarArr;
+		 char respaldarArr[MAX] = "respaldar\0";
+		 string respaldar = respaldarArr;
+		 char recuperarArr[MAX] = "recuperar\0";
+		 string recuperar = recuperarArr;
+		 char letrasArr[MAX] = "letras\0";
+		 string letras =letrasArr;
+		 char evaluarArr[MAX] = "evaluar\0";
+		 string evaluar = evaluarArr;
+		 char salirArr[MAX] =  "salir\0";
+		 string salir = salirArr;
+
+		if(streq(comando,ayuda)){
+       		return AYU;
+	    }else if(streq(comando,atomica)){
+	        return ATO;
+	    }else if(streq(comando,noatomica)){
+	       return NOATO;
+	    }else if(streq(comando,respaldar)){
+	        return RES;
+	    }else if(streq(comando,recuperar)){
+	       return REC;
+	    }else if(streq(comando,letras)){
+	       return LET;
+	    }else if(streq(comando,evaluar)){
+	       return EVA;
+	    }else if(streq(comando,salir)){
+	        return SAL;
+	    }else if(streq(comando,mostrar)){
+	       return MOS;
+	    }else{
+	       return INV;
+	    }
+	    strdestruir(mostrar);
+	    strdestruir(salir);
+	    strdestruir(evaluar);
+	    strdestruir(letras);
+	    strdestruir(recuperar);
+	    strdestruir(noatomica);
+	    strdestruir(respaldar);
+	    strdestruir(atomica);
+	    strdestruir(ayuda);
+
 }
 
 
@@ -39,84 +68,69 @@ void ParsearComando(string entrada, string &comando,string &parametros){
 }
 
 void ParsearParametros(string parametros,ListaParametros &listaResultado){
-    int i = 0;
     string param;
     string restoParam;
 
-    //ListaParametros listaResultado;
     strcrear(param);
     strcrear(restoParam);
-    //strcop(restoParam,parametros)
-    //CrearLista(listaResultado);
 
     while(strlar(parametros)>0){
-        strcrear(param);
+        //strcrear(param);
         strfirst(parametros, 0, ' ', param);            //obtiene el primer string hasta el espacio
-        InsUltimo(listaResultado, param);
-        strdestruir(param);                             //inserta un nodo con el parametro a la lista
+        InsUltimo(listaResultado, param);              //inserta un nodo con el parametro a la lista
         strsplit(parametros, ' ', parametros);          //guarda en restoParam toda la cadena menos el primer string
-        strtrim(parametros, parametros);
+        strcop(restoParam,parametros);
+        strtrim(restoParam, parametros);
+    }
+    strdestruir(param);
+    strdestruir(restoParam);
 
-    }
-   /* string aux;
-    int i,j;
-    strcrear(aux);
-    i=0;
-    j=0;
-    while(parametros[i] != '\0'){
-        if(parametros[i]==' ' && j != 0){
-            aux[j]='\0';
-            InsUltimo(listaResultado,aux);
-            j=0;
-            strdestruir(aux);
-            strcrear(aux);
-        }else{
-            if(parametros[i]!=' '){
-                aux[j]=parametros[i];
-                j++;
-            }
-        }
-        i++;
-    }
-    aux[j]='\0';
-    InsUltimo(listaResultado,aux);
-    strdestruir(aux);*/
 }
+void ComandoAyuda(Comando comando){
 
-void ComandoAyuda(string  comando){
-      printf("\n========= ");print(comando);printf(" =========\n");
-      if(streq(comando,"ayuda\0")){
-        printf("Despliega una ayuda sobre la sintaxis del comando especificado. \n");
-      }else if(streq(comando,"atomica\0")){
-        printf("Crea una nueva expresión booleana atómica (es decir, una letra proposicional)\n");
-        printf(" y le asigna el próximo índice disponible. \n");
-      }else if(streq(comando,"noatomica\0")){
-        printf("Crea una nueva expresión booleana no atómica en base a otra(s) ya \n");
-        printf("existente(s) y le asigna el próximo índice disponible. La expresión \n");
-        printf("existente(s) y le asigna el próximo índice disponible. La expresión \n");
-        printf("ingresada a continuación del comando necesariamente debe ser de \n");
-        printf("alguna de las siguientes formas: n & m, n | m, ! n (siendo n, m números de índice válidos). \n");
-      }else if(streq(comando,"mostrar\0")){
-        printf("Se muestra la expresión booleana identificada por el índice n. Debe \n");
-        printf("mostrarse totalmente parentizada y con un blanco separando cada \n");
-        printf("operador booleano de la(s) subexpresión(es) a la(s) que afecta \n");
-      }else if(streq(comando,"respaldar\0")){
-        printf("Respalda la expresión identificada por el índice n en el archivo nombrearchivo.dat. \n");
-      }else if(streq(comando,"letras\0")){
-        printf("Emite un listado de las letras proposicionales que ocurren en la \n");
-        printf("expresión identificada por el índice n. Si alguna letra proposicional \n");
-        printf("ocurre más de una vez en la expresión, se listará por pantalla una sola vez. \n");
-      }else if(streq(comando,"evaluar\0")){
-        printf("Determina si la expresión identificada por el índice n es una \n");
-        printf("tautología (o sea, siempre es verdadera, sin importar los valores de \n");
-        printf("sus subexpresiones), una contradicción (o sea, siempre es falsa, sin \n");
-        printf("importar los valores de sus subexpresiones) o una contingencia (o \n");
-        printf("sea, no es tautología ni contradicción). \n");
-      }else if(streq(comando,"salir\0")){
-        printf("Finaliza la ejecución de la aplicación. Al hacerlo, debe liberar toda la \n");
-        printf("memoria dinámica usada durante la ejecución. \n");
-      }else if(streq(comando,"recuperar\0")){
-        printf("Recupera a memoria la expresión guardada en el archivo nombrearchivo.dat y le asigna el próximo índice disponible.");
+      switch(comando){
+            case AYU:
+                printf("Despliega una ayuda sobre la sintaxis del comando especificado. \n");
+                break;
+            case ATO:
+                printf("Crea una nueva expresión booleana atómica (es decir, una letra proposicional)\n");
+                printf(" y le asigna el próximo índice disponible. \n");
+                break;
+            case NOATO:
+                printf("Crea una nueva expresión booleana no atómica en base a otra(s) ya \n");
+                printf("existente(s) y le asigna el próximo índice disponible. La expresión \n");
+                printf("existente(s) y le asigna el próximo índice disponible. La expresión \n");
+                printf("ingresada a continuación del comando necesariamente debe ser de \n");
+                printf("alguna de las siguientes formas: n & m, n | m, ! n (siendo n, m números de índice válidos). \n");
+                break;
+            case MOS:
+                printf("Se muestra la expresión booleana identificada por el índice n. Debe \n");
+                printf("mostrarse totalmente parentizada y con un blanco separando cada \n");
+                printf("operador booleano de la(s) subexpresión(es) a la(s) que afecta \n");
+                break;
+            case RES:
+                printf("Respalda la expresión identificada por el índice n en el archivo nombrearchivo.dat. \n");
+                break;
+            case REC:
+                printf("Recupera a memoria la expresión guardada en el archivo nombrearchivo.dat y le asigna el próximo índice disponible.");
+                break;
+            case LET:
+                printf("Emite un listado de las letras proposicionales que ocurren en la \n");
+                printf("expresión identificada por el índice n. Si alguna letra proposicional \n");
+                printf("ocurre más de una vez en la expresión, se listará por pantalla una sola vez. \n");
+                break;
+            case EVA:
+                printf("Determina si la expresión identificada por el índice n es una \n");
+                printf("tautología (o sea, siempre es verdadera, sin importar los valores de \n");
+                printf("sus subexpresiones), una contradicción (o sea, siempre es falsa, sin \n");
+                printf("importar los valores de sus subexpresiones) o una contingencia (o \n");
+                printf("sea, no es tautología ni contradicción). \n");
+                break;
+            case SAL:
+                printf("Finaliza la ejecución de la aplicación. Al hacerlo, debe liberar toda la \n");
+                printf("memoria dinámica usada durante la ejecución. \n");
+                break;
+            default:break;
       }
 }
 
@@ -124,7 +138,7 @@ void ComandoAtomica(ListaExpresiones &l, string p){
     Componente c;
     ArbolComponentes arbol;
     Expresion e;
-    char letraProposicional = p[0];
+    char letraProposicional = charAt(p,0);
 
     CrearVacio(arbol);
 
@@ -226,13 +240,13 @@ void ComandoEvaluar(ListaExpresiones le,int indice){
 
     switch(tipoExpresion){
         case TAUTOLOGIA:
-            printf("La expresion %d es TAUTOLOGIA", indice);
+            MostrarMensajeConfirmacion(TAUTO,DarIndice(e),"");
             break;
         case CONTRADICCION:
-            printf("La expresion %d es CONTRADICCION", indice);
+             MostrarMensajeConfirmacion(CONTRA,DarIndice(e),"");
             break;
         case CONTINGENCIA:
-            printf("La expresion %d es CONTINGENCIA");
+            MostrarMensajeConfirmacion(CONTI,DarIndice(e),"");
             break;
         default:
             break;
@@ -241,17 +255,21 @@ void ComandoEvaluar(ListaExpresiones le,int indice){
     printf("\n");
 }
 
-int CantidadParametrosComando(string comando){
-    if(streq(comando,"ayuda\0")|| streq(comando,"mostrar\0") || streq(comando,"evaluar\0")||
-       streq(comando,"letras\0")||streq(comando,"recuperar\0") || streq(comando,"atomica\0")){
-       return 1;
-    }else if(streq(comando,"noatomica\0")){
-       return 5;
-    }else if(streq(comando,"respaldar\0")){
-       return 2;
-    }else if(streq(comando,"salir\0")){
-       return 0;
-    }
 
+int CantidadParametrosComando(Comando comando){
+    switch(comando){
+        case AYU:
+        case ATO:
+        case MOS:
+        case EVA:
+        case LET:
+        case REC: return 1;break;
+        case RES: return 2;break;
+        case SAL: return 0;break;
+        case NOATO: return 5; break;
+        default:break;
+    }
+    return -1;
 }
+
 

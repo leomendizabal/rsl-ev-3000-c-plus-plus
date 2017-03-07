@@ -1,25 +1,26 @@
 #include "confirmacion.h"
 
 
-void MostrarMensajeConfirmacion(Confirmacion c,string tag1,string tag2){
+void MostrarMensajeConfirmacion(Confirmacion c,int tag1,string tag2){
     switch(c){
         case TAUTO:
-            printf("La expresion ");print(tag1);printf(" es una tautologia");
+            printf("La expresion %d es una tautologia",tag1);
             break;
         case CONTI:
-            printf("La expresion ");print(tag1);printf(" es una contingencia");
+            printf("La expresion %d es una contingencia",tag1);
             break;
         case CONTRA:
-            printf("La expresion ");print(tag1);printf(" es una contradiccion");
+            printf("La expresion %d es una contradiccion",tag1);
             break;
         case RESP:
-            printf("La expresion ");print(tag1);printf(" respaldada correctamente en ");
+            printf("La expresion %d respaldada correctamente en ",tag1);
             print(tag2);
             break;
         case SALUDO:
+            printf("Hasta la próxima");
             break;
 
     }
-    print(".\n");
+    printf(".\n");
 
 }

@@ -7,14 +7,18 @@
 #include "string.h"
 #include "archivo.h"
 
+#include "errores.h"
+#include "confirmacion.h"
+
+
 //Retorna TRUE si el comando es correcto y FALSE  si es incorrecto
-Boolean ValidarComando(string comando);
+Comando ValidarComando(string comando);
 
 void ParsearComando(string entrada, string &comando,string &parametros);
 
 void ParsearParametros(string parametros,ListaParametros &listaResultado);
 
-void ComandoAyuda(string  comando);
+void ComandoAyuda(Comando comando);
 
 //crea una expresion atomica y la inserta al final de la lista de expresiones
 void ComandoAtomica(ListaExpresiones &l, string p);
@@ -34,7 +38,7 @@ void ComandoRecuperar(ListaExpresiones &le,string nombreArch);
 
 void ComandoEvaluar(ListaExpresiones le,int indice);
 
-int CantidadParametrosComando(string comando);
+int CantidadParametrosComando(Comando comando);
 
 
 #endif // COMANDOS_H_INCLUDED

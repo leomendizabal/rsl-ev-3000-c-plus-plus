@@ -42,4 +42,8 @@ void straddchar(string &s,char c);
 
 void strreverter(string in,string &out);
 
+Boolean strIsEnd(char c);
+
+int strIndexOf(string s,char c);
+
 #endif // STRING_H_INCLUDED

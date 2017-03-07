@@ -35,6 +35,7 @@ void MostrarMensajeError(Error e, string etiqueta,int valor)
     case ARCH_NO_EXISTE:
        printf("No existe el archivo con nombre ");print(etiqueta);
        break;
+    default:break;
     }
-    print(".\n");
+    printf(".\n");
 }

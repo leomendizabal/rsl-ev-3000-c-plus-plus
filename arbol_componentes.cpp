@@ -68,7 +68,7 @@ void CrearArbol(ArbolComponentes &raiz, ArbolComponentes ramaIzq, ArbolComponent
            //Inserto como hijo izquierdo de la raiz a la copia de rama izquierda y como hijo derecho a la copia de rama derecha
           AsignarPosicionOrdenado(raiz,pos);  // Ordeno cada componente con su pocision en orden (De menor a mayor)
        }
-       }
+    }
 
 }
 Boolean EsVacio(ArbolComponentes abb)
@@ -135,7 +135,7 @@ void InsertarParentesisDer(ArbolComponentes &abb,Componente c)
 }
 Boolean ExisteLetra(ArbolComponentes abb, char letra)
 {
-  if (abb = NULL)
+  if (abb == NULL)
      return FALSE;
   else
        if (EsTipoLetra(abb->info) && (DarDato(abb->info)==letra))

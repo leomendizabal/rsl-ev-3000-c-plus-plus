@@ -147,30 +147,36 @@ void strsplit(string s1, char c, string &s2){
 void strfirst(string s1, int index, char c, string &s2){
 
   int i = index;
-
+  string aux;
+  strcrear(aux);
   while((s1[i]!='\0') && (s1[i] != c)){
-    s2[i] = s1[i];
+    aux[i] = s1[i];
     i++;
   }
-
-  s2[i] = '\0';
+  aux[i] = '\0';
+  strcop(s2,aux);
+  strdestruir(aux);
 }
 
 //Quita todos los espacios del principio
 void strtrim(string s1, string &s2){
   int i = 0;
   int j = 0;
+  string aux;
+  strcrear(aux);
 
   while(s1[i] == ' '){
     i++;
   }
 
   while(s1[i] != '\0'){
-    s2[j] = s1[i];
+    aux[j] = s1[i];
     j++;
     i++;
   }
-  s2[j] = '\0';
+  aux[j] = '\0';
+  strcop(s2,aux);
+  strdestruir(aux);
 }
 
 int strToInt(string s){
@@ -212,4 +218,18 @@ void strreverter(string in,string &out){
       in[n] = tem;
     }
     strcop(out,in);
+}
+
+Boolean strIsEnd(char c){
+
+    return (c == '\0') ? TRUE : FALSE;
+
+}
+
+int strIndexOf(string s,char c){
+    int i=0;
+    while((strIsEnd(s[i])) && (s[i] != c))
+        i++;
+    return (strIsEnd(s[i]) == TRUE) ? 0 : i;
+
 }
