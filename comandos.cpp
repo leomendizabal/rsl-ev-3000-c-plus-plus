@@ -252,7 +252,7 @@ void ComandoEvaluar(ListaExpresiones le,int indice){
             break;
     }
 
-    printf("\n");
+    //printf("\n");
 }
 
 

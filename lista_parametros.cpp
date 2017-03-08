@@ -249,14 +249,17 @@ Boolean EsNumericoValido(string parametro)
 Boolean EsNombreValido(string parametro)
 {
     Boolean es = FALSE;
-    int i = 0;
-    string aux;
-    strcrear(aux);
-    strsplit(parametro,'.',aux);
-    if((streq(aux,".dat") == TRUE)||
-            (streq(aux,".txt") == TRUE))
+    if (EsAlfabetico(parametro)==TRUE)
     {
-        es = TRUE;
+            string aux;
+            strcrear(aux);
+            strsplit(parametro,'.',aux);
+            if((streq(aux,".dat\0") == TRUE)||
+                           (streq(aux,".txt\0") == TRUE))
+            {
+                 es = TRUE;
+            }
+            strdestruir(aux);
     }
     return es;
 }

@@ -46,4 +46,6 @@ Boolean strIsEnd(char c);
 
 int strIndexOf(string s,char c);
 
+Boolean EsAlfabetico(string parametro);
+
 #endif // STRING_H_INCLUDED

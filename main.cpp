@@ -3,7 +3,6 @@
 
 
 
-
 int main(){
   string entrada, comando, parametros;
   Boolean out = FALSE;

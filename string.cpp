@@ -233,3 +233,19 @@ int strIndexOf(string s,char c){
     return (strIsEnd(s[i]) == TRUE) ? 0 : i;
 
 }
+
+Boolean EsAlfabetico(string parametro)
+{
+    Boolean alfabetico=TRUE;
+   int i=0;
+   while (alfabetico && (parametro[i]!='.') && (parametro[i]!='\0'))
+          {
+             if ((parametro[i]>='0') && (parametro[i]<='9'))
+                   alfabetico=FALSE;
+             else
+                i++;
+          }
+   if ((parametro[0]=='\0') || (((parametro[0]<'a' || parametro[0]>'z') && (parametro[0]<'A' || parametro[0]>'Z'))))
+        alfabetico=FALSE;
+   return alfabetico;
+}
