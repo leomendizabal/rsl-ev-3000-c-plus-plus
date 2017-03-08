@@ -217,13 +217,15 @@ void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch, Boolean 
         printf("El archivo existe , Desea sobre-escribirlo ? (S o N)\n");
         string ent;
         strcrear(ent);
+        char p,u;
         do
         {
             printf("Ingrese opcion:     ");
             scan(ent);
+            SobreEscritura(ent,p,u);
         }
-        while ((ent[0]!='S') && (ent[0]!='N'));
-        if (ent[0]=='S')
+        while ((((p!='S') || (p!='N'))) && (u!='\0'));
+        if ((p=='S') && (u=='\0'))
         {
             DarExpresion(le, indice, e);
             BajarExpresion(e, nombreArch);

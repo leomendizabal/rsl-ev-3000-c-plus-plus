@@ -249,3 +249,44 @@ Boolean EsAlfabetico(string parametro)
         alfabetico=FALSE;
    return alfabetico;
 }
+
+void strtrimlast(string s1, string &s2)
+{
+  int i = 0;
+  int j = 0;
+  string aux;
+  strcrear(aux);
+  while ((s1[i] != ' ') && (s1[i]!='\0'))  // Busco el primer espacio
+  {
+    aux[j]=s1[i];
+    j++;
+    i++;
+  }
+
+  while((s1[i] == ' ') &&  (s1[i]!='\0')) // Descarto todos los espacios
+   {
+    i++;
+  }
+  while(s1[i] != '\0'){   // Cargo los restntes caracteres
+    aux[j] = s1[i];
+    j++;
+    i++;
+  }
+  aux[j] = '\0';
+  strcop(s2,aux);
+  strdestruir(aux);
+
+}
+
+void SobreEscritura(string parametro,char &prim,char &ult)
+{
+    string aux1,aux2;
+    strcrear(aux1);
+    strcrear(aux2);
+    strtrim(parametro,aux1);
+    strtrimlast(aux1,aux2);
+    prim=aux2[0];
+    ult=aux2[1];
+    strdestruir(aux1);
+    strdestruir(aux2);
+}

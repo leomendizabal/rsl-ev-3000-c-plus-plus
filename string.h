@@ -48,4 +48,9 @@ int strIndexOf(string s,char c);
 
 Boolean EsAlfabetico(string parametro);
 
+void strtrimlast(string s1, string &s2);
+
+void SobreEscritura(string parametro,char &prim,char &ult);
+
+
 #endif // STRING_H_INCLUDED
