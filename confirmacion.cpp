@@ -17,7 +17,7 @@ void MostrarMensajeConfirmacion(Confirmacion c,int tag1,string tag2){
             print(tag2);
             break;
         case SALUDO:
-            printf("Hasta la próxima");
+            printf("Hasta la proxima");
             break;
 
     }

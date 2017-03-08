@@ -240,7 +240,7 @@ Boolean EsAlfabetico(string parametro)
    int i=0;
    while (alfabetico && (parametro[i]!='.') && (parametro[i]!='\0'))
           {
-             if ((parametro[i]>='0') && (parametro[i]<='9'))
+             if (((parametro[i]>='0') && (parametro[i]<='9'))  || (((parametro[i]<'a' || parametro[i]>'z') && (parametro[i]<'A' || parametro[i]>'Z'))))
                    alfabetico=FALSE;
              else
                 i++;

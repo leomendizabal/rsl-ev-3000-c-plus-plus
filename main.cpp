@@ -6,6 +6,7 @@
 int main(){
   string entrada, comando, parametros;
   Boolean out = FALSE;
+  Boolean es = TRUE;
   ListaExpresiones listaExpresiones;
   ListaParametros listaParametros;
 
@@ -101,13 +102,16 @@ int main(){
                 case RES:
                     string nombreArchivo;
                     string indiceRes;
+                    es=TRUE;
                     strcrear(nombreArchivo);
                     strcrear(indiceRes);
                     DarParametro(listaParametros,1,indiceRes);
                     DarParametro(listaParametros,2,nombreArchivo);
                     if(ExisteExpresion(listaExpresiones, strToInt(indiceRes))==TRUE){
-                        ComandoRespaldar(listaExpresiones, strToInt(indiceRes), nombreArchivo);
-                        MostrarMensajeConfirmacion(RESP,strToInt(indiceRes),nombreArchivo);
+                        ComandoRespaldar(listaExpresiones, strToInt(indiceRes), nombreArchivo,es);
+                        if (es==TRUE)
+                               MostrarMensajeConfirmacion(RESP,strToInt(indiceRes),nombreArchivo);
+
                     }else{
                         MostrarMensajeError(NOM_ARCH_INV,indiceRes,0);
                     }

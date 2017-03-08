@@ -210,10 +210,34 @@ void ComandoNoAtomica(ListaExpresiones &le,int cant,string p1,string p2,string p
 
 
 
-void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch){
+void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch, Boolean &es){
     Expresion e;
-    DarExpresion(le, indice, e);
-    BajarExpresion(e, nombreArch);
+    if (Existe(nombreArch)==TRUE)
+    {
+        printf("El archivo existe , Desea sobre-escribirlo ? (S o N)\n");
+        string ent;
+        strcrear(ent);
+        do
+        {
+            printf("Ingrese opcion:     ");
+            scan(ent);
+        }
+        while ((ent[0]!='S') && (ent[0]!='N'));
+        if (ent[0]=='S')
+        {
+            DarExpresion(le, indice, e);
+            BajarExpresion(e, nombreArch);
+            printf("Resultado:          ");
+        }
+        else
+            es=FALSE;
+        strdestruir(ent);
+    }
+    else
+    {
+        DarExpresion(le, indice, e);
+        BajarExpresion(e, nombreArch);
+    }
 }
 
 void ComandoRecuperar(ListaExpresiones &le,string nombreArch){
