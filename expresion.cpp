@@ -54,6 +54,7 @@ TipoExpresion EvaluarExpresion(Expresion e){
     TipoExpresion tipo;
     int cantidadLetras = 0;
     int iteraciones = 0;
+    int combinaciones = 0;
 
     CrearLista(letras);
     ObtenerLetras(DarArbol(e), letras);
@@ -69,15 +70,16 @@ TipoExpresion EvaluarExpresion(Expresion e){
     AsignarValor(letras, binario);
     resultadoEvaluar = EvaluarArbol(DarArbol(e), letras);
     resultadoAnterior = resultadoEvaluar;
+    combinaciones = DarPotencia(2, cantidadLetras);
 
-    while(resultadoEvaluar == resultadoAnterior && iteraciones<DarPotencia(2, cantidadLetras)){
+    while(resultadoEvaluar == resultadoAnterior && iteraciones< combinaciones){
         iteraciones++;
         decimalToBinary(iteraciones, cantidadLetras, binario);
         AsignarValor(letras, binario);
         resultadoEvaluar = EvaluarArbol(DarArbol(e), letras);
     }
 
-    if(DarPotencia(2, cantidadLetras)==(iteraciones)){
+    if(combinaciones == iteraciones){
         tipo = resultadoEvaluar==TRUE ? TAUTOLOGIA : CONTRADICCION;
     }else{
         tipo = CONTINGENCIA;

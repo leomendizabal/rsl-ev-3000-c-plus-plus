@@ -204,8 +204,12 @@ char charAt(string s, int index){
 }
 
 void straddchar(string &s,char c){
-    s[strlar(s)]=c;
-    s[strlar(s)+1]='\0';
+    int i =0;
+    while (s[i] != '\0') {
+        i++;
+    }
+    s[i]=c;
+    s[i+1]='\0';
 }
 
 void strreverter(string in,string &out){
