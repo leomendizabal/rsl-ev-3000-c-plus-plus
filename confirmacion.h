@@ -8,6 +8,7 @@ typedef enum{
         CONTI,
         CONTRA,
         RESP,
+        LETR,
         SALUDO
  }Confirmacion;
 

@@ -16,11 +16,15 @@ void MostrarMensajeConfirmacion(Confirmacion c,int tag1,string tag2){
             printf("La expresion %d respaldada correctamente en ",tag1);
             print(tag2);
             break;
+        case LETR:
+            printf("Letras de la expresion %d: ",tag1);
+            break;
         case SALUDO:
             printf("Hasta la proxima");
             break;
 
     }
-    printf(".\n");
+    if (c!=LETR)
+       printf(".\n");
 
 }

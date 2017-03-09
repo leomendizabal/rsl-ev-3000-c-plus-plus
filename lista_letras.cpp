@@ -90,11 +90,16 @@ void AsignarValor(ListaLetras letras, string binario){
 }
 
 void MostrarListaLetras(ListaLetras l){
-    while(l!= NULL){
+   /* while(l!= NULL){
         MostrarLetra(l->info);
         printf(" ");
         Mostrar(DarValor(l->info));
         printf("\n");
+        l= l->sig;
+    } */
+    while(l!= NULL){
+        MostrarLetra(l->info);
+        printf(" ");
         l= l->sig;
     }
 }

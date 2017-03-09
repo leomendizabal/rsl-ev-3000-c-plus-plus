@@ -170,6 +170,8 @@ void ComandoLetras(ListaExpresiones l, int indice){
 
     ObtenerLetras(DarArbol(e), letras);
     MostrarListaLetras(letras);
+    printf("\n");
+
 }
 
 

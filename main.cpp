@@ -11,7 +11,7 @@ int main(){
   ListaParametros listaParametros;
 
   CrearLista(listaExpresiones);
-      //Inicializo la entrada, el comando ingresado y los parametros cada vez que se ingresa
+//Inicializo la entrada, el comando ingresado y los parametros cada vez que se ingresa
     strcrear(entrada);
     strcrear(comando);
     strcrear(parametros);
@@ -82,6 +82,7 @@ int main(){
                     strcrear(indiceLet);
                     DarParametro(listaParametros,1,indiceLet);
                     if(ExisteExpresion(listaExpresiones, strToInt(indiceLet))==TRUE){
+                        MostrarMensajeConfirmacion(LETR,strToInt(indiceLet),"");
                         ComandoLetras(listaExpresiones, strToInt(indiceLet));
                     }else{
                         MostrarMensajeError(NO_EXISTE_EXP,indiceLet,0);
@@ -169,6 +170,7 @@ int main(){
     }
 
   }while(out != TRUE);
+
    strdestruir(entrada);
    strdestruir(comando);
    strdestruir(parametros);
