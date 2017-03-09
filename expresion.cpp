@@ -73,6 +73,7 @@ TipoExpresion EvaluarExpresion(Expresion e){
     combinaciones = DarPotencia(2, cantidadLetras);
 
     while(resultadoEvaluar == resultadoAnterior && iteraciones< combinaciones){
+        strcrear(binario);
         iteraciones++;
         decimalToBinary(iteraciones, cantidadLetras, binario);
         AsignarValor(letras, binario);
