@@ -52,5 +52,8 @@ void strtrimlast(string s1, string &s2);
 
 void SobreEscritura(string parametro,char &prim,char &ult);
 
+void Bajar_String (string s, FILE * f);
+
+void Levantar_String (string &s, FILE * f);
 
 #endif // STRING_H_INCLUDED

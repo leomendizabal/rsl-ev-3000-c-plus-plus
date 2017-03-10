@@ -56,5 +56,6 @@ void MostrarParametros(ListaParametros l);
 
 void EliminarLista(ListaParametros &l);
 
+void ParsearParametros(string parametros,ListaParametros &listaResultado);
 
 #endif // LISTA_PARAMETROS_H_INCLUDED
