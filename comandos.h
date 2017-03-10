@@ -16,7 +16,6 @@ Comando ValidarComando(string comando);
 
 void ParsearComando(string entrada, string &comando,string &parametros);
 
-void ParsearParametros(string parametros,ListaParametros &listaResultado);
 
 void ComandoAyuda(Comando comando);
 

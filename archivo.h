@@ -10,9 +10,6 @@ Boolean Existe(string nombrArch);
 
 void CrearArchivo(string nombre);
 
-void Bajar_String (string s, FILE * f);
-
-void Levantar_String (string &s, FILE * f);
 
 
 #endif // ARCHIVO_H_INCLUDED

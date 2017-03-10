@@ -67,25 +67,7 @@ void ParsearComando(string entrada, string &comando,string &parametros){
     strtrim(parametrosAux, parametros);             //quita los espacios del principio
 }
 
-void ParsearParametros(string parametros,ListaParametros &listaResultado){
-    string param;
-    string restoParam;
 
-    strcrear(param);
-    strcrear(restoParam);
-
-    while(strlar(parametros)>0){
-        //strcrear(param);
-        strfirst(parametros, 0, ' ', param);            //obtiene el primer string hasta el espacio
-        InsUltimo(listaResultado, param);              //inserta un nodo con el parametro a la lista
-        strsplit(parametros, ' ', parametros);          //guarda en restoParam toda la cadena menos el primer string
-        strcop(restoParam,parametros);
-        strtrim(restoParam, parametros);
-    }
-    strdestruir(param);
-    strdestruir(restoParam);
-
-}
 void ComandoAyuda(Comando comando){
 
       switch(comando){
