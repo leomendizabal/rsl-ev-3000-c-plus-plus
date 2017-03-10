@@ -220,7 +220,7 @@ Boolean EsNumericoValido(string parametro)
 {
     Boolean es = TRUE;
     int i = 0;
-    while((parametro[i]!='\0') && (es == TRUE))
+    while(strIsEnd(charAt(parametro,i) == FALSE) && (es == TRUE))
     {
         switch(parametro[0])
         {
@@ -248,14 +248,18 @@ Boolean EsNumericoValido(string parametro)
 
 Boolean EsNombreValido(string parametro)
 {
+    char extDatArr[MAX] = ".dat\0";
+    string extdat = extDatArr;
+    char extTxtArr[MAX] = ".txt\0";
+    string exttxt = extTxtArr;
     Boolean es = FALSE;
     if (EsAlfabetico(parametro)==TRUE)
     {
             string aux;
             strcrear(aux);
             strsplit(parametro,'.',aux);
-            if((streq(aux,".dat\0") == TRUE)||
-                           (streq(aux,".txt\0") == TRUE))
+            if((streq(aux,extdat) == TRUE)||
+                           (streq(aux,exttxt) == TRUE))
             {
                  es = TRUE;
             }
@@ -265,12 +269,12 @@ Boolean EsNombreValido(string parametro)
 }
 
 Boolean EsLetra(string parametro){
-    return (Boolean)(((parametro[0]>='a' && parametro[0]<='z') || (parametro[0]>='A' && parametro[0]<='Z')) && parametro[1]=='\0');
+    return (Boolean)(((charAt(parametro,0)>='a' && charAt(parametro,0)<='z') || (charAt(parametro,0)>='A' && charAt(parametro,0)<='Z')) && charAt(parametro,1)=='\0');
 }
 
 Boolean EsOperadorValido(string parametro){
 
-    switch(parametro[0]){
+    switch(charAt(parametro,0)){
       case'&':
       case'|':
       case'!': return TRUE;
