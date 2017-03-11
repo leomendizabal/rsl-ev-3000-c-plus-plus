@@ -204,11 +204,11 @@ void ComandoRespaldar(ListaExpresiones le,int indice,string nombreArch, Boolean 
         char p,u;
         do
         {
-            printf("Ingrese opcion:     ");
+            printf("Ingrese (S o N):    ");
             scan(ent);
             SobreEscritura(ent,p,u);
         }
-        while ((((p!='S') || (p!='N'))) && (u!='\0'));
+        while (((p!='S') && (p!='N')) || (u!='\0'));
         if ((p=='S') && (u=='\0'))
         {
             DarExpresion(le, indice, e);

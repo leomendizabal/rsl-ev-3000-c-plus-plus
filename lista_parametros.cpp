@@ -222,7 +222,8 @@ Boolean EsNumericoValido(string parametro)
     int i = 0;
     while(strIsEnd(charAt(parametro,i) == FALSE) && (es == TRUE))
     {
-        switch(parametro[0])
+        char c=charAt(parametro,0);
+        switch(c)
         {
         case '0':
         case '1':
