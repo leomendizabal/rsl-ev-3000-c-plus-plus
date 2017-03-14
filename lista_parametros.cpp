@@ -212,6 +212,7 @@ int  CantidadParametros(ListaParametros l)
         cantidad++;
         aux = aux ->sig;
     }
+    //var de eliminar la lista aux
     //delete aux;
     return cantidad;
 }
@@ -298,6 +299,7 @@ void Restoceder (ListaParametros &l) {
 void InsFront (ListaParametros &l, string s) {
   ListaParametros aux;
   aux = new NodoParametros;
+  strcrear(aux->parametro);
   strcop(aux->parametro,s);
   aux->sig = l;
   l = aux;
@@ -307,6 +309,7 @@ void InsUltimo (ListaParametros &l, string s){
   if (l == NULL)
     {
         l=new NodoParametros;
+        strcrear(l->parametro);
         strcop(l->parametro,s);
         l->sig=NULL;
     }

@@ -125,20 +125,23 @@ Boolean streq(string s1,string s2)
 //Retorna retorna la un sub string desde un char dado  hacia el final.
 void strsplit(string s1, char c, string &s2){
   int i = 0;
+  string aux = new char[MAX];
   while((s1[i]!='\0') && (s1[i] != c)){
     i++;
   }
   if(s1[i] == c){
     int j = 0;
     while(s1[i]!= '\0'){
-      s2[j]=s1[i];
+      aux[j]=s1[i];
       i++;
       j++;
     }
-    s2[j] = '\0';
+    aux[j] = '\0';
   }else{
-    s2[0] = '\0';
+    aux[0] = '\0';
   }
+  strcop(s2,aux);
+  strdestruir(aux);
 
 }
 
@@ -147,8 +150,7 @@ void strsplit(string s1, char c, string &s2){
 void strfirst(string s1, int index, char c, string &s2){
 
   int i = index;
-  string aux;
-  strcrear(aux);
+  string aux = new char [MAX];
   while((s1[i]!='\0') && (s1[i] != c)){
     aux[i] = s1[i];
     i++;
@@ -162,8 +164,7 @@ void strfirst(string s1, int index, char c, string &s2){
 void strtrim(string s1, string &s2){
   int i = 0;
   int j = 0;
-  string aux;
-  strcrear(aux);
+  string aux = new char [MAX];
 
   while(s1[i] == ' '){
     i++;
@@ -258,8 +259,8 @@ void strtrimlast(string s1, string &s2)
 {
   int i = 0;
   int j = 0;
-  string aux;
-  strcrear(aux);
+  //se agrega
+  string aux = new char[MAX];
   while ((s1[i] != ' ') && (s1[i]!='\0'))  // Busco el primer espacio
   {
     aux[j]=s1[i];
@@ -280,6 +281,12 @@ void strtrimlast(string s1, string &s2)
   strcop(s2,aux);
   strdestruir(aux);
 
+}
+
+void charToString(string s,char c){
+    s = new char[2];
+    s[0]= c;
+    s[1]='\0';
 }
 
 void SobreEscritura(string parametro,char &prim,char &ult)

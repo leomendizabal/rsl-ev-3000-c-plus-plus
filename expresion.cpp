@@ -63,8 +63,8 @@ TipoExpresion EvaluarExpresion(Expresion e){
     Boolean resultadoEvaluar = FALSE;
     Boolean resultadoAnterior = FALSE;
 
-    string binario;
-    strcrear(binario);
+    string binario = new char[MAX];
+    //strcrear(binario);
 
     decimalToBinary(iteraciones, cantidadLetras, binario);
     AsignarValor(letras, binario);

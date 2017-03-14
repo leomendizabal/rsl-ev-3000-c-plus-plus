@@ -81,8 +81,8 @@ void AsignarValor(ListaLetras letras, string binario){
      int i = 0;
      Boolean valorProposicional = FALSE;
 
-     while(EsVacia(letras) == FALSE && binario[i] != '\0'){
-        valorProposicional = binario[i] == '0' ? FALSE : TRUE;
+     while(EsVacia(letras) == FALSE && strIsEnd(charAt(binario,i))){
+        valorProposicional = charAt(binario,i) == '0' ? FALSE : TRUE;
         CargarInfoLetra(letras->info, DarLetra(letras->info), valorProposicional);
         i++;
         letras=letras->sig;
@@ -109,6 +109,8 @@ void decimalToBinary(int n,int largo,string &result) {
      while(n != 0 && strlar(result)!= largo) {
          remainder = n%2;
          n = n/2;
+         //ver de usar charToString
+         //strcon(result,charToString(r,intToChar(remainder))); NO IMPLEMENTADO
          straddchar(result,intToChar(remainder));
      }
      for(int i= strlar(result); strlar(result) < largo;i++ )

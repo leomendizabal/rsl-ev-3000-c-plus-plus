@@ -33,7 +33,8 @@ int DarPotencia(int base, int potencia){
 
 char intToChar(int numero){
     switch(numero){
-        case 1: return '1';
-        case 0: return '0';
+        case 1: return '1';break;
+        case 0: return '0';break;
+        default:return '0';break;
     }
 }

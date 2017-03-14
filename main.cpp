@@ -11,13 +11,13 @@ int main(){
   ListaParametros listaParametros;
 
   CrearLista(listaExpresiones);
-//Inicializo la entrada, el comando ingresado y los parametros cada vez que se ingresa
+
+
+ do{
+    //Inicializo la entrada, el comando ingresado y los parametros cada vez que se ingresa
     strcrear(entrada);
     strcrear(comando);
     strcrear(parametros);
-
- do{
-
     CrearLista(listaParametros);
      //Leo la entrada
     printf("Ingrese comando:    ");
@@ -51,6 +51,7 @@ int main(){
                     break;
                 case ATO:
                     string atom;
+                    strcrear(atom);
                     DarParametro(listaParametros,1,atom);
                     ComandoAtomica(listaExpresiones, atom);
                     strdestruir(atom);
@@ -168,11 +169,9 @@ int main(){
     }else{
       MostrarMensajeError(COMANDO_INV,comando,0);
     }
-
-  }while(out != TRUE);
-
+   EliminarLista(listaParametros);
    strdestruir(entrada);
    strdestruir(comando);
    strdestruir(parametros);
-
+  }while(out != TRUE);
 }
