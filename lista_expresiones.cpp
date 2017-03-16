@@ -87,20 +87,20 @@ void InsUltimo (ListaExpresiones &l, Expresion e){
 }
 
 int UltimoIndice(ListaExpresiones l){
-  ListaExpresiones aux;
+  //ListaExpresiones aux;
   int indice ;
-  CrearLista(aux);
-  aux = l;
+  //CrearLista(aux);
+  //aux = l;
 
-  if(aux == NULL){
+  if(EsVacia(l) == TRUE){
     indice = 0;
   }else{
-    while(EsVacia(aux->sig) == FALSE){
-      aux = aux->sig;
+    while(EsVacia(l->sig) == FALSE){
+      l = l->sig;
     }
-    indice = DarIndice(aux->ex);
+    indice = DarIndice(l->ex);
   }
-  delete aux;
+  //delete aux;
   return indice;
 
 }

@@ -95,15 +95,15 @@ void MostrarDato(Componente c){
 }
 
 Boolean EsTipoLetra(Componente c){
-    return (Boolean)(c.tipo == 0);
+    return (Boolean)(c.tipo == LETRA);
 }
 
 Boolean EsTipoOperador(Componente c){
-    return (Boolean)(c.tipo == 1);
+    return (Boolean)(c.tipo == OPERADOR);
 }
 
 Boolean EsTipoParentesis(Componente c){
-    return (Boolean)(c.tipo == 2);
+    return (Boolean)(c.tipo == PARENTESIS);
 }
 
 void AsignarPosicion(Componente c,int val)

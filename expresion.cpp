@@ -33,6 +33,7 @@ void BajarExpresion(Expresion e, string nombreArch){
 void LevantarExpresion(Expresion &e, string nombreArch){
     FILE * f = fopen (nombreArch, "rb");
     LevantarInt(e.indice,f);
+    CrearVacio(e.arb);
     LevantarArbol(e.arb,f);
     fclose(f);
 }
@@ -63,8 +64,8 @@ TipoExpresion EvaluarExpresion(Expresion e){
     Boolean resultadoEvaluar = FALSE;
     Boolean resultadoAnterior = FALSE;
 
-    string binario = new char[MAX];
-    //strcrear(binario);
+    string binario; //= new char[MAX];
+    strcrear(binario);
 
     decimalToBinary(iteraciones, cantidadLetras, binario);
     AsignarValor(letras, binario);
@@ -72,20 +73,20 @@ TipoExpresion EvaluarExpresion(Expresion e){
     resultadoAnterior = resultadoEvaluar;
     combinaciones = DarPotencia(2, cantidadLetras);
 
-    while(resultadoEvaluar == resultadoAnterior && iteraciones< combinaciones){
+    while(resultadoEvaluar == resultadoAnterior && iteraciones < combinaciones){
         strcrear(binario);
-        iteraciones++;
         decimalToBinary(iteraciones, cantidadLetras, binario);
         AsignarValor(letras, binario);
+        iteraciones++;
         resultadoEvaluar = EvaluarArbol(DarArbol(e), letras);
+        strdestruir(binario);
     }
-
     if(combinaciones == iteraciones){
         tipo = resultadoEvaluar==TRUE ? TAUTOLOGIA : CONTRADICCION;
     }else{
         tipo = CONTINGENCIA;
     }
-
+    EliminarLista(letras);
     strdestruir(binario);
     //printf("la lista de letras es: \n");
     //MostrarListaLetras(letras);

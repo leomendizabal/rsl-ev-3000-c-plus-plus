@@ -237,8 +237,6 @@ void ComandoRecuperar(ListaExpresiones &le,string nombreArch){
    ModificarIndExpresion(exp,indi);      // Asigna a la expresion el ultimo indice disponibe en la lista
    InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
    MostrarExpresion(exp);         //Muestra en pantalla la expresion
-
-
 }
 
 void ComandoEvaluar(ListaExpresiones le,int indice){

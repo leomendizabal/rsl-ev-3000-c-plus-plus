@@ -164,13 +164,13 @@ void MostrarArbol(ArbolComponentes abb)
            {
             if (DarDato(abb->info)=='!')
                 printf("! ");
-            else
+            else{
                 if (DarDato(abb->info)=='|')
                     printf(" | ");
                 else
                     printf(" & ");
-           }
-        else
+                }
+        }else
              MostrarDato(abb->info);
         MostrarArbol(abb->Hder);
   }
@@ -239,7 +239,7 @@ Boolean EvaluarArbol(ArbolComponentes arb, ListaLetras letras){
                     return (Boolean)(EvaluarArbol(arb->Hizq, letras) && EvaluarArbol(arb->Hder, letras));
                     break;
                  case '!':
-                    return (Boolean)(!EvaluarArbol(arb->Hder, letras));
+                    return (EvaluarArbol(arb->Hder, letras) == TRUE) ? FALSE:TRUE;
                     break;
              }
          }
@@ -249,7 +249,7 @@ Boolean EvaluarArbol(ArbolComponentes arb, ListaLetras letras){
 void BajarArbol(ArbolComponentes abb,FILE *f)
 {
   BajarArbolAux(abb,f);
-  fclose (f);
+  //fclose (f);
 }
 void BajarArbolAux(ArbolComponentes abb,FILE *f)
 {
@@ -269,5 +269,5 @@ void LevantarArbol(ArbolComponentes &abb,FILE *f)
      Insertar(abb,buffer);
      LevantarComponente(buffer,f);
   }
-  fclose(f);
+  //fclose(f);
 }

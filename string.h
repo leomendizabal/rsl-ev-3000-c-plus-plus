@@ -50,7 +50,7 @@ Boolean EsAlfabetico(string parametro);
 
 void strtrimlast(string s1, string &s2);
 
-void charToString(string s,char c);
+void charToString(string &s,char c);
 
 void SobreEscritura(string parametro,char &prim,char &ult);
 

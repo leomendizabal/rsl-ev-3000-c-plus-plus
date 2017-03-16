@@ -283,8 +283,8 @@ void strtrimlast(string s1, string &s2)
 
 }
 
-void charToString(string s,char c){
-    s = new char[2];
+void charToString(string &s,char c){
+    //s = new char[2];
     s[0]= c;
     s[1]='\0';
 }

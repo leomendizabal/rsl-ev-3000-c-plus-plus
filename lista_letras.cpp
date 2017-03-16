@@ -20,7 +20,7 @@ Boolean DarValorLetra(ListaLetras l,char s){
   while ((EsVacia(l) == FALSE) && (DarLetra(l->info) != s)){
     l=l->sig;
   }
-  if(DarLetra(l->info) == s){
+  if((EsVacia(l) == FALSE) && (DarLetra(l->info) == s)){
     valor = DarValor(l->info);
   }
   return valor;
@@ -77,16 +77,17 @@ int CantidadLetras(ListaLetras l){
     return cantidad;
 }
 
-void AsignarValor(ListaLetras letras, string binario){
+void AsignarValor(ListaLetras &letras, string binario){
      int i = 0;
      Boolean valorProposicional = FALSE;
-
-     while(EsVacia(letras) == FALSE && strIsEnd(charAt(binario,i))){
-        valorProposicional = charAt(binario,i) == '0' ? FALSE : TRUE;
-        CargarInfoLetra(letras->info, DarLetra(letras->info), valorProposicional);
+     ListaLetras aux= letras;
+     while(EsVacia(aux) == FALSE && strIsEnd(charAt(binario,i))== FALSE){
+        valorProposicional = (charAt(binario,i) == '0' ? FALSE : TRUE);
+        CargarInfoLetra(aux->info, DarLetra(aux->info), valorProposicional);
         i++;
-        letras=letras->sig;
+        aux=aux->sig;
     }
+    delete aux;
 }
 
 void MostrarListaLetras(ListaLetras l){
@@ -106,15 +107,27 @@ void MostrarListaLetras(ListaLetras l){
 
 void decimalToBinary(int n,int largo,string &result) {
      int remainder;
+     string r = new char[2];
      while(n != 0 && strlar(result)!= largo) {
          remainder = n%2;
          n = n/2;
          //ver de usar charToString
-         //strcon(result,charToString(r,intToChar(remainder))); NO IMPLEMENTADO
-         straddchar(result,intToChar(remainder));
+         charToString(r,intToChar(remainder));
+         strcon(result,r);
      }
-     for(int i= strlar(result); strlar(result) < largo;i++ )
-       straddchar(result,intToChar(0));
-
+     for(int i= strlar(result); strlar(result) < largo;i++ ){
+        charToString(r,intToChar(remainder));
+        strcon(result,r);
+     }
      strreverter(result, result);
+     strdestruir(r);
+}
+
+void EliminarLista(ListaLetras &l){
+    if(l!=NULL)
+    {
+        EliminarLista(l->sig);
+        delete l;
+        l=NULL;
+    }
 }

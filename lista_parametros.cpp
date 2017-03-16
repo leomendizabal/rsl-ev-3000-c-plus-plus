@@ -204,16 +204,16 @@ void ValidarParametros(ListaParametros l,Comando cmd,string comando, Error &err,
 int  CantidadParametros(ListaParametros l)
 {
     int cantidad = 0;
-    ListaParametros aux;
+    /*ListaParametros aux;
     CrearLista(aux);
-    aux = l;
-    while(aux != NULL)
+    aux = l;*/
+    while(l != NULL)
     {
         cantidad++;
-        aux = aux ->sig;
+        l = l ->sig;
     }
     //var de eliminar la lista aux
-    //delete aux;
+   // delete aux;
     return cantidad;
 }
 
@@ -267,6 +267,8 @@ Boolean EsNombreValido(string parametro)
             }
             strdestruir(aux);
     }
+    strdestruir(exttxt);
+    strdestruir(extdat);
     return es;
 }
 
