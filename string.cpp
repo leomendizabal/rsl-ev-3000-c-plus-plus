@@ -170,7 +170,7 @@ void strtrim(string s1, string &s2){
     i++;
   }
 
-  while(s1[i] != '\0'){
+  while(s1[i] != ' ' && s1[i] != '\0'){
     aux[j] = s1[i];
     j++;
     i++;

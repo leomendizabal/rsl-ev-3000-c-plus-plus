@@ -63,5 +63,6 @@ void LevantarComponente(Componente &c, FILE *f);
 
 void AsignarPosicion(Componente c,int val);
 
+int TipoToInt(Componente c);
 
 #endif // COMPONENTE_H_INCLUDED

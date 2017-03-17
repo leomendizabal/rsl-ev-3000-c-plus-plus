@@ -234,7 +234,7 @@ void ComandoRecuperar(ListaExpresiones &le,string nombreArch){
    int indi = UltimoIndice(le) + 1;   // retorna en int el ultimo indice disponible en la lista de expresiones
    CrearExpresion(exp,arb,indi);
    LevantarExpresion(exp,nombreArch);      //Levanta a memoria la expresion guardada en el archivo
-   ModificarIndExpresion(exp,indi);      // Asigna a la expresion el ultimo indice disponibe en la lista
+   //ModificarIndExpresion(exp,indi);      // Asigna a la expresion el ultimo indice disponibe en la lista
    InsUltimo(le,exp);              //Inserta la nueva expresion al final de la lista de expresiones
    MostrarExpresion(exp);         //Muestra en pantalla la expresion
 }

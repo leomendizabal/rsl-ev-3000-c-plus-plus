@@ -353,6 +353,7 @@ void ParsearParametros(string parametros,ListaParametros &listaResultado){
         strcop(restoParam,parametros);
         strtrim(restoParam, parametros);
     }
+
     strdestruir(param);
     strdestruir(restoParam);
 

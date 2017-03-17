@@ -164,13 +164,13 @@ void MostrarArbol(ArbolComponentes abb)
            {
             if (DarDato(abb->info)=='!')
                 printf("! ");
-            else{
+            else
                 if (DarDato(abb->info)=='|')
                     printf(" | ");
                 else
                     printf(" & ");
-                }
-        }else
+           }
+        else
              MostrarDato(abb->info);
         MostrarArbol(abb->Hder);
   }

@@ -57,7 +57,7 @@ void CargarDatoTipo(Componente &c,char dato){
   switch(c.tipo){
     case LETRA: c.dato.letra = dato; break;
     case OPERADOR:c.dato.operador = dato;  break;
-    case PARENTESIS:c.dato.operador = dato;  break;
+    case PARENTESIS:c.dato.parentesis = dato;  break;
   }
 
 }
@@ -144,7 +144,7 @@ void BajarInt(int i, FILE * f)
 
 void BajarComponente(Componente c, FILE *f){
     BajarInt(DarValor(c),f);
-    BajarInt(DarTipo(c),f);
+    BajarInt(TipoToInt(c),f);
     BajarChar(DarDato(c),f);
 }
 
@@ -156,4 +156,21 @@ void LevantarComponente(Componente &c, FILE *f)
    LevantarInt(tipo,f);
    LevantarChar(dato,f);
    CargarDato(c,valor,dato,IntATipoDato(tipo));
+}
+
+int TipoToInt(Componente c){
+  switch(c.tipo){
+        case LETRA:
+            return 0;
+            break;
+        case OPERADOR:
+            return 1;
+            break;
+        case PARENTESIS:
+            return 2;
+            break;
+        default:
+            break;
+    }
+
 }

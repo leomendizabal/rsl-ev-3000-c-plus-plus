@@ -27,8 +27,11 @@ int main(){
     //Parseo
     ParsearComando(entrada,comando,parametros);
    // print(comando);
-    ParsearParametros(parametros,listaParametros);
-   // MostrarParametros(listaParametros);
+    /*ParsearParametros(parametros,listaParametros);
+    printf("Parametros: ");print(parametros);printf("\n");
+    printf("Cantidad: %d",CantidadParametros(listaParametros));
+    printf("Lista: "); MostrarParametros(listaParametros);printf("\n");*/
+
     printf("Resultado:          ");
     Comando cmd = ValidarComando(comando);
     if(cmd != INV) {
